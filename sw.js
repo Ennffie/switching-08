@@ -1,19 +1,20 @@
-const CACHE_NAME = 'mpf-app-v1';
+const CACHE_NAME = 'switching-07-v2';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/icons/icon-72x72.png',
-  '/icons/icon-96x96.png',
-  '/icons/icon-128x128.png',
-  '/icons/icon-144x144.png',
-  '/icons/icon-152x152.png',
-  '/icons/icon-192x192.png',
-  '/icons/icon-384x384.png',
-  '/icons/icon-512x512.png'
+  '/switching-07/',
+  '/switching-07/index.html',
+  '/switching-07/icons/icon-72x72.png',
+  '/switching-07/icons/icon-96x96.png',
+  '/switching-07/icons/icon-128x128.png',
+  '/switching-07/icons/icon-144x144.png',
+  '/switching-07/icons/icon-152x152.png',
+  '/switching-07/icons/icon-192x192.png',
+  '/switching-07/icons/icon-384x384.png',
+  '/switching-07/icons/icon-512x512.png'
 ];
 
 // 安裝 Service Worker
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
@@ -40,6 +41,7 @@ self.addEventListener('fetch', (event) => {
 
 // 更新 Service Worker
 self.addEventListener('activate', (event) => {
+  self.clients.claim();
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
