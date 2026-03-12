@@ -42,10 +42,10 @@ MPF 基金轉換界面 - React + TypeScript + Vite
 ```
 
 ### 2. 圖片路徑
-**問題：** vite.config.ts 有 `base: '/Switching-04/'`
+**問題：** vite.config.ts 有 `base: '/switching-07/'`
 **正確路徑：**
 ```javascript
-<img src="/Switching-04/icons/manulife-logo-new.jpg" />
+<img src="/switching-07/icons/manulife-logo-new.jpg" />
 ```
 
 ### 3. iOS Safari 滾動檢測 ⭐

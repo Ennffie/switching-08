@@ -1,7 +1,7 @@
 # Switching-04 版本記錄
 
 **Repo:** https://github.com/Ennffie/Switching-04  
-**GitHub Pages:** https://ennffie.github.io/Switching-04/
+**GitHub Pages:** https://ennffie.github.io/switching-07/
 
 ---
 
@@ -17,7 +17,7 @@
 - 基本頁面結構：Landing、Invest、SelectPlan、FundTransfer、Confirm
 - 初始 CSS 樣式
 
-**🔗 連結:** https://ennffie.github.io/Switching-04/#/
+**🔗 連結:** https://ennffie.github.io/switching-07/#/
 
 ---
 
@@ -29,7 +29,7 @@
 - Landing page「投資」按鈕可點擊
 - 添加 navigate 到 /invest
 
-**🔗 連結:** https://ennffie.github.io/Switching-04/#/
+**🔗 連結:** https://ennffie.github.io/switching-07/#/
 
 ---
 
@@ -41,7 +41,7 @@
 - 添加缺失嘅 CSS styles
 - 修復 SelectPlan 同 FundTransfer 頁面樣式
 
-**🔗 連結:** https://ennffie.github.io/Switching-04/#/
+**🔗 連結:** https://ennffie.github.io/switching-07/#/
 
 ---
 
@@ -54,7 +54,7 @@
 - 確保 Tailwind build 後樣式仍然生效
 - 添加 .gitignore 文件
 
-**🔗 連結:** https://ennffie.github.io/Switching-04/#/
+**🔗 連結:** https://ennffie.github.io/switching-07/#/
 
 ---
 
@@ -69,7 +69,7 @@
 - Step 2：Tab 導航、基金分配、Validation
 - Step 3：確認摘要、提交按鈕
 
-**🔗 連結:** https://ennffie.github.io/Switching-04/#/
+**🔗 連結:** https://ennffie.github.io/switching-07/#/
 
 ---
 
@@ -82,7 +82,7 @@
 - 卡片邊線改為 2px 粗 + 黑色
 - 添加輕微陰影效果
 
-**🔗 連結:** https://ennffie.github.io/Switching-04/#/invest
+**🔗 連結:** https://ennffie.github.io/switching-07/#/invest
 
 ---
 

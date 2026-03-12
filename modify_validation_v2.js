@@ -1,6 +1,6 @@
 
 const fs = require('fs');
-const path = '/Users/z/.openclaw/workspace/projects/Switching-04/assets/index-CpvJSoev.js';
+const path = '/Users/z/.openclaw/workspace/projects/switching-07/assets/index-CpvJSoev.js';
 let content = fs.readFileSync(path, 'utf8');
 
 // The current state after my previous fix
