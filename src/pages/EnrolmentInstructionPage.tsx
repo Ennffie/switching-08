@@ -66,7 +66,7 @@ const EnrolmentInstructionPage = () => {
         </div>
       </div>
 
-      <div className="bg-white px-6 pt-4 pb-6 border-t border-[#ECECEC]">
+      <div className="sticky bottom-0 bg-white px-6 pt-4 pb-6 border-t border-[#ECECEC] shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
         <button className="w-full h-[60px] rounded-full bg-[#19345B] text-white text-[19px] font-semibold tracking-[0.01em] mb-4 shadow-[0_1px_2px_rgba(0,0,0,0.08)]">開始登記</button>
         <button className="w-full text-center text-[18px] font-medium text-[#1F1F1F] leading-[1.4] underline underline-offset-[3px]">以現有紀錄繼續</button>
       </div>
