@@ -47,9 +47,9 @@ const EnrolmentStep1Page = () => {
           </p>
         </div>
 
-        <button
+        <div
           onClick={() => setSelected(!selected)}
-          className={`w-full bg-white rounded-[28px] px-6 pt-8 pb-7 shadow-[0_3px_12px_rgba(0,0,0,0.08)] text-left transition-all ${selected ? 'border-[3px] border-[#E6A23C]' : 'border border-[#D8D1D1]'}`}
+          className={`w-full bg-white rounded-[28px] px-6 pt-8 pb-7 shadow-[0_3px_12px_rgba(0,0,0,0.08)] text-left transition-all cursor-pointer ${selected ? 'border-[3px] border-[#E6A23C]' : 'border border-[#D8D1D1]'}`}
         >
           <h3 className="text-[22px] font-bold text-[#1F1F1F] mb-2 text-center tracking-[-0.01em]">友邦強積金優選計劃</h3>
           <p className="text-[16px] text-[#666666] leading-[1.6] mb-7">AIA MPF - Prime Value Choice</p>
@@ -68,7 +68,7 @@ const EnrolmentStep1Page = () => {
             </div>
             <ExternalLink size={24} className="text-[#1F1F1F] flex-shrink-0 mt-1" />
           </button>
-        </button>
+        </div>
       </div>
 
       <div className="sticky bottom-0 bg-[#F6F5F4] px-6 pt-3 pb-6">
