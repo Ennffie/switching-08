@@ -58,7 +58,7 @@ const EnrolmentStep1Page = () => {
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              window.open('https://www.aia.com.hk/content/dam/hk-financial-assets/zh/docs/individual/wealth-management/mpf/aia-mpf-prime-value-choice-brochure-chi.pdf', '_blank', 'noopener,noreferrer');
+              window.open('https://www.aia.com.hk/zh-hk/products/mpf/list', '_blank', 'noopener,noreferrer');
             }}
             className="w-full bg-[#F7EFE7] rounded-[16px] px-6 py-7 flex items-start justify-between text-left"
           >
