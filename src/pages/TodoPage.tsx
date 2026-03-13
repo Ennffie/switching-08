@@ -31,7 +31,7 @@ const TodoPage = () => {
 
       <div className="flex-1 flex flex-col items-center justify-center px-6 pb-24" style={{ marginTop: '-40px' }}>
         <img
-          src="./icons/todo-empty-state.png"
+          src="./icons/todo-empty-state.jpg"
           alt="沒有待辦事項"
           className="w-[88px] h-[88px] object-contain mb-5 opacity-70"
         />
