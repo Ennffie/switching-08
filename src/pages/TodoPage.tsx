@@ -57,7 +57,7 @@ const TodoPage = () => {
               </button>
 
               <div className="flex flex-col items-center text-center pt-6 pb-2">
-                <img src="./icons/todo-modal-doc.png" alt="已儲存申請" className="w-[92px] h-[92px] object-contain mb-6" />
+                <img src="./icons/todo-modal-doc.jpg" alt="已儲存申請" className="w-[92px] h-[92px] object-contain mb-6" />
                 <h3 className="text-[22px] font-bold text-[#E6A23C] leading-[1.4] mb-4">確定繼續已儲存的申請？</h3>
                 <p className="text-[16px] leading-[1.6] text-[#1F1F1F] mb-8">
                   你可按「繼續」繼續提交申請。如欲返回上一頁，請按「取消」。
