@@ -14,6 +14,7 @@ import PersonalityQuizPage from './pages/PersonalityQuizPage';
 import WorkLifeQuizPage from './pages/WorkLifeQuizPage';
 import RoomCleanlinessQuizPage from './pages/RoomCleanlinessQuizPage';
 import DISInfoPage from './pages/DISInfoPage';
+import TodoPage from './pages/TodoPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/invest/success" element={<SuccessPage />} />
           <Route path="/invest/records" element={<RecordsPage />} />
           <Route path="/dis-info" element={<DISInfoPage />} />
+          <Route path="/todo" element={<TodoPage />} />
           <Route path="/quiz/personality" element={<PersonalityQuizPage />} />
           <Route path="/quiz/work-life" element={<WorkLifeQuizPage />} />
           <Route path="/quiz/room-cleanliness" element={<RoomCleanlinessQuizPage />} />

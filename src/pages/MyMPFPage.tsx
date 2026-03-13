@@ -68,6 +68,8 @@ const MyMPFPage = () => {
       navigate('/');
     } else if (tabId === 'my-mpf') {
       navigate('/my-mpf');
+    } else if (tabId === 'todo') {
+      navigate('/todo');
     }
   };
 
@@ -163,18 +165,6 @@ const MyMPFPage = () => {
               alt="待辦事項"
               style={{ width: '24px', height: '24px' }}
             />
-            <span 
-              className="absolute flex items-center justify-center rounded-full bg-red-500 text-white font-medium"
-              style={{ 
-                minWidth: '14px', 
-                height: '14px', 
-                fontSize: '9px',
-                top: '-4px',
-                right: '-6px'
-              }}
-            >
-              1
-            </span>
           </div>
           <span 
             className="text-xs mt-1"
