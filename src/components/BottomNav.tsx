@@ -47,7 +47,7 @@ export default function BottomNav({ activeTab }: BottomNavProps) {
                     padding: '0 4px'
                   }}
                 >
-                  2
+                  1
                 </span>
               )}
             </div>

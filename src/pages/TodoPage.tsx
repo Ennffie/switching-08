@@ -33,7 +33,7 @@ const TodoPage = () => {
 
             <div>
               <div className="text-[15px] text-[#B1B1B1] mb-1">計劃名稱</div>
-              <div className="text-[18px] text-[#1F1F1F] font-medium">海通 MPF 退休金</div>
+              <div className="text-[18px] text-[#1F1F1F] font-medium">友邦強積金優選計劃</div>
             </div>
 
             <div>
