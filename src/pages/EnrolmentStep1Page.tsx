@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ExternalLink } from 'lucide-react';
 
 const EnrolmentStep1Page = () => {
   const navigate = useNavigate();
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,7 +47,10 @@ const EnrolmentStep1Page = () => {
           </p>
         </div>
 
-        <div className="bg-white rounded-[28px] border border-[#D8D1D1] shadow-[0_3px_12px_rgba(0,0,0,0.08)] px-6 pt-8 pb-7">
+        <button
+          onClick={() => setSelected(!selected)}
+          className={`w-full bg-white rounded-[28px] px-6 pt-8 pb-7 shadow-[0_3px_12px_rgba(0,0,0,0.08)] text-left transition-all ${selected ? 'border-[3px] border-[#E6A23C]' : 'border border-[#D8D1D1]'}`}
+        >
           <h3 className="text-[22px] font-bold text-[#1F1F1F] mb-2 text-center tracking-[-0.01em]">友邦強積金優選計劃</h3>
           <p className="text-[16px] text-[#666666] leading-[1.6] mb-7">AIA MPF - Prime Value Choice</p>
 
@@ -54,13 +59,13 @@ const EnrolmentStep1Page = () => {
               <div className="text-[18px] font-bold text-[#1F1F1F] mb-6">成分基金列表</div>
               <div className="text-[16px] text-[#1F1F1F] leading-[1.5]">由受託人提供</div>
             </div>
-            <img src="./icons/icon-external.png" alt="外部連結" className="w-7 h-7 object-contain mt-1" />
+            <ExternalLink size={24} className="text-[#1F1F1F] flex-shrink-0 mt-1" />
           </div>
-        </div>
+        </button>
       </div>
 
       <div className="sticky bottom-0 bg-[#F6F5F4] px-6 pt-3 pb-6">
-        <button className="w-full h-[58px] rounded-full bg-[#E8E5E5] text-[#B7B3B3] text-[19px] font-semibold border border-[#D7D3D3]">下一步</button>
+        <button className={`w-full h-[58px] rounded-full text-[19px] font-semibold border ${selected ? 'bg-[#19345B] text-white border-[#19345B]' : 'bg-[#E8E5E5] text-[#B7B3B3] border-[#D7D3D3]'}`}>下一步</button>
       </div>
     </div>
   );
