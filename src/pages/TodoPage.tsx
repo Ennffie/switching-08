@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BottomNav from '../components/BottomNav';
 
 const TodoPage = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const TodoPage = () => {
                   你可按「繼續」繼續提交申請。如欲返回上一頁，請按「取消」。
                 </p>
 
-                <button className="w-full h-[56px] rounded-full bg-[#1E3557] text-white text-[18px] font-medium mb-4">繼續</button>
+                <button onClick={() => navigate('/enrolment-instruction')} className="w-full h-[56px] rounded-full bg-[#1E3557] text-white text-[18px] font-medium mb-4">繼續</button>
                 <button onClick={() => setShowModal(false)} className="text-[18px] font-medium text-[#1F1F1F]">取消</button>
               </div>
             </div>
