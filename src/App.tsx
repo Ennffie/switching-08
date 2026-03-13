@@ -18,6 +18,9 @@ import TodoPage from './pages/TodoPage';
 import ProfilePage from './pages/ProfilePage';
 import EnrolmentInstructionPage from './pages/EnrolmentInstructionPage';
 import EnrolmentStep1Page from './pages/EnrolmentStep1Page';
+import EnrolmentPersonalInfoPage from './pages/EnrolmentPersonalInfoPage';
+import EnrolmentIAMSmartPage from './pages/EnrolmentIAMSmartPage';
+import EnrolmentIdentityPage from './pages/EnrolmentIdentityPage';
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/enrolment-instruction" element={<EnrolmentInstructionPage />} />
           <Route path="/enrolment-step-1" element={<EnrolmentStep1Page />} />
+          <Route path="/enrolment-identity" element={<EnrolmentIdentityPage />} />
+          <Route path="/enrolment-iam-smart" element={<EnrolmentIAMSmartPage />} />
+          <Route path="/enrolment-personal-info" element={<EnrolmentPersonalInfoPage />} />
           <Route path="/quiz/personality" element={<PersonalityQuizPage />} />
           <Route path="/quiz/work-life" element={<WorkLifeQuizPage />} />
           <Route path="/quiz/room-cleanliness" element={<RoomCleanlinessQuizPage />} />
