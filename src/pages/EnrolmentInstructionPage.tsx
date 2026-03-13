@@ -60,7 +60,7 @@ const EnrolmentInstructionPage = () => {
           <p className="text-[16px] text-[#1F1F1F] leading-[1.55] mb-6">在開始前，請先準備以下項目，以便順利進行登記：</p>
 
           <div className="flex items-center gap-3">
-            <img src="./icons/enrol-check.png" alt="已準備" className="w-5 h-5 object-contain flex-shrink-0" />
+            <span className="text-[28px] leading-none text-[#E6A23C] font-bold">√</span>
             <p className="text-[16px] text-[#1F1F1F] leading-[1.5]">已登記的「智方便」帳戶（下載）</p>
           </div>
         </div>
@@ -68,7 +68,7 @@ const EnrolmentInstructionPage = () => {
 
       <div className="bg-white px-6 pt-4 pb-6 border-t border-[#ECECEC]">
         <button className="w-full h-[60px] rounded-full bg-[#19345B] text-white text-[19px] font-semibold tracking-[0.01em] mb-4 shadow-[0_1px_2px_rgba(0,0,0,0.08)]">開始登記</button>
-        <button className="w-full text-center text-[18px] font-medium text-[#1F1F1F] leading-[1.4]">以現有紀錄繼續</button>
+        <button className="w-full text-center text-[18px] font-medium text-[#1F1F1F] leading-[1.4] underline underline-offset-[3px]">以現有紀錄繼續</button>
       </div>
     </div>
   );
