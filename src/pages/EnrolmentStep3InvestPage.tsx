@@ -63,6 +63,14 @@ const EnrolmentStep3InvestPage = () => {
   const total = contributionType === 'mandatory' ? mandatoryTotal : voluntaryTotal;
   const isNextEnabled = mandatoryTotal === 100 && voluntaryTotal === 100;
 
+  const openFundLink = () => {
+    window.open('https://web.aia.com.hk/zh-hk/retirement/mpf/individual-member-fund-price', '_blank', 'noopener,noreferrer');
+  };
+
+  const openDisInfo = () => {
+    window.open('https://www.mpfa.org.hk/tc/mpf-system/default-investment-strategy', '_blank', 'noopener,noreferrer');
+  };
+
   const applyAllocation = (id: string, parsed: number) => {
     const updater = (funds: Fund[]) => funds.map(f => f.id === id ? { ...f, allocation: parsed } : f);
     if (contributionType === 'mandatory') setMandatoryFunds(prev => updater(prev));
@@ -156,8 +164,8 @@ const EnrolmentStep3InvestPage = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start gap-2 mb-3">
                     <div className="text-[18px] leading-[1.45] text-[#1F1F1F] font-medium break-words">{fund.name}</div>
-                    {!fund.name.includes('預設投資策略') && <ExternalLink size={18} strokeWidth={1.8} className="text-[#B9B5B5] mt-[2px] flex-shrink-0" />}
-                    {fund.name.includes('預設投資策略') && <Info size={18} strokeWidth={1.8} className="text-[#B9B5B5] mt-[2px] flex-shrink-0" />}
+                    {!fund.name.includes('預設投資策略') && <button onClick={(e) => { e.stopPropagation(); openFundLink(); }} className="mt-[2px] flex-shrink-0"><ExternalLink size={18} strokeWidth={1.8} className="text-[#B9B5B5]" /></button>}
+                    {fund.name.includes('預設投資策略') && <button onClick={(e) => { e.stopPropagation(); openDisInfo(); }} className="mt-[2px] flex-shrink-0"><Info size={18} strokeWidth={1.8} className="text-[#B9B5B5]" /></button>}
                   </div>
                   {fund.description && <p className="text-[15px] text-[#7A7777] leading-[1.45] mb-3">{fund.description}</p>}
                   <div className="flex items-center gap-2">
