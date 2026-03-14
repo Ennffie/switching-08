@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X } from 'lucide-react';
+import { X, BriefcaseBusiness } from 'lucide-react';
 
 interface Account {
   id: string;
@@ -22,11 +22,11 @@ const accounts: Account[] = [
     name: '友邦強積金優選計劃',
     member: '56442131',
     date: '29/12/2023',
-    type: '個人帳戶',
-    balance: '$ 44,905.94',
+    type: '一般僱員',
+    balance: '$ 128,396.91',
     mandatoryBalance: '$ 68,389.17',
     voluntaryBalance: '$ 60,007.74',
-    gain: '$ 33,109.71',
+    gain: '$ 58,508.93',
   },
   {
     id: '2',
@@ -34,11 +34,11 @@ const accounts: Account[] = [
     name: '宏利環球精選（強積金）計劃',
     member: '29819644',
     date: '26/01/2011',
-    type: '一般僱員',
-    balance: '$ 128,396.91',
-    mandatoryBalance: '$ 68,389.17',
-    voluntaryBalance: '$ 60,007.74',
-    gain: '$ 58,508.93',
+    type: '個人帳戶',
+    balance: '$ 44,905.94',
+    mandatoryBalance: '$ 22,452.97',
+    voluntaryBalance: '$ 22,452.97',
+    gain: '$ 33,109.71',
   },
 ];
 
@@ -105,7 +105,7 @@ const FutureSelectPlanPage = () => {
               <div className="text-center text-[14px] text-[#777] mb-5">自{acc.date} | 成員帳戶號碼： {acc.member}</div>
 
               <div className="flex items-center justify-center gap-3 mb-7 text-[#1F1F1F]">
-                <img src="./icons/icon-briefcase.png" alt="帳戶" className="w-6 h-6 object-contain" />
+                <BriefcaseBusiness size={22} className="text-[#1F1F1F]" />
                 <span className="text-[18px] font-medium">實運有限公司</span>
               </div>
 
