@@ -1,67 +1,56 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ExternalLink, Info } from 'lucide-react';
 
 interface Fund {
   id: string;
   name: string;
   allocation: number;
+  riskLevel: number;
+  description?: string;
 }
 
 type ContributionType = 'mandatory' | 'voluntary';
 
-const mandatoryFundsBase: Fund[] = [
-  { id: '1', name: '預設投資策略', allocation: 0 },
-  { id: '2', name: '友邦強積金優選計劃 - 保證組合', allocation: 0 },
-  { id: '3', name: '友邦強積金優選計劃 - 強積金保守基金', allocation: 0 },
-  { id: '4', name: '友邦強積金優選計劃 - 65歲後基金', allocation: 0 },
-  { id: '5', name: '友邦強積金優選計劃 - 亞洲債券基金', allocation: 0 },
-  { id: '6', name: '友邦強積金優選計劃 - 均衡組合', allocation: 0 },
-  { id: '7', name: '友邦強積金優選計劃 - 穩定資本組合', allocation: 0 },
-  { id: '8', name: '友邦強積金優選計劃 - 環球債券基金', allocation: 0 },
-  { id: '9', name: '友邦強積金優選計劃 - 中港動態資產配置基金', allocation: 0 },
-  { id: '10', name: '友邦強積金優選計劃 - 核心累積基金', allocation: 0 },
-  { id: '11', name: '友邦強積金優選計劃 - 增長組合', allocation: 0 },
-  { id: '12', name: '友邦強積金優選計劃 - 基金經理精選退休基金', allocation: 0 },
-  { id: '13', name: '友邦強積金優選計劃 - 美洲基金', allocation: 0 },
-  { id: '14', name: '友邦強積金優選計劃 - 亞洲股票基金', allocation: 0 },
-  { id: '15', name: '友邦強積金優選計劃 - 亞歐基金', allocation: 0 },
-  { id: '16', name: '友邦強積金優選計劃 - 歐洲股票基金', allocation: 0 },
-  { id: '17', name: '友邦強積金優選計劃 - 大中華股票基金', allocation: 0 },
-  { id: '18', name: '友邦強積金優選計劃 - 綠色退休基金', allocation: 0 },
-  { id: '19', name: '友邦強積金優選計劃 - 中港基金', allocation: 0 },
-  { id: '20', name: '友邦強積金優選計劃 - 北美股票基金', allocation: 0 },
-  { id: '21', name: '友邦強積金優選計劃 - 全球基金', allocation: 0 },
-];
+const riskColors: Record<number, string> = {
+  1: 'bg-blue-500',
+  2: 'bg-cyan-500',
+  3: 'bg-teal-500',
+  4: 'bg-green-500',
+  5: 'bg-yellow-500',
+  6: 'bg-orange-500',
+  7: 'bg-red-500',
+};
 
-const voluntaryFundsBase: Fund[] = [
-  { id: '1', name: '預設投資策略', allocation: 0 },
-  { id: '2', name: '友邦強積金優選計劃 - 保證組合', allocation: 0 },
-  { id: '3', name: '友邦強積金優選計劃 - 強積金保守基金', allocation: 0 },
-  { id: '4', name: '友邦強積金優選計劃 - 65歲後基金', allocation: 0 },
-  { id: '5', name: '友邦強積金優選計劃 - 亞洲債券基金', allocation: 0 },
-  { id: '6', name: '友邦強積金優選計劃 - 均衡組合', allocation: 0 },
-  { id: '7', name: '友邦強積金優選計劃 - 穩定資本組合', allocation: 0 },
-  { id: '8', name: '友邦強積金優選計劃 - 環球債券基金', allocation: 0 },
-  { id: '9', name: '友邦強積金優選計劃 - 中港動態資產配置基金', allocation: 0 },
-  { id: '10', name: '友邦強積金優選計劃 - 核心累積基金', allocation: 0 },
-  { id: '11', name: '友邦強積金優選計劃 - 增長組合', allocation: 0 },
-  { id: '12', name: '友邦強積金優選計劃 - 基金經理精選退休基金', allocation: 0 },
-  { id: '13', name: '友邦強積金優選計劃 - 美洲基金', allocation: 0 },
-  { id: '14', name: '友邦強積金優選計劃 - 亞洲股票基金', allocation: 0 },
-  { id: '15', name: '友邦強積金優選計劃 - 亞歐基金', allocation: 0 },
-  { id: '16', name: '友邦強積金優選計劃 - 歐洲股票基金', allocation: 0 },
-  { id: '17', name: '友邦強積金優選計劃 - 大中華股票基金', allocation: 0 },
-  { id: '18', name: '友邦強積金優選計劃 - 綠色退休基金', allocation: 0 },
-  { id: '19', name: '友邦強積金優選計劃 - 中港基金', allocation: 0 },
-  { id: '20', name: '友邦強積金優選計劃 - 北美股票基金', allocation: 0 },
-  { id: '21', name: '友邦強積金優選計劃 - 全球基金', allocation: 0 },
+const allInFunds: Fund[] = [
+  { id: '1', name: '預設投資策略', allocation: 0, riskLevel: 4 },
+  { id: '2', name: '友邦強積金優選計劃 - 保證組合', allocation: 0, riskLevel: 1 },
+  { id: '3', name: '友邦強積金優選計劃 - 強積金保守基金', allocation: 0, riskLevel: 1 },
+  { id: '4', name: '友邦強積金優選計劃 - 65歲後基金', allocation: 0, riskLevel: 3, description: '當65歲後基金或核心累積基金作為獨立投資選項，預設投資策略的風險降低機制並不適用' },
+  { id: '5', name: '友邦強積金優選計劃 - 亞洲債券基金', allocation: 0, riskLevel: 3 },
+  { id: '6', name: '友邦強積金優選計劃 - 均衡組合', allocation: 0, riskLevel: 4 },
+  { id: '7', name: '友邦強積金優選計劃 - 穩定資本組合', allocation: 0, riskLevel: 4 },
+  { id: '8', name: '友邦強積金優選計劃 - 環球債券基金', allocation: 0, riskLevel: 4 },
+  { id: '9', name: '友邦強積金優選計劃 - 中港動態資產配置基金', allocation: 0, riskLevel: 5 },
+  { id: '10', name: '友邦強積金優選計劃 - 核心累積基金', allocation: 0, riskLevel: 5, description: '當65歲後基金或核心累積基金作為獨立投資選項，預設投資策略的風險降低機制並不適用' },
+  { id: '11', name: '友邦強積金優選計劃 - 增長組合', allocation: 0, riskLevel: 5 },
+  { id: '12', name: '友邦強積金優選計劃 - 基金經理精選退休基金', allocation: 0, riskLevel: 5 },
+  { id: '13', name: '友邦強積金優選計劃 - 美洲基金', allocation: 0, riskLevel: 6 },
+  { id: '14', name: '友邦強積金優選計劃 - 亞洲股票基金', allocation: 0, riskLevel: 6 },
+  { id: '15', name: '友邦強積金優選計劃 - 亞歐基金', allocation: 0, riskLevel: 6 },
+  { id: '16', name: '友邦強積金優選計劃 - 歐洲股票基金', allocation: 0, riskLevel: 6 },
+  { id: '17', name: '友邦強積金優選計劃 - 大中華股票基金', allocation: 0, riskLevel: 6 },
+  { id: '18', name: '友邦強積金優選計劃 - 綠色退休基金', allocation: 0, riskLevel: 6 },
+  { id: '19', name: '友邦強積金優選計劃 - 中港基金', allocation: 0, riskLevel: 6 },
+  { id: '20', name: '友邦強積金優選計劃 - 北美股票基金', allocation: 0, riskLevel: 6 },
+  { id: '21', name: '友邦強積金優選計劃 - 全球基金', allocation: 0, riskLevel: 6 },
 ];
 
 const EnrolmentStep3InvestPage = () => {
   const navigate = useNavigate();
   const [contributionType, setContributionType] = useState<ContributionType>('mandatory');
-  const [mandatoryFunds] = useState<Fund[]>(mandatoryFundsBase);
-  const [voluntaryFunds] = useState<Fund[]>(voluntaryFundsBase);
+  const [mandatoryFunds] = useState<Fund[]>(allInFunds);
+  const [voluntaryFunds] = useState<Fund[]>(allInFunds);
 
   useEffect(() => { window.scrollTo(0,0); }, []);
 
@@ -120,25 +109,37 @@ const EnrolmentStep3InvestPage = () => {
 
         <div className="space-y-4">
           {currentFunds.map((fund) => (
-            <div key={fund.id} className="bg-white border border-[#D7D2D2] rounded-[18px] px-5 py-6 flex items-center justify-between shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-              <div className="flex items-center gap-4 min-w-0 pr-4">
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
-                  <img src="./icons/icon-info.png" alt="info" className="w-7 h-7 object-contain" />
+            <div key={fund.id} className="bg-white border border-[#E2DEDE] rounded-[18px] px-5 py-5 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start gap-2 mb-3">
+                    <div className="text-[18px] leading-[1.45] text-[#1F1F1F] font-medium break-words">{fund.name}</div>
+                    {!fund.name.includes('預設投資策略') && <ExternalLink size={17} className="text-[#A8A5A5] mt-1 flex-shrink-0" />}
+                    {fund.name.includes('預設投資策略') && <Info size={17} className="text-[#A8A5A5] mt-1 flex-shrink-0" />}
+                  </div>
+                  {fund.description && <p className="text-[15px] text-[#7A7777] leading-[1.45] mb-3">{fund.description}</p>}
+                  <div className="flex items-center gap-2">
+                    <div className={`w-[4px] h-[22px] rounded-full ${riskColors[fund.riskLevel]}`} />
+                    <span className="text-[16px] text-[#7B7878]">風險級別 {fund.riskLevel}</span>
+                  </div>
                 </div>
-                <div className="text-[18px] leading-[1.45] text-[#1F1F1F] break-words">{fund.name}</div>
+                <div className="flex items-center gap-2 flex-shrink-0 pl-2">
+                  <div className="w-[74px] h-[50px] rounded-[6px] border border-[#D7D3D3] bg-white flex items-center justify-center text-[20px] text-[#1F1F1F]">0</div>
+                  <span className="text-[18px] text-[#7A7777]">%</span>
+                </div>
               </div>
-              <div className="w-8 h-8 rounded-[4px] border border-[#D8D8D8] bg-white flex-shrink-0" />
             </div>
           ))}
         </div>
       </div>
 
       <div className="sticky bottom-0 bg-white px-6 pt-4 pb-6 border-t border-[#E9E5E5] shadow-[0_-2px_8px_rgba(0,0,0,0.03)]">
-        <div className="flex justify-between items-center mb-4 text-[18px] font-medium">
+        <div className="flex justify-between items-center mb-2 text-[18px] font-medium">
           <span className="text-[#1F1F1F]">總和：</span>
-          <span className="text-[#D62828] text-[20px] font-bold">{total}%</span>
+          <span className="text-[#E39118] text-[20px] font-bold">{total}%</span>
         </div>
-        <button className="w-full h-[58px] rounded-full bg-[#19345B] text-white text-[19px] font-semibold">下一步</button>
+        <button className="w-full h-[58px] rounded-full bg-[#E6E3E3] text-[#B8B4B4] text-[19px] font-semibold mb-4">下一步</button>
+        <div className="text-center text-[18px] text-[#9A9696]">新增指示</div>
       </div>
     </div>
   );
