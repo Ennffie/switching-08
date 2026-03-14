@@ -25,6 +25,7 @@ const accounts = [
 const FutureSelectPlanPage = () => {
   const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [detailAccountId, setDetailAccountId] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,7 +81,7 @@ const FutureSelectPlanPage = () => {
                   <div className="text-[15px] text-[#888] mb-2">帳戶結餘（港幣）</div>
                   <div className="text-[20px] font-semibold">{acc.balance}</div>
                 </div>
-                <div className="text-[16px] underline text-[#1F1F1F] mt-1">帳戶詳情</div>
+                <button onClick={(e) => { e.stopPropagation(); setDetailAccountId(acc.id); }} className="text-[16px] underline text-[#1F1F1F] mt-1">帳戶詳情</button>
               </div>
             </button>
           ))}
@@ -92,6 +93,37 @@ const FutureSelectPlanPage = () => {
           下一步
         </button>
       </div>
+
+      {detailAccountId && (
+        <div className="fixed inset-0 z-40 flex items-end">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setDetailAccountId(null)} />
+          <div className="relative w-full bg-white rounded-t-[28px] px-6 pt-6 pb-8 shadow-[0_-8px_24px_rgba(0,0,0,0.16)]">
+            <div className="flex justify-end mb-3">
+              <button onClick={() => setDetailAccountId(null)} className="text-[30px] leading-none text-[#1F1F1F]">×</button>
+            </div>
+            <div className="text-[24px] font-semibold text-[#E6A23C] mb-6">帳戶詳情</div>
+            <div className="space-y-6 text-[#1F1F1F]">
+              <div>
+                <div className="text-[15px] text-[#888] mb-2">計劃</div>
+                <div className="text-[19px] leading-[1.5]">{accounts.find(a => a.id === detailAccountId)?.name}</div>
+              </div>
+              <div>
+                <div className="text-[15px] text-[#888] mb-2">成員帳戶號碼</div>
+                <div className="text-[19px]">{accounts.find(a => a.id === detailAccountId)?.member}</div>
+              </div>
+              <div>
+                <div className="text-[15px] text-[#888] mb-2">帳戶類別</div>
+                <div className="text-[19px]">{accounts.find(a => a.id === detailAccountId)?.type}</div>
+              </div>
+              <div>
+                <div className="text-[15px] text-[#888] mb-2">帳戶結餘（港幣）</div>
+                <div className="text-[19px]">{accounts.find(a => a.id === detailAccountId)?.balance}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
