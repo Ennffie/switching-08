@@ -152,7 +152,7 @@ const EnrolmentPersonalInfoPage = () => {
                     ['other-only','不是Hong Kong而是其他司法管轄區／國家／地區'],
                   ].map(([value, label]) => (
                     <label key={value} className="flex items-start gap-4 cursor-pointer">
-                      <span className={`mt-1 w-7 h-7 rounded-full border-2 flex items-center justify-center ${selectedTax === value ? 'border-[#E5A323]' : 'border-[#CFCFCF]'}`}>
+                      <span className={`mt-1 w-7 h-7 min-w-[28px] min-h-[28px] rounded-full border-2 flex items-center justify-center ${selectedTax === value ? 'border-[#E5A323]' : 'border-[#CFCFCF]'}`}>
                         {selectedTax === value && <span className="w-4 h-4 rounded-full bg-[#E5A323]" />}
                       </span>
                       <input type="radio" className="hidden" checked={selectedTax === value} onChange={() => setSelectedTax(value)} />

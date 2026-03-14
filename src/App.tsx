@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import ScrollToTop from './components/ScrollToTop';
 import { TransferProvider } from './context/TransferContext';
 import { EnrolmentProvider } from './context/EnrolmentContext';
 import MyMPFPage from './pages/MyMPFPage';
@@ -32,6 +33,7 @@ function App() {
     <TransferProvider>
       <EnrolmentProvider>
       <Router>
+          <ScrollToTop />
         <Routes>
           <Route path="/" element={<OverviewPage />} />
           <Route path="/my-mpf" element={<MyMPFPage />} />
