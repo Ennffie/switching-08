@@ -116,7 +116,7 @@ const EnrolmentStep3InvestPage = () => {
         </div>
       </div>
 
-      <div className={`px-6 pt-8 flex-1 ${showKeypad ? 'pb-[360px]' : 'pb-44'}`}>
+      <div className={`px-6 pt-8 flex-1 ${showKeypad ? 'pb-[390px]' : 'pb-44'}`}>
         <h2 className="text-[24px] font-bold text-[#E6A23C] mb-5">投資選擇</h2>
         <div className="space-y-4 text-[16px] leading-[1.65] text-[#1F1F1F] mb-7">
           <p>在作出投資選擇前，你應先了解不同基金的風險等級並衡量自己的風險承受能力。</p>
@@ -178,18 +178,25 @@ const EnrolmentStep3InvestPage = () => {
       </div>
 
       {showKeypad && (
-        <div className="fixed left-0 right-0 bottom-0 z-30 bg-white rounded-t-[24px] shadow-[0_-8px_24px_rgba(0,0,0,0.12)] px-6 pt-3 pb-8">
-          <div className="flex items-center justify-between mb-4">
-            <button onClick={() => setShowKeypad(false)} className="text-[28px] leading-none text-[#1F1F1F]">⌄</button>
-            <button onClick={() => setShowKeypad(false)} className="text-[28px] leading-none text-[#1F1F1F]">✓</button>
-          </div>
-          <div className="grid grid-cols-3 gap-3">
-            {['1','2','3','4','5','6','7','8','9'].map((n) => (
-              <button key={n} onClick={() => handleKeypadPress(n)} className="h-[62px] rounded-[14px] bg-[#F8F8FA] text-[34px] font-medium text-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">{n}</button>
+        <div className="fixed left-0 right-0 bottom-0 z-30 bg-[#D1D5DB] border-t border-[#BFC5CD] px-[8px] pt-[8px] pb-[22px]">
+          <div className="grid grid-cols-3 gap-[6px]">
+            {[
+              ['1', ''], ['2', 'ABC'], ['3', 'DEF'],
+              ['4', 'GHI'], ['5', 'JKL'], ['6', 'MNO'],
+              ['7', 'PQRS'], ['8', 'TUV'], ['9', 'WXYZ'],
+            ].map(([n, sub]) => (
+              <button key={n} onClick={() => handleKeypadPress(n)} className="h-[74px] rounded-[8px] bg-white flex flex-col items-center justify-center shadow-[0_1px_0_rgba(0,0,0,0.18)]">
+                <span className="text-[22px] leading-none text-black">{n}</span>
+                {sub ? <span className="text-[11px] leading-none mt-1 tracking-[0.12em] text-black font-semibold">{sub}</span> : <span className="h-[11px] mt-1" />}
+              </button>
             ))}
-            <div />
-            <button onClick={() => handleKeypadPress('0')} className="h-[62px] rounded-[14px] bg-[#F8F8FA] text-[34px] font-medium text-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">0</button>
-            <button onClick={handleKeypadDelete} className="h-[62px] rounded-[14px] bg-[#F8F8FA] text-[28px] font-medium text-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">⌫</button>
+            <div className="h-[74px]" />
+            <button onClick={() => handleKeypadPress('0')} className="h-[74px] rounded-[8px] bg-[#BCC7DD] flex items-center justify-center shadow-[0_1px_0_rgba(0,0,0,0.18)]">
+              <span className="text-[22px] leading-none text-black">0</span>
+            </button>
+            <button onClick={handleKeypadDelete} className="h-[74px] rounded-[8px] bg-[#D1D5DB] flex items-center justify-center border border-[#B9BEC6]">
+              <span className="text-[28px] leading-none text-black">⌫</span>
+            </button>
           </div>
         </div>
       )}
