@@ -104,6 +104,11 @@ const FutureSelectPlanPage = () => {
               <div className="text-center text-[19px] font-semibold text-[#1F1F1F] leading-[1.5] mb-3">{acc.name}</div>
               <div className="text-center text-[14px] text-[#777] mb-5">自{acc.date} | 成員帳戶號碼： {acc.member}</div>
 
+              <div className="flex items-center justify-center gap-3 mb-7 text-[#1F1F1F]">
+                <img src="./icons/icon-briefcase.png" alt="帳戶" className="w-6 h-6 object-contain" />
+                <span className="text-[18px] font-medium">實運有限公司</span>
+              </div>
+
               <div className="space-y-5 text-[#1F1F1F]">
                 <div>
                   <div className="text-[15px] text-[#888] mb-2">帳戶類別</div>
