@@ -63,10 +63,10 @@ const FutureSelectPlanPage = () => {
             <button
               key={acc.id}
               onClick={() => setSelectedId(acc.id)}
-              className={`w-full text-left bg-white rounded-[26px] border shadow-[0_8px_24px_rgba(0,0,0,0.08)] px-6 pt-8 pb-8 ${selectedId === acc.id ? 'border-[#E6A23C]' : 'border-[#D8D3D3]'}`}
+              className={`w-full text-left bg-white rounded-[26px] border shadow-[0_8px_24px_rgba(0,0,0,0.08)] px-6 pt-8 pb-8 ${selectedId === acc.id ? 'border-[2px] border-[#E6A23C]' : 'border border-[#D8D3D3]'}`}
             >
               <div className="flex justify-center mb-5">
-                <img src={acc.logo} alt={acc.name} className="h-[64px] object-contain" />
+                <img src={acc.logo} alt={acc.name} className="h-[64px] object-contain" onError={(e) => { e.currentTarget.style.display = "none"; }} />
               </div>
               <div className="text-center text-[20px] font-semibold text-[#1F1F1F] leading-[1.5] mb-3">{acc.name}</div>
               <div className="text-center text-[15px] text-[#777] mb-8">自{acc.date} | 成員帳戶號碼： {acc.member}</div>
