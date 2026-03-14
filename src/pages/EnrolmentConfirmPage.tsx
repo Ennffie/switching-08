@@ -147,7 +147,7 @@ const EnrolmentConfirmPage = () => {
         </div>
 
         <div className="mb-8">
-          <div className="text-[19px] font-semibold text-[#1F1F1F] mb-4">僱員自願性供款分配</div>
+          <div className="text-[19px] font-semibold text-[#1F1F1F] mb-4">僱主自願性供款分配</div>
           <div className="space-y-4 text-[19px] text-[#1F1F1F]">
             {voluntaryFunds.length > 0 ? voluntaryFunds.map((fund) => (
               <div key={`v-${fund.name}`} className="flex justify-between items-start gap-4">
