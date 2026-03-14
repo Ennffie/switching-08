@@ -9,6 +9,7 @@ import InvestPage from './pages/InvestPage';
 import InvestInfoPage from './pages/InvestInfoPage';
 import InvestFutureInfoPage from './pages/InvestFutureInfoPage';
 import SelectPlanPage from './pages/SelectPlanPage';
+import FutureSelectPlanPage from './pages/FutureSelectPlanPage';
 import FundTransferPage from './pages/FundTransferPage';
 import ConfirmPage from './pages/ConfirmPage';
 import TermsPage from './pages/TermsPage';
@@ -45,6 +46,7 @@ function App() {
           <Route path="/invest/info" element={<InvestInfoPage />} />
           <Route path="/invest/future-info" element={<InvestFutureInfoPage />} />
           <Route path="/invest/select-plan" element={<SelectPlanPage />} />
+          <Route path="/invest/future-select-plan" element={<FutureSelectPlanPage />} />
           <Route path="/invest/fund-transfer" element={<FundTransferPage />} />
           <Route path="/invest/confirm" element={<ConfirmPage />} />
           <Route path="/invest/terms" element={<TermsPage />} />

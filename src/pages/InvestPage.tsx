@@ -13,6 +13,9 @@ const InvestPage = () => {
     if (type === 'existing') {
       navigate('/invest/select-plan');
     }
+    if (type === 'future') {
+      navigate('/invest/future-select-plan');
+    }
   };
 
   const handleInfoClick = (e: React.MouseEvent, type: 'existing' | 'future') => {
