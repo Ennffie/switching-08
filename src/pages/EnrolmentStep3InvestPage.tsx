@@ -152,9 +152,9 @@ const EnrolmentStep3InvestPage = () => {
       <div className={`px-6 pt-8 flex-1 ${showKeypad ? 'pb-[310px]' : 'pb-44'}`}>
         <h2 className="text-[24px] font-bold text-[#E6A23C] mb-5">投資選擇</h2>
         <div className="space-y-4 text-[16px] leading-[1.65] text-[#1F1F1F] mb-7">
-          <p>在作出投資選擇前，你應先了解不同基金的風險等級並衡量自己的風險承受能力。</p>
+          <p>在作出投資選擇前，你應先了解不同基金的<a href="#/enrolment-risk-level" className="text-[#E6A23C] underline font-medium">風險等級</a>並衡量自己的風險承受能力。</p>
           <p>請指示如何把投資分配至下列成分基金內。強制性供款和自願性供款（如有），將根據你於下表提供的投資選擇作出投資。投資分配百分比必須為整數（例如：須為50%而非50.5%）及其總和必須為100%。</p>
-          <p>有關 DIS 詳情，請參閱積金局網站。</p>
+          <p>有關 DIS 詳情，請參閱<a href="https://www.mpfa.org.hk/mpf-investment/portfolio/default-investment-strategy" target="_blank" rel="noopener noreferrer" className="text-[#E6A23C] underline font-medium">積金局網站</a>。</p>
         </div>
 
         <div className="flex border-b border-[#E4E0E0] mb-4 overflow-hidden">
