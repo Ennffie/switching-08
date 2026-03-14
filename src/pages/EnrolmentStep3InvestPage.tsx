@@ -89,6 +89,15 @@ const EnrolmentStep3InvestPage = () => {
     setKeypadValue(next);
     if (activeFundId) applyAllocation(activeFundId, parsed);
   };
+  const resetCurrentTab = () => {
+    const cleared = (funds: Fund[]) => funds.map(f => ({ ...f, allocation: 0 }));
+    if (contributionType === 'mandatory') setMandatoryFunds(prev => cleared(prev));
+    else setVoluntaryFunds(prev => cleared(prev));
+    setKeypadValue('');
+    setActiveFundId(null);
+    setShowKeypad(false);
+  };
+
 
   return (
     <div className="min-h-screen bg-[#F6F5F4] flex flex-col">
@@ -135,10 +144,10 @@ const EnrolmentStep3InvestPage = () => {
           </button>
         </div>
 
-        <div className="flex justify-end items-center gap-2 mb-5 text-[#1F1F1F]">
+        <button onClick={resetCurrentTab} className="flex justify-end items-center gap-2 mb-5 text-[#1F1F1F] w-full">
           <img src="./icons/icon-reset.png" alt="重設" className="w-6 h-6 object-contain" />
           <span className="text-[17px] font-medium">重設分配</span>
-        </div>
+        </button>
 
         <div className="space-y-4">
           {currentFunds.map((fund) => (
