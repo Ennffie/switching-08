@@ -172,7 +172,7 @@ const EnrolmentPersonalInfoPage = () => {
       </div>
 
       <div className="sticky bottom-0 bg-[#F6F5F4] px-6 pt-3 pb-6">
-        <button className={`w-full h-[58px] rounded-full text-[19px] font-semibold border ${selectedTax === 'hk-only' ? 'bg-[#19345B] text-white border-[#19345B]' : 'bg-[#E8E5E5] text-[#B7B3B3] border-[#D7D3D3]'}`}>下一步</button>
+        <button onClick={() => selectedTax === 'hk-only' && navigate('/enrolment-step-3-invest')} className={`w-full h-[58px] rounded-full text-[19px] font-semibold border ${selectedTax === 'hk-only' ? 'bg-[#19345B] text-white border-[#19345B]' : 'bg-[#E8E5E5] text-[#B7B3B3] border-[#D7D3D3]'}`}>下一步</button>
       </div>
     </div>
   );
