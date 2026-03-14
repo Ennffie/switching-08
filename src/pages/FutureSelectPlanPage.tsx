@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const accounts = [
   {
     id: '1',
-    logo: './logos/aia-logo.png',
+    logo: './images/logo-aia.png',
     name: '友邦強積金優選計劃',
     member: '56442131',
     date: '29/12/2023',
@@ -13,7 +13,7 @@ const accounts = [
   },
   {
     id: '2',
-    logo: './logos/manulife-logo.png',
+    logo: './images/logo-manulife.png',
     name: '宏利環球精選（強積金）計劃',
     member: '29819644',
     date: '26/01/2011',
@@ -58,20 +58,20 @@ const FutureSelectPlanPage = () => {
         <h2 className="text-[24px] font-bold text-[#E6A23C] mb-4">選擇計劃及帳戶</h2>
         <p className="text-[18px] leading-[1.6] text-[#1F1F1F] mb-8">請選擇你想要更改投資授權的強積金帳戶。</p>
 
-        <div className="space-y-6">
+        <div className="space-y-5">
           {accounts.map((acc) => (
             <button
               key={acc.id}
               onClick={() => setSelectedId(acc.id)}
-              className={`w-full text-left bg-white rounded-[24px] border shadow-[0_8px_24px_rgba(0,0,0,0.08)] px-6 pt-7 pb-7 min-h-[420px] ${selectedId === acc.id ? 'border-[3px] border-[#E6A23C]' : 'border border-[#D8D3D3]'}`}
+              className={`w-full text-left bg-white rounded-[24px] border shadow-[0_8px_24px_rgba(0,0,0,0.08)] px-6 pt-6 pb-6 min-h-[336px] ${selectedId === acc.id ? 'border-[3px] border-[#E6A23C]' : 'border border-[#D8D3D3]'}`}
             >
               <div className="flex justify-center mb-5">
-                <img src={acc.logo} alt={acc.name} className="h-[58px] object-contain" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                <img src={acc.logo} alt={acc.name} className="h-[50px] object-contain" onError={(e) => { e.currentTarget.style.display = "none"; }} />
               </div>
               <div className="text-center text-[19px] font-semibold text-[#1F1F1F] leading-[1.5] mb-3">{acc.name}</div>
-              <div className="text-center text-[14px] text-[#777] mb-7">自{acc.date} | 成員帳戶號碼： {acc.member}</div>
+              <div className="text-center text-[14px] text-[#777] mb-5">自{acc.date} | 成員帳戶號碼： {acc.member}</div>
 
-              <div className="space-y-6 text-[#1F1F1F]">
+              <div className="space-y-5 text-[#1F1F1F]">
                 <div>
                   <div className="text-[15px] text-[#888] mb-2">帳戶類別</div>
                   <div className="text-[20px] font-semibold">{acc.type}</div>
