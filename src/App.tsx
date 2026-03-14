@@ -3,6 +3,7 @@ import './App.css';
 import ScrollToTop from './components/ScrollToTop';
 import { TransferProvider } from './context/TransferContext';
 import { EnrolmentProvider } from './context/EnrolmentContext';
+import { FutureInvestProvider } from './context/FutureInvestContext';
 import MyMPFPage from './pages/MyMPFPage';
 import OverviewPage from './pages/OverviewPage';
 import InvestPage from './pages/InvestPage';
@@ -38,6 +39,7 @@ function App() {
   return (
     <TransferProvider>
       <EnrolmentProvider>
+        <FutureInvestProvider>
       <Router>
           <ScrollToTop />
         <Routes>
@@ -73,6 +75,7 @@ function App() {
           <Route path="/quiz/room-cleanliness" element={<RoomCleanlinessQuizPage />} />
         </Routes>
       </Router>
+        </FutureInvestProvider>
       </EnrolmentProvider>
     </TransferProvider>
   );
