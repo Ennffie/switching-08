@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ExternalLink, Info } from 'lucide-react';
+import { ChevronLeft, ExternalLink, Info, ArrowUpDown, RotateCcw, X } from 'lucide-react';
 import StepBar from '../components/StepBar';
 import { useFutureInvest } from '../context/FutureInvestContext';
 
@@ -61,12 +61,21 @@ const FutureInvestPage = () => {
   const [employerMandatoryFunds, setEmployerMandatoryFunds] = useState<Fund[]>(() => allInFunds.map(f => { const saved = savedEmployerFunds.find(sf => sf.name === f.name); return saved ? { ...f, allocation: saved.allocation } : f; }));
   const [employeeMandatoryFunds, setEmployeeMandatoryFunds] = useState<Fund[]>(() => allInFunds.map(f => { const saved = savedEmployeeFunds.find(sf => sf.name === f.name); return saved ? { ...f, allocation: saved.allocation } : f; }));
   const [showKeypad, setShowKeypad] = useState(false);
+  const [showSortModal, setShowSortModal] = useState(false);
+  const [sortField, setSortField] = useState<'name' | 'risk' | null>(null);
   const [activeFundId, setActiveFundId] = useState<string | null>(null);
   const [keypadValue, setKeypadValue] = useState('');
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const currentFunds = contributionType === 'employer-mandatory' ? employerMandatoryFunds : employeeMandatoryFunds;
+  const currentFunds = useMemo(() => {
+    const funds = contributionType === 'employer-mandatory' ? [...employerMandatoryFunds] : [...employeeMandatoryFunds];
+    if (!sortField) return funds;
+    const defaultFund = funds.find(f => f.name.includes('預設投資策略'));
+    const others = funds.filter(f => !f.name.includes('預設投資策略'));
+    others.sort((a, b) => sortField === 'name' ? a.name.localeCompare(b.name, 'zh-HK') : a.riskLevel - b.riskLevel);
+    return defaultFund ? [defaultFund, ...others] : others;
+  }, [contributionType, employerMandatoryFunds, employeeMandatoryFunds, sortField]);
   const employerTotal = useMemo(() => employerMandatoryFunds.reduce((sum, f) => sum + f.allocation, 0), [employerMandatoryFunds]);
   const employeeTotal = useMemo(() => employeeMandatoryFunds.reduce((sum, f) => sum + f.allocation, 0), [employeeMandatoryFunds]);
   const total = contributionType === 'employer-mandatory' ? employerTotal : employeeTotal;
@@ -106,6 +115,7 @@ const FutureInvestPage = () => {
     setKeypadValue('');
     setActiveFundId(null);
     setShowKeypad(false);
+    setSortField(null);
   };
 
   return (
@@ -133,10 +143,16 @@ const FutureInvestPage = () => {
           </button>
         </div>
 
-        <button onClick={resetCurrentTab} className="flex justify-end items-center gap-2 mb-5 text-[#1F1F1F] w-full">
-          <img src="./icons/icon-reset.png" alt="重設" className="w-6 h-6 object-contain" />
-          <span className="text-[17px] font-medium">重設分配</span>
-        </button>
+        <div className="flex items-center justify-between mb-5">
+          <button onClick={() => setShowSortModal(true)} className="flex items-center gap-2 text-[#1F1F1F]">
+            <ArrowUpDown size={20} />
+            <span className="text-[17px] font-medium">排序</span>
+          </button>
+          <button onClick={resetCurrentTab} className="flex items-center gap-2 text-[#1F1F1F]">
+            <RotateCcw size={20} />
+            <span className="text-[17px] font-medium">重設</span>
+          </button>
+        </div>
 
         <div className="space-y-4">
           {currentFunds.map((fund) => (
@@ -190,6 +206,22 @@ const FutureInvestPage = () => {
           setConfirmEmployeeFunds(employeeMandatoryFunds.filter(f => f.allocation > 0).map(f => ({ name: f.name, allocation: f.allocation })));
         }} className={`w-full h-[58px] rounded-full text-[19px] font-semibold ${isNextEnabled ? 'bg-[#19345B] text-white' : 'bg-[#E6E3E3] text-[#B8B4B4]'}`}>下一步</button>
       </div>
+
+
+      {showSortModal && (
+        <div className="fixed inset-0 z-30 flex items-end">
+          <div className="absolute inset-0 bg-black/35" onClick={() => setShowSortModal(false)} />
+          <div className="relative w-full bg-white rounded-t-[24px] overflow-hidden">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-[#E8E5E5]">
+              <button onClick={() => setSortField(null)} className="text-[16px] text-[#1F1F1F]">重設</button>
+              <div className="text-[18px] font-semibold text-[#1F1F1F]">排序</div>
+              <button onClick={() => setShowSortModal(false)} className="text-[#1F1F1F]"><X size={22} /></button>
+            </div>
+            <button onClick={() => { setSortField('name'); setShowSortModal(false); }} className="w-full text-left px-5 py-5 text-[18px] text-[#1F1F1F] border-b border-[#F0EDED]">基金名稱</button>
+            <button onClick={() => { setSortField('risk'); setShowSortModal(false); }} className="w-full text-left px-5 py-5 text-[18px] text-[#1F1F1F]">風險級別</button>
+          </div>
+        </div>
+      )}
 
       {showKeypad && (
         <>
