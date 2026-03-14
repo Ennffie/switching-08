@@ -47,9 +47,14 @@ const EnrolmentRiskLevelPage = () => {
 
         <div className="border border-[#E5E5E5]">
           <div className="grid grid-cols-[1.6fr_1fr_1fr] bg-[#F5A623] text-white text-[16px] font-medium">
-            <div className="px-4 py-4">基金風險標記</div>
-            <div className="px-4 py-4 text-center border-l border-white/30">相等或以上</div>
-            <div className="px-4 py-4 text-center border-l border-white/30">少於</div>
+            <div className="px-4 py-4 flex items-center border-r border-white/30">風險級別</div>
+            <div className="col-span-2 text-center border-b border-white/30">
+              <div className="px-4 pt-3 pb-2">基金風險標記</div>
+              <div className="grid grid-cols-2 border-t border-white/30">
+                <div className="px-4 py-3">相等或以上</div>
+                <div className="px-4 py-3 border-l border-white/30">少於</div>
+              </div>
+            </div>
           </div>
           {rows.map((row, idx) => (
             <div key={idx} className="grid grid-cols-[1.6fr_1fr_1fr] text-[15px] border-t border-[#EAEAEA] bg-white">
