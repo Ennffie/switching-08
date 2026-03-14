@@ -88,7 +88,7 @@ const EnrolmentPersonalInfoPage = () => {
 
           <div>
             <label className="block text-[16px] text-[#666666] mb-2">出生地點</label>
-            <div className="h-[58px] rounded-[8px] border border-[#DADADA] bg-white px-4 flex items-center justify-between text-[18px] text-[#1F1F1F]">香港 <span>⌄</span></div>
+            <div className="h-[58px] rounded-[8px] border border-[#DADADA] bg-white px-4 flex items-center justify-between text-[18px] text-[#1F1F1F]">Hong Kong <span>⌄</span></div>
           </div>
 
           <div>
@@ -147,9 +147,9 @@ const EnrolmentPersonalInfoPage = () => {
                 <div className="text-[20px] font-bold text-[#1F1F1F] mb-5">我的稅務居住地為</div>
                 <div className="space-y-5">
                   {[
-                    ['hk-only','只有香港，及沒有處於任何其他司法管轄區／國家／地區的稅務居住地，而本人的香港身分證號碼是本人的稅務編號'],
-                    ['hk-and-other','香港及其他司法管轄區／國家／地區'],
-                    ['other-only','不是香港而是其他司法管轄區／國家／地區'],
+                    ['hk-only','只有Hong Kong，及沒有處於任何其他司法管轄區／國家／地區的稅務居住地，而本人的Hong Kong身分證號碼是本人的稅務編號'],
+                    ['hk-and-other','Hong Kong及其他司法管轄區／國家／地區'],
+                    ['other-only','不是Hong Kong而是其他司法管轄區／國家／地區'],
                   ].map(([value, label]) => (
                     <label key={value} className="flex items-start gap-4 cursor-pointer">
                       <span className={`mt-1 w-7 h-7 rounded-full border-2 flex items-center justify-center ${selectedTax === value ? 'border-[#E5A323]' : 'border-[#CFCFCF]'}`}>

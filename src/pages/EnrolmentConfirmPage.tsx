@@ -78,7 +78,7 @@ const EnrolmentConfirmPage = () => {
           <LabelValue label="姓氏（中文）" value="黃" />
           <LabelValue label="名字（中文）" value="家明" />
         </div>
-        <LabelValue label="身份證明文件類別" value="香港身份證" />
+        <LabelValue label="身份證明文件類別" value="Hong Kong身份證" />
         <LabelValue label="身分證明號碼" value="Z4382165" />
         <LabelValue label="出生日期（日／月／年）" value="17/09/1989" />
         <div className="grid grid-cols-2 gap-x-8">
@@ -98,22 +98,22 @@ const EnrolmentConfirmPage = () => {
       <SectionHeader title="地址" />
       <div className="bg-white px-6 pt-8 pb-2 border-b border-[#EAE6E6]">
         <div className="text-[22px] font-semibold text-[#1F1F1F] mb-8">住址</div>
-        <LabelValue label="國家／地區" value="香港" />
-        <LabelValue label="單位／室（例如：「2室」、「A室」）" value="8室" />
-        <LabelValue label="層數（例如：「12樓」）" value="12樓" />
-        <LabelValue label="座（例如：「C座」）" value="B座" />
-        <LabelValue label="大廈" value="海怡半島美康閣" />
-        <LabelValue label="街道（街號及街道名稱）" value="海怡路 8號" />
-        <LabelValue label="區域" value="鴨脷洲" />
+        <LabelValue label="國家／地區" value="Hong Kong" />
+        <LabelValue label="單位／室（例如：「2室」、「A室」）" value="Flat 8" />
+        <LabelValue label="層數（例如：「12/F」）" value="12/F" />
+        <LabelValue label="座（例如：「C座」）" value="Block B" />
+        <LabelValue label="大廈" value="Mei Hong Court, South Horizons" />
+        <LabelValue label="街道（街號及街道名稱）" value="8 South Horizons Drive" />
+        <LabelValue label="區域" value="Ap Lei Chau" />
 
         <div className="text-[22px] font-semibold text-[#1F1F1F] mb-8 mt-12">通訊地址</div>
-        <LabelValue label="國家／地區" value="香港" />
-        <LabelValue label="單位／室（例如：「2室」、「A室」）" value="8室" />
-        <LabelValue label="層數（例如：「12樓」）" value="12樓" />
-        <LabelValue label="座（例如：「C座」）" value="B座" />
-        <LabelValue label="大廈" value="海怡半島美康閣" />
-        <LabelValue label="街道（街號及街道名稱）" value="海怡路 8號" />
-        <LabelValue label="區域" value="鴨脷洲" />
+        <LabelValue label="國家／地區" value="Hong Kong" />
+        <LabelValue label="單位／室（例如：「2室」、「A室」）" value="Flat 8" />
+        <LabelValue label="層數（例如：「12/F」）" value="12/F" />
+        <LabelValue label="座（例如：「C座」）" value="Block B" />
+        <LabelValue label="大廈" value="Mei Hong Court, South Horizons" />
+        <LabelValue label="街道（街號及街道名稱）" value="8 South Horizons Drive" />
+        <LabelValue label="區域" value="Ap Lei Chau" />
       </div>
       <EditRow onClick={() => navigate('/enrolment-personal-info')} />
 
@@ -125,7 +125,7 @@ const EnrolmentConfirmPage = () => {
 
       <SectionHeader title="共同匯報標準表格" />
       <div className="bg-white px-6 pt-8 pb-2 border-b border-[#EAE6E6]">
-        <LabelValue label="我的稅務居住地為" value="只有香港，及沒有處於任何其他司法管轄區／國家／地區的稅務居住地，而且本人的香港身分證號碼是本人的稅務編號" />
+        <LabelValue label="我的稅務居住地為" value="只有Hong Kong，及沒有處於任何其他司法管轄區／國家／地區的稅務居住地，而且本人的Hong Kong身分證號碼是本人的稅務編號" />
       </div>
       <EditRow onClick={() => navigate('/enrolment-personal-info')} />
 
