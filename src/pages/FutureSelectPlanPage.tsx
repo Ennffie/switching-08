@@ -63,7 +63,7 @@ const FutureSelectPlanPage = () => {
             <button
               key={acc.id}
               onClick={() => setSelectedId(acc.id)}
-              className={`w-full text-left bg-white rounded-[26px] border shadow-[0_8px_24px_rgba(0,0,0,0.08)] px-6 pt-8 pb-8 ${selectedId === acc.id ? 'border-[2px] border-[#E6A23C]' : 'border border-[#D8D3D3]'}`}
+              className={`w-full text-left bg-white rounded-[26px] border shadow-[0_8px_24px_rgba(0,0,0,0.08)] px-6 pt-8 pb-8 ${selectedId === acc.id ? 'border-[3px] border-[#E6A23C]' : 'border border-[#D8D3D3]'}`}
             >
               <div className="flex justify-center mb-5">
                 <img src={acc.logo} alt={acc.name} className="h-[64px] object-contain" onError={(e) => { e.currentTarget.style.display = "none"; }} />
@@ -88,7 +88,7 @@ const FutureSelectPlanPage = () => {
       </div>
 
       <div className="fixed left-0 right-0 bottom-0 bg-white border-t border-[#E9E5E5] px-6 pt-4 pb-6 shadow-[0_-2px_8px_rgba(0,0,0,0.03)]">
-        <button className={`w-full h-[58px] rounded-full text-[20px] font-semibold ${selectedId ? 'bg-[#19345B] text-white' : 'bg-[#ECE8EC] text-[#B7B3B3]'}`}>
+        <button className={`w-full h-[58px] rounded-full text-[20px] font-semibold ${selectedId === '1' ? 'bg-[#19345B] text-white' : 'bg-[#ECE8EC] text-[#B7B3B3]'}`}>
           下一步
         </button>
       </div>
