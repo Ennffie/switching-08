@@ -32,8 +32,8 @@ const InvestInfoPage = () => {
           <li>把贖回股票基金甲所得的全部款項分為兩半，分別轉入強積金保守基金丙及債券基金丁</li>
         </ul>
 
-        <div className="border border-[#DADADA] rounded-[20px] p-4">
-          <img src="./images/fund-transfer-flow.jpg" alt="基金轉換說明" className="w-full rounded-[12px]" />
+        <div>
+          <img src="./images/fund-transfer-flow.jpg" alt="基金轉換說明" className="w-full" />
         </div>
 
         <p className="text-[13px] text-[#666]">*為簡化說明，上述例子假設所有基金價格在作出基金轉換指示之前及之後均保持不變。在實際情況下，若基金價格在作出指示後有所變動，現有強積金的投資組合結餘亦會隨之改變。</p>
@@ -53,8 +53,8 @@ const InvestInfoPage = () => {
           <li>20% 債券基金乙</li>
         </ul>
 
-        <div className="border border-[#DADADA] rounded-[20px] p-4">
-          <img src="./images/portfolio-rebalance-flow.jpg" alt="重組投資組合說明" className="w-full rounded-[12px]" />
+        <div>
+          <img src="./images/portfolio-rebalance-flow.jpg" alt="重組投資組合說明" className="w-full" />
         </div>
 
         <p className="text-[13px] text-[#666]">*為簡化說明，上述例子假設所有基金價格在作出指示之前及之後均保持不變。在實際情況下，若基金價格在作出指示後有所變動，現有強積金的投資組合結餘亦會隨之改變。</p>
