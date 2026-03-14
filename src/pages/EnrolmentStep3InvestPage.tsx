@@ -51,6 +51,9 @@ const EnrolmentStep3InvestPage = () => {
   const [contributionType, setContributionType] = useState<ContributionType>('mandatory');
   const [mandatoryFunds, setMandatoryFunds] = useState<Fund[]>(allInFunds);
   const [voluntaryFunds, setVoluntaryFunds] = useState<Fund[]>(allInFunds);
+  const [showKeypad, setShowKeypad] = useState(false);
+  const [activeFundId, setActiveFundId] = useState<string | null>(null);
+  const [keypadValue, setKeypadValue] = useState('');
 
   useEffect(() => { window.scrollTo(0,0); }, []);
 
@@ -60,12 +63,31 @@ const EnrolmentStep3InvestPage = () => {
   const total = contributionType === 'mandatory' ? mandatoryTotal : voluntaryTotal;
   const isNextEnabled = mandatoryTotal === 100 && voluntaryTotal === 100;
 
-  const updateAllocation = (id: string, value: string) => {
-    const cleaned = value.replace(/[^0-9]/g, '');
-    const parsed = cleaned === '' ? 0 : Math.min(100, parseInt(cleaned, 10));
+  const applyAllocation = (id: string, parsed: number) => {
     const updater = (funds: Fund[]) => funds.map(f => f.id === id ? { ...f, allocation: parsed } : f);
     if (contributionType === 'mandatory') setMandatoryFunds(prev => updater(prev));
     else setVoluntaryFunds(prev => updater(prev));
+  };
+
+  const openKeypad = (id: string, current: number) => {
+    setActiveFundId(id);
+    setKeypadValue(current === 0 ? '' : String(current));
+    setShowKeypad(true);
+  };
+
+  const handleKeypadPress = (digit: string) => {
+    const nextRaw = `${keypadValue}${digit}`.replace(/^0+(?=\d)/, '');
+    const parsed = nextRaw === '' ? 0 : Math.min(100, parseInt(nextRaw, 10));
+    const next = parsed === 0 ? '' : String(parsed);
+    setKeypadValue(next);
+    if (activeFundId) applyAllocation(activeFundId, parsed);
+  };
+
+  const handleKeypadDelete = () => {
+    const next = keypadValue.slice(0, -1);
+    const parsed = next === '' ? 0 : parseInt(next, 10);
+    setKeypadValue(next);
+    if (activeFundId) applyAllocation(activeFundId, parsed);
   };
 
   return (
@@ -94,7 +116,7 @@ const EnrolmentStep3InvestPage = () => {
         </div>
       </div>
 
-      <div className="px-6 pt-8 pb-28 flex-1">
+      <div className={`px-6 pt-8 flex-1 ${showKeypad ? 'pb-[360px]' : 'pb-44'}`}>
         <h2 className="text-[24px] font-bold text-[#E6A23C] mb-5">投資選擇</h2>
         <div className="space-y-4 text-[16px] leading-[1.65] text-[#1F1F1F] mb-7">
           <p>在作出投資選擇前，你應先了解不同基金的風險等級並衡量自己的風險承受能力。</p>
@@ -135,13 +157,9 @@ const EnrolmentStep3InvestPage = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0 pl-2">
-                  <input
-                    inputMode="numeric"
-                    value={fund.allocation === 0 ? '' : String(fund.allocation)}
-                    onChange={(e) => updateAllocation(fund.id, e.target.value)}
-                    className="w-[74px] h-[50px] rounded-[6px] border border-[#D7D3D3] bg-white text-center text-[20px] text-[#1F1F1F] outline-none"
-                    placeholder="0"
-                  />
+                  <button onClick={() => openKeypad(fund.id, fund.allocation)} className="w-[74px] h-[50px] rounded-[6px] border border-[#D7D3D3] bg-white text-center text-[20px] text-[#1F1F1F] outline-none">
+                    {fund.allocation || 0}
+                  </button>
                   <span className="text-[18px] text-[#7A7777]">%</span>
                 </div>
               </div>
@@ -150,7 +168,7 @@ const EnrolmentStep3InvestPage = () => {
         </div>
       </div>
 
-      <div className="sticky bottom-0 bg-white px-6 pt-4 pb-6 border-t border-[#E9E5E5] shadow-[0_-2px_8px_rgba(0,0,0,0.03)]">
+      <div className="fixed left-0 right-0 bottom-0 z-20 bg-white px-6 pt-4 pb-6 border-t border-[#E9E5E5] shadow-[0_-2px_8px_rgba(0,0,0,0.03)]">
         <div className="flex justify-between items-center mb-2 text-[18px] font-medium">
           <span className="text-[#1F1F1F]">總和：</span>
           <span className={`text-[20px] font-bold ${total === 100 ? 'text-[#E39118]' : 'text-[#D62828]'}`}>{total}%</span>
@@ -158,6 +176,23 @@ const EnrolmentStep3InvestPage = () => {
         <button className={`w-full h-[58px] rounded-full text-[19px] font-semibold mb-4 ${isNextEnabled ? 'bg-[#19345B] text-white' : 'bg-[#E6E3E3] text-[#B8B4B4]'}`}>下一步</button>
         <div className="text-center text-[18px] text-[#9A9696]">新增指示</div>
       </div>
+
+      {showKeypad && (
+        <div className="fixed left-0 right-0 bottom-0 z-30 bg-white rounded-t-[24px] shadow-[0_-8px_24px_rgba(0,0,0,0.12)] px-6 pt-3 pb-8">
+          <div className="flex items-center justify-between mb-4">
+            <button onClick={() => setShowKeypad(false)} className="text-[28px] leading-none text-[#1F1F1F]">⌄</button>
+            <button onClick={() => setShowKeypad(false)} className="text-[28px] leading-none text-[#1F1F1F]">✓</button>
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            {['1','2','3','4','5','6','7','8','9'].map((n) => (
+              <button key={n} onClick={() => handleKeypadPress(n)} className="h-[62px] rounded-[14px] bg-[#F8F8FA] text-[34px] font-medium text-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">{n}</button>
+            ))}
+            <div />
+            <button onClick={() => handleKeypadPress('0')} className="h-[62px] rounded-[14px] bg-[#F8F8FA] text-[34px] font-medium text-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">0</button>
+            <button onClick={handleKeypadDelete} className="h-[62px] rounded-[14px] bg-[#F8F8FA] text-[28px] font-medium text-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">⌫</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
