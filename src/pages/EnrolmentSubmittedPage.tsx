@@ -1,7 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 
+const formatNow = () => {
+  const now = new Date();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const yyyy = now.getFullYear();
+  const hh = String(now.getHours()).padStart(2, '0');
+  const mi = String(now.getMinutes()).padStart(2, '0');
+  return `${mm}/${dd}/${yyyy}, ${hh}:${mi}`;
+};
+
 const EnrolmentSubmittedPage = () => {
   const navigate = useNavigate();
+  const submittedAt = formatNow();
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center px-6 pt-24 pb-12 text-center">
@@ -13,7 +24,7 @@ const EnrolmentSubmittedPage = () => {
 
       <div className="text-[18px] text-[#1F1F1F] leading-[1.6] mb-10">
         <div className="mb-2">參考編號： END1009183001348700_001</div>
-        <div className="mb-8">提交日期及時間： 02/25/2026, 17:11</div>
+        <div className="mb-8">提交日期及時間： {submittedAt}</div>
         <p>你的強積金登記指示已提交，當登記完成後，我們會通知你有關結果，屆時你可於「供款」&gt;「供款紀錄」查閱並繳付供款。</p>
       </div>
 
