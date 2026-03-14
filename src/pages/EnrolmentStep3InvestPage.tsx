@@ -163,7 +163,7 @@ const EnrolmentStep3InvestPage = () => {
             {contributionType === 'mandatory' && <div className="absolute left-0 right-0 bottom-0 h-[3px] bg-[#F5A623] rounded-full" />}
           </button>
           <button onClick={() => setContributionType('voluntary')} className={`flex-1 pb-3 text-[16px] font-medium relative ${contributionType === 'voluntary' ? 'text-[#E6A23C]' : 'text-[#B1AEAE]'}`}>
-            僱員自願性供款分配
+            僱員強制性供款分配
             {contributionType === 'voluntary' && <div className="absolute left-0 right-0 bottom-0 h-[3px] bg-[#F5A623] rounded-full" />}
           </button>
         </div>
