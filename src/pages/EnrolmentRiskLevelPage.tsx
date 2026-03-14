@@ -36,26 +36,26 @@ const EnrolmentRiskLevelPage = () => {
           <span>最低風險</span>
           <span>最高風險</span>
         </div>
-        <div className="grid grid-cols-7 mb-8 overflow-hidden rounded-[2px]">
+        <div className="grid grid-cols-7 mb-8 overflow-hidden rounded-[2px] border border-[#E5E5E5]">
           {colors.map((c, i) => (
-            <div key={i} className="h-[58px] text-white text-center flex flex-col items-center justify-center font-bold" style={{ backgroundColor: c }}>
-              <div className="text-[14px]">級別</div>
-              <div className="text-[18px] leading-none mt-1">{i+1}</div>
+            <div key={i} className="h-[54px] text-white text-center flex flex-col items-center justify-center font-bold" style={{ backgroundColor: c }}>
+              <div className="text-[13px]">級別</div>
+              <div className="text-[17px] leading-none mt-1">{i+1}</div>
             </div>
           ))}
         </div>
 
         <div className="border border-[#E5E5E5]">
-          <div className="grid grid-cols-[1.6fr_1fr_1fr] bg-[#F5A623] text-white text-[18px] font-medium">
+          <div className="grid grid-cols-[1.6fr_1fr_1fr] bg-[#F5A623] text-white text-[16px] font-medium">
             <div className="px-4 py-4">風險級別</div>
             <div className="px-4 py-4 text-center border-l border-white/30">相等或以上</div>
             <div className="px-4 py-4 text-center border-l border-white/30">少於</div>
           </div>
           {rows.map((row, idx) => (
-            <div key={idx} className="grid grid-cols-[1.6fr_1fr_1fr] text-[18px] border-t border-[#EAEAEA] bg-white">
-              <div className="px-4 py-5">{row[0]}</div>
-              <div className="px-4 py-5 text-center border-l border-[#EAEAEA]">{row[1]}</div>
-              <div className="px-4 py-5 text-center border-l border-[#EAEAEA]">{row[2]}</div>
+            <div key={idx} className="grid grid-cols-[1.6fr_1fr_1fr] text-[15px] border-t border-[#EAEAEA] bg-white">
+              <div className="px-4 py-4">{row[0]}</div>
+              <div className="px-4 py-4 text-center border-l border-[#EAEAEA]">{row[1]}</div>
+              <div className="px-4 py-4 text-center border-l border-[#EAEAEA]">{row[2]}</div>
             </div>
           ))}
         </div>
