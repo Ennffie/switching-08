@@ -25,7 +25,7 @@ const EnrolmentPersonalInfoPage = () => {
           <h1 className="text-[18px] font-semibold text-[#1F1F1F] tracking-[-0.01em]">申請一般僱員</h1>
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-4">
             <img src="./icons/icon-save.png" alt="儲存" className="w-6 h-6 object-contain" />
-            <img src="./icons/icon-close.png" alt="關閉" className="w-5 h-5 object-contain" />
+            <button onClick={() => navigate('/')} className="w-5 h-5 flex items-center justify-center"><img src="./icons/icon-close.png" alt="關閉" className="w-5 h-5 object-contain" /></button>
           </div>
         </div>
 
