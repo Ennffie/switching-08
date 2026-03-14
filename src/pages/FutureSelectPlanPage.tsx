@@ -126,7 +126,7 @@ const FutureSelectPlanPage = () => {
       </div>
 
       <div className="fixed left-0 right-0 bottom-0 bg-white border-t border-[#E9E5E5] px-6 pt-4 pb-6 shadow-[0_-2px_8px_rgba(0,0,0,0.03)]">
-        <button className={`w-full h-[58px] rounded-full text-[20px] font-semibold ${selectedId === '1' ? 'bg-[#19345B] text-white' : 'bg-[#ECE8EC] text-[#B7B3B3]'}`}>
+        <button onClick={() => selectedId === '1' && navigate('/invest/future-step-2')} className={`w-full h-[58px] rounded-full text-[20px] font-semibold ${selectedId === '1' ? 'bg-[#19345B] text-white' : 'bg-[#ECE8EC] text-[#B7B3B3]'}`}>
           下一步
         </button>
       </div>
