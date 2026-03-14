@@ -102,7 +102,7 @@ const EnrolmentConfirmPage = () => {
         <LabelValue label="單位／室（例如：「2室」、「A室」）" value="1 不填寫（本項資料留空）" />
         <LabelValue label="層數（例如：「12樓」）" value="2 不填寫（本項資料留空）" />
         <LabelValue label="座（例如：「C座」）" value="3 不填寫（本項資料留空）" />
-        <LabelValue label="大廈" value="康景花園A座 12樓 B室" />
+        <LabelValue label="大廈" value="康景花園A座" />
         <LabelValue label="街道（街號及街道名稱）" value="卑路乍街 28號" />
         <LabelValue label="區域" value="堅尼地城" />
 
@@ -111,7 +111,7 @@ const EnrolmentConfirmPage = () => {
         <LabelValue label="單位／室（例如：「2室」、「A室」）" value="1 不填寫（本項資料留空）" />
         <LabelValue label="層數（例如：「12樓」）" value="2 不填寫（本項資料留空）" />
         <LabelValue label="座（例如：「C座」）" value="3 不填寫（本項資料留空）" />
-        <LabelValue label="大廈" value="康景花園A座 12樓 B室" />
+        <LabelValue label="大廈" value="康景花園A座" />
         <LabelValue label="街道（街號及街道名稱）" value="卑路乍街 28號" />
         <LabelValue label="區域" value="堅尼地城" />
       </div>
