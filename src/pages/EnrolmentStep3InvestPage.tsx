@@ -156,8 +156,8 @@ const EnrolmentStep3InvestPage = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start gap-2 mb-3">
                     <div className="text-[18px] leading-[1.45] text-[#1F1F1F] font-medium break-words">{fund.name}</div>
-                    {!fund.name.includes('預設投資策略') && <ExternalLink size={17} className="text-[#A8A5A5] mt-1 flex-shrink-0" />}
-                    {fund.name.includes('預設投資策略') && <Info size={17} className="text-[#A8A5A5] mt-1 flex-shrink-0" />}
+                    {!fund.name.includes('預設投資策略') && <ExternalLink size={18} strokeWidth={1.8} className="text-[#B9B5B5] mt-[2px] flex-shrink-0" />}
+                    {fund.name.includes('預設投資策略') && <Info size={18} strokeWidth={1.8} className="text-[#B9B5B5] mt-[2px] flex-shrink-0" />}
                   </div>
                   {fund.description && <p className="text-[15px] text-[#7A7777] leading-[1.45] mb-3">{fund.description}</p>}
                   <div className="flex items-center gap-2">
