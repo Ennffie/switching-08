@@ -80,7 +80,7 @@ const FutureInvestPage = () => {
             {contributionType === 'employee-mandatory' && <div className="absolute left-0 right-0 bottom-0 h-[3px] bg-[#F5A623] rounded-full" />}
           </button>
           <button onClick={() => setContributionType('employer-voluntary')} className={`flex-1 pb-3 text-[16px] font-medium relative ${contributionType === 'employer-voluntary' ? 'text-[#E6A23C]' : 'text-[#B1AEAE]'}`}>
-            僱主自願性供款（港幣）
+            僱員強制性供款（港元）
             {contributionType === 'employer-voluntary' && <div className="absolute left-0 right-0 bottom-0 h-[3px] bg-[#F5A623] rounded-full" />}
           </button>
         </div>
