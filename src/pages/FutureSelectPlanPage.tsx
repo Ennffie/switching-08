@@ -63,22 +63,22 @@ const FutureSelectPlanPage = () => {
             <button
               key={acc.id}
               onClick={() => setSelectedId(acc.id)}
-              className={`w-full text-left bg-white rounded-[26px] border shadow-[0_8px_24px_rgba(0,0,0,0.08)] px-6 pt-8 pb-8 ${selectedId === acc.id ? 'border-[3px] border-[#E6A23C]' : 'border border-[#D8D3D3]'}`}
+              className={`w-full text-left bg-white rounded-[24px] border shadow-[0_8px_24px_rgba(0,0,0,0.08)] px-6 pt-7 pb-7 min-h-[420px] ${selectedId === acc.id ? 'border-[3px] border-[#E6A23C]' : 'border border-[#D8D3D3]'}`}
             >
               <div className="flex justify-center mb-5">
-                <img src={acc.logo} alt={acc.name} className="h-[64px] object-contain" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                <img src={acc.logo} alt={acc.name} className="h-[58px] object-contain" onError={(e) => { e.currentTarget.style.display = "none"; }} />
               </div>
-              <div className="text-center text-[20px] font-semibold text-[#1F1F1F] leading-[1.5] mb-3">{acc.name}</div>
-              <div className="text-center text-[15px] text-[#777] mb-8">自{acc.date} | 成員帳戶號碼： {acc.member}</div>
+              <div className="text-center text-[19px] font-semibold text-[#1F1F1F] leading-[1.5] mb-3">{acc.name}</div>
+              <div className="text-center text-[14px] text-[#777] mb-7">自{acc.date} | 成員帳戶號碼： {acc.member}</div>
 
-              <div className="space-y-7 text-[#1F1F1F]">
+              <div className="space-y-6 text-[#1F1F1F]">
                 <div>
-                  <div className="text-[16px] text-[#888] mb-2">帳戶類別</div>
-                  <div className="text-[22px] font-semibold">{acc.type}</div>
+                  <div className="text-[15px] text-[#888] mb-2">帳戶類別</div>
+                  <div className="text-[20px] font-semibold">{acc.type}</div>
                 </div>
                 <div>
-                  <div className="text-[16px] text-[#888] mb-2">帳戶結餘（港幣）</div>
-                  <div className="text-[22px] font-semibold">{acc.balance}</div>
+                  <div className="text-[15px] text-[#888] mb-2">帳戶結餘（港幣）</div>
+                  <div className="text-[20px] font-semibold">{acc.balance}</div>
                 </div>
                 <div className="text-[18px] underline">帳戶詳情</div>
               </div>
@@ -88,7 +88,7 @@ const FutureSelectPlanPage = () => {
       </div>
 
       <div className="fixed left-0 right-0 bottom-0 bg-white border-t border-[#E9E5E5] px-6 pt-4 pb-6 shadow-[0_-2px_8px_rgba(0,0,0,0.03)]">
-        <button className={`w-full h-[58px] rounded-full text-[20px] font-semibold ${selectedId === '1' ? 'bg-[#19345B] text-white' : 'bg-[#ECE8EC] text-[#B7B3B3]'}`}>
+        <button className={`w-full h-[58px] rounded-full text-[19px] font-semibold ${selectedId === '1' ? 'bg-[#19345B] text-white' : 'bg-[#ECE8EC] text-[#B7B3B3]'}`}>
           下一步
         </button>
       </div>
