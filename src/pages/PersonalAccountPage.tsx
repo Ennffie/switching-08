@@ -115,11 +115,11 @@ const PersonalAccountPage = () => {
           <div className="fixed left-0 right-0 bottom-0 bg-white rounded-t-[20px] px-5 pt-7 pb-20 z-50 min-h-[330px] shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
             <div className="grid grid-cols-4 gap-y-8 gap-x-2">
               {[
-                { icon: './icons/shortcut-fund-switch-new.jpg', label: '基金轉換' },
-                { icon: './icons/shortcut-future-invest-new.jpg', label: '未來供款的投資授權' },
-                { icon: './icons/shortcut-transfer-account-new.jpg', label: '整合個人帳戶' },
-                { icon: './icons/shortcut-self-employed-transfer-new.jpg', label: '轉職後 / 自僱人士帳戶轉移' },
-                { icon: './icons/shortcut-statement.png', label: '信件及報表' },
+                { icon: './icons/shortcut-fund-switch-user.jpg', label: '基金轉換' },
+                { icon: './icons/shortcut-future-invest-user.jpg', label: '未來供款的投資授權' },
+                { icon: './icons/shortcut-transfer-account-user.jpg', label: '整合個人帳戶' },
+                { icon: './icons/shortcut-self-employed-transfer-user.jpg', label: '轉職後 / 自僱人士帳戶轉移' },
+                { icon: './icons/shortcut-statement-user.jpg', label: '信件及報表' },
                 { icon: './icons/shortcut-edit.png', label: '編輯快捷連結' },
               ].map((item) => (
                 <button key={item.label} className="flex flex-col items-center text-center">
@@ -234,11 +234,11 @@ const PersonalAccountPage = () => {
           <div className="fixed left-0 right-0 bottom-0 bg-white rounded-t-[20px] px-5 pt-7 pb-20 z-50 min-h-[330px] shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
             <div className="grid grid-cols-4 gap-y-8 gap-x-2">
               {[
-                { icon: './icons/shortcut-fund-switch-new.jpg', label: '基金轉換' },
-                { icon: './icons/shortcut-future-invest-new.jpg', label: '未來供款的投資授權' },
-                { icon: './icons/shortcut-transfer-account-new.jpg', label: '整合個人帳戶' },
-                { icon: './icons/shortcut-self-employed-transfer-new.jpg', label: '轉職後 / 自僱人士帳戶轉移' },
-                { icon: './icons/shortcut-statement.png', label: '信件及報表' },
+                { icon: './icons/shortcut-fund-switch-user.jpg', label: '基金轉換' },
+                { icon: './icons/shortcut-future-invest-user.jpg', label: '未來供款的投資授權' },
+                { icon: './icons/shortcut-transfer-account-user.jpg', label: '整合個人帳戶' },
+                { icon: './icons/shortcut-self-employed-transfer-user.jpg', label: '轉職後 / 自僱人士帳戶轉移' },
+                { icon: './icons/shortcut-statement-user.jpg', label: '信件及報表' },
                 { icon: './icons/shortcut-edit.png', label: '編輯快捷連結' },
               ].map((item) => (
                 <button key={item.label} className="flex flex-col items-center text-center">
