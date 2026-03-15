@@ -127,6 +127,14 @@ const FutureInvestPage = () => {
     setSortDirection('asc');
   };
 
+  const openFundLink = () => {
+    window.open('https://www.aia.com.hk/zh-hk/products/mpf/list', '_blank', 'noopener,noreferrer');
+  };
+
+  const openDisInfo = () => {
+    navigate('/dis-info');
+  };
+
   return (
     <div className="min-h-screen bg-[#f5f5f5] flex flex-col">
       <div className="sticky top-0 z-50 bg-white">
@@ -148,7 +156,7 @@ const FutureInvestPage = () => {
             僱主強制性供款（港幣）
           </button>
           <button onClick={() => setContributionType('employee-mandatory')} className={`flex-1 py-3 text-sm font-medium border-b-2 transition-colors ${contributionType === 'employee-mandatory' ? 'text-[#E67E22] border-[#E67E22]' : 'text-gray-500 border-transparent'}`}>
-            僱員強制性供款（港元）
+            僱員強制性供款（港幣）
           </button>
         </div>
 
@@ -170,8 +178,8 @@ const FutureInvestPage = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start gap-2 mb-3">
                     <div className="text-[18px] leading-[1.45] text-[#1F1F1F] font-medium break-words">{fund.name}</div>
-                    {!fund.name.includes('預設投資策略') && <button className="mt-[2px] flex-shrink-0"><ExternalLink size={18} strokeWidth={1.8} className="text-[#B9B5B5]" /></button>}
-                    {fund.name.includes('預設投資策略') && <button className="mt-[2px] flex-shrink-0"><Info size={18} strokeWidth={1.8} className="text-[#B9B5B5]" /></button>}
+                    {!fund.name.includes('預設投資策略') && <button onClick={(e) => { e.stopPropagation(); openFundLink(); }} className="mt-[2px] flex-shrink-0"><ExternalLink size={18} strokeWidth={1.8} className="text-[#B9B5B5]" /></button>}
+                    {fund.name.includes('預設投資策略') && <button onClick={(e) => { e.stopPropagation(); openDisInfo(); }} className="mt-[2px] flex-shrink-0"><Info size={18} strokeWidth={1.8} className="text-[#B9B5B5]" /></button>}
                   </div>
                   {fund.description && <p className="text-[15px] text-[#7A7777] leading-[1.45] mb-3">{fund.description}</p>}
                   <div className="flex items-center gap-2">
