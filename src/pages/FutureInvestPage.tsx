@@ -211,6 +211,7 @@ const FutureInvestPage = () => {
           if (!isNextEnabled) return;
           setConfirmEmployerFunds(employerMandatoryFunds.filter(f => f.allocation > 0).map(f => ({ name: f.name, allocation: f.allocation })));
           setConfirmEmployeeFunds(employeeMandatoryFunds.filter(f => f.allocation > 0).map(f => ({ name: f.name, allocation: f.allocation })));
+          navigate('/invest/future-confirm');
         }} className={`w-full h-[58px] rounded-full text-[19px] font-semibold ${isNextEnabled ? 'bg-[#19345B] text-white' : 'bg-[#E6E3E3] text-[#B8B4B4]'}`}>下一步</button>
       </div>
 
