@@ -69,6 +69,16 @@ const AccountManagementPage = () => {
                   navigate('/personal-account');
                   return;
                 }
+                if (selectedPlan === 'GS29819644') {
+                  setShowPlanModal(false);
+                  navigate('/personal-account');
+                  return;
+                }
+                if (selectedPlan === 'FW88273645') {
+                  setShowPlanModal(false);
+                  navigate('/personal-account');
+                  return;
+                }
                 setShowPlanModal(false);
               }} className="w-full h-[60px] rounded-full bg-[#243C67] text-white text-[22px] font-semibold">選擇</button>
             </div>
