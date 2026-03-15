@@ -13,6 +13,7 @@ const PersonalAccountPage = () => {
   const [openContact, setOpenContact] = useState(true);
   const [openAddress, setOpenAddress] = useState(true);
   const [openComm, setOpenComm] = useState(true);
+  const [showShortcuts, setShowShortcuts] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -107,6 +108,35 @@ const PersonalAccountPage = () => {
         </>
       )}
 
+
+      {showShortcuts && (
+        <>
+          <div className="fixed inset-0 bg-black/35 z-40" onClick={() => setShowShortcuts(false)} />
+          <div className="fixed left-0 right-0 bottom-0 bg-white rounded-t-[20px] px-5 pt-7 pb-20 z-50 min-h-[330px] shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
+            <div className="grid grid-cols-4 gap-y-8 gap-x-2">
+              {[
+                { icon: './icons/shortcut-fund-switch.png', label: '基金轉換' },
+                { icon: './icons/shortcut-future-invest.png', label: '未來供款的投資授權' },
+                { icon: './icons/shortcut-transfer-account.png', label: '整合個人帳戶' },
+                { icon: './icons/shortcut-self-employed-transfer.png', label: '轉職後 / 自僱人士帳戶轉移' },
+                { icon: './icons/shortcut-statement.png', label: '信件及報表' },
+                { icon: './icons/shortcut-edit.png', label: '編輯快捷連結' },
+              ].map((item) => (
+                <button key={item.label} className="flex flex-col items-center text-center">
+                  <div className="w-14 h-14 rounded-full bg-[#F6F7F8] flex items-center justify-center mb-2">
+                    <img src={item.icon} alt={item.label} className="w-7 h-7 object-contain" />
+                  </div>
+                  <span className="text-[12px] leading-[1.35] text-[#1f1f1f] max-w-[78px]">{item.label}</span>
+                </button>
+              ))}
+            </div>
+            <button onClick={() => setShowShortcuts(false)} className="absolute right-6 bottom-8 w-14 h-14 rounded-full bg-[#1e3a5f] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.22)]">
+              <img src="./icons/shortcut-close.png" alt="關閉" className="w-5 h-5 object-contain invert" />
+            </button>
+          </div>
+        </>
+      )}
+
       {activeTab === 'details' && (
         <div className="pb-32">
           <div className="px-5 pt-6 pb-4">
@@ -193,9 +223,38 @@ const PersonalAccountPage = () => {
         </div>
       )}
 
-      <button className="fixed right-6 bottom-8 w-[62px] h-[62px] rounded-full bg-[#173A68] shadow-[0_6px_20px_rgba(0,0,0,0.2)] flex items-center justify-center z-10">
-        <img src="./icons/icon-menu-grid.png" alt="menu" className="w-7 h-7 object-contain" />
+      <button onClick={() => setShowShortcuts(true)} className="fixed bottom-24 right-4 w-12 h-12 bg-[#1e3a5f] rounded-full flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.22)] z-40">
+        <img src="./icons/icon-menu-grid.png" alt="menu" className="w-5 h-5 object-contain invert" />
       </button>
+
+
+      {showShortcuts && (
+        <>
+          <div className="fixed inset-0 bg-black/35 z-40" onClick={() => setShowShortcuts(false)} />
+          <div className="fixed left-0 right-0 bottom-0 bg-white rounded-t-[20px] px-5 pt-7 pb-20 z-50 min-h-[330px] shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
+            <div className="grid grid-cols-4 gap-y-8 gap-x-2">
+              {[
+                { icon: './icons/shortcut-fund-switch.png', label: '基金轉換' },
+                { icon: './icons/shortcut-future-invest.png', label: '未來供款的投資授權' },
+                { icon: './icons/shortcut-transfer-account.png', label: '整合個人帳戶' },
+                { icon: './icons/shortcut-self-employed-transfer.png', label: '轉職後 / 自僱人士帳戶轉移' },
+                { icon: './icons/shortcut-statement.png', label: '信件及報表' },
+                { icon: './icons/shortcut-edit.png', label: '編輯快捷連結' },
+              ].map((item) => (
+                <button key={item.label} className="flex flex-col items-center text-center">
+                  <div className="w-14 h-14 rounded-full bg-[#F6F7F8] flex items-center justify-center mb-2">
+                    <img src={item.icon} alt={item.label} className="w-7 h-7 object-contain" />
+                  </div>
+                  <span className="text-[12px] leading-[1.35] text-[#1f1f1f] max-w-[78px]">{item.label}</span>
+                </button>
+              ))}
+            </div>
+            <button onClick={() => setShowShortcuts(false)} className="absolute right-6 bottom-8 w-14 h-14 rounded-full bg-[#1e3a5f] flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.22)]">
+              <img src="./icons/shortcut-close.png" alt="關閉" className="w-5 h-5 object-contain invert" />
+            </button>
+          </div>
+        </>
+      )}
 
       {activeTab === 'details' && (
         <div className="fixed left-0 right-0 bottom-0 bg-white px-5 pt-3 pb-6 border-t border-[#ECE7E1] z-[5]">
