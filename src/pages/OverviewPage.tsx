@@ -331,21 +331,19 @@ const OverviewPage = () => {
       {showShortcuts && (
         <>
           <div className="fixed inset-0 bg-black/35 z-40" onClick={() => setShowShortcuts(false)} />
-          <div className="fixed left-0 right-0 bottom-0 bg-white rounded-t-[20px] px-5 pt-7 pb-20 z-50 min-h-[330px] shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
-            <div className="grid grid-cols-4 gap-y-8 gap-x-2">
+          <div className="fixed left-0 right-0 bottom-0 bg-white rounded-t-[24px] px-6 pt-8 pb-24 z-50 min-h-[360px] shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
+            <div className="grid grid-cols-4 gap-y-10 gap-x-3">
               {[
-                { icon: './icons/shortcut-fund-switch.png', label: '基金轉換' },
-                { icon: './icons/shortcut-future-invest.png', label: '未來供款的投資授權' },
-                { icon: './icons/shortcut-transfer-account.png', label: '整合個人帳戶' },
-                { icon: './icons/shortcut-self-employed-transfer.png', label: '轉職後 / 自僱人士帳戶轉移' },
-                { icon: './icons/shortcut-statement.png', label: '信件及報表' },
-                { icon: './icons/shortcut-edit.png', label: '編輯快捷連結' },
+                { icon: './icons/shortcut-fund-switch-user.jpg', label: '基金轉換' },
+                { icon: './icons/shortcut-future-invest-user.jpg', label: '未來供款的投資授權' },
+                { icon: './icons/shortcut-transfer-account-user.jpg', label: '整合個人帳戶' },
+                { icon: './icons/shortcut-self-employed-transfer-user.jpg', label: '轉職後 / 自僱人士帳戶轉移' },
+                { icon: './icons/shortcut-statement-user.jpg', label: '信件及報表' },
+                { icon: './icons/shortcut-edit-user.jpg', label: '編輯快捷連結' },
               ].map((item) => (
                 <button key={item.label} className="flex flex-col items-center text-center">
-                  <div className="w-14 h-14 rounded-full bg-[#F6F7F8] flex items-center justify-center mb-2">
-                    <img src={item.icon} alt={item.label} className="w-7 h-7 object-contain" />
-                  </div>
-                  <span className="text-[12px] leading-[1.35] text-[#1f1f1f] max-w-[78px]">{item.label}</span>
+                  <img src={item.icon} alt={item.label} className="w-[68px] h-[68px] object-contain mb-3" />
+                  <span className="text-[14px] leading-[1.45] text-[#1f1f1f] max-w-[92px]">{item.label}</span>
                 </button>
               ))}
             </div>
