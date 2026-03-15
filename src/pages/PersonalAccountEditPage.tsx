@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronDown, ChevronUp, Lightbulb, X, RefreshCcw, TriangleAlert, CheckCircle2 } from 'lucide-react';
+import { ChevronLeft, ChevronDown, ChevronUp, Lightbulb, X, CheckCircle2 } from 'lucide-react';
 import { usePersonalAccount } from '../context/PersonalAccountContext';
 
 const countryCodes = [
@@ -175,9 +175,8 @@ const PersonalAccountEditPage = () => {
           <div className="fixed inset-x-0 top-[84px] z-[60] px-5">
             <div className="bg-white rounded-[24px] shadow-[0_12px_32px_rgba(0,0,0,0.28)] px-6 pt-6 pb-8 relative text-center">
               <button onClick={() => setShowVerifyFailed(false)} className="absolute right-5 top-5 text-[#1F1F1F]"><X size={26} /></button>
-              <div className="flex items-center justify-center mb-5 mt-4 relative h-[120px]">
-                <RefreshCcw size={98} strokeWidth={1.8} className="text-[#1F1F1F]" />
-                <div className="absolute right-[88px] bottom-[10px] bg-white"><TriangleAlert size={54} strokeWidth={1.8} className="text-[#1F1F1F] fill-[#FFF3CF]" /></div>
+              <div className="flex items-center justify-center mb-5 mt-4">
+                <img src="/icons/verify-failed-user.jpg" alt="驗證失敗" className="w-[180px] h-[180px] object-contain" />
               </div>
               <div className="text-[26px] font-bold text-[#E0A132] mb-3">驗證失敗。</div>
               <div className="text-[18px] text-[#1F1F1F] mb-10">無效的一次性密碼。</div>
