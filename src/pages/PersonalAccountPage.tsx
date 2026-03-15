@@ -120,7 +120,7 @@ const PersonalAccountPage = () => {
                 { icon: './icons/shortcut-transfer-account-user.jpg', label: '整合個人帳戶' },
                 { icon: './icons/shortcut-self-employed-transfer-user.jpg', label: '轉職後 / 自僱人士帳戶轉移' },
                 { icon: './icons/shortcut-statement-user.jpg', label: '信件及報表' },
-                { icon: './icons/shortcut-edit.png', label: '編輯快捷連結' },
+                { icon: './icons/shortcut-edit-user.jpg', label: '編輯快捷連結' },
               ].map((item) => (
                 <button key={item.label} className="flex flex-col items-center text-center">
                   <div className="w-[68px] h-[68px] rounded-full bg-[#F6F7F8] flex items-center justify-center mb-3">
@@ -239,7 +239,7 @@ const PersonalAccountPage = () => {
                 { icon: './icons/shortcut-transfer-account-user.jpg', label: '整合個人帳戶' },
                 { icon: './icons/shortcut-self-employed-transfer-user.jpg', label: '轉職後 / 自僱人士帳戶轉移' },
                 { icon: './icons/shortcut-statement-user.jpg', label: '信件及報表' },
-                { icon: './icons/shortcut-edit.png', label: '編輯快捷連結' },
+                { icon: './icons/shortcut-edit-user.jpg', label: '編輯快捷連結' },
               ].map((item) => (
                 <button key={item.label} className="flex flex-col items-center text-center">
                   <div className="w-[68px] h-[68px] rounded-full bg-[#F6F7F8] flex items-center justify-center mb-3">
