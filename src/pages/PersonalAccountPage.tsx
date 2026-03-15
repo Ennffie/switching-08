@@ -47,15 +47,15 @@ const PersonalAccountPage = () => {
           <div className="absolute top-[-28px] left-1/2 -translate-x-1/2 w-[10px] h-[28px] bg-[#1FB5B4] rounded-full" />
           <div className="text-center">
             <div className="text-[20px] text-[#1F1F1F] mb-2">總結餘</div>
-            <div className="text-[26px] font-bold text-[#111] mb-2">$ 30,673.78</div>
-            <div className="text-[20px] text-[#2BAE9A]">▲ $ 17,528.34</div>
+            <div className="text-[26px] font-bold text-[#111] mb-2">$ 128,396.91</div>
+            <div className="text-[20px] text-[#2BAE9A]">▲ $ 58,508.93</div>
           </div>
         </div>
-        <div className="text-[18px] text-[#1F1F1F] mt-6">截至 12/03/2026</div>
+        <div className="text-[18px] text-[#1F1F1F] mt-6">截至 14/03/2026</div>
       </div>
 
       <button onClick={() => setOpenAssets(v => !v)} className="w-full px-5 py-5 flex items-center justify-between border-b border-[#ECE7E1] text-left">
-        <div className="text-[18px] text-[#1F1F1F] leading-[1.5]">我目前持有的資產（以供款類別劃分） （截至 12/03/2026）</div>
+        <div className="text-[18px] text-[#1F1F1F] leading-[1.5]">我目前持有的資產（以供款類別劃分） （截至 14/03/2026）</div>
         {openAssets ? <ChevronUp size={22} className="text-[#1F1F1F] flex-shrink-0" /> : <ChevronDown size={22} className="text-[#1F1F1F] flex-shrink-0" />}
       </button>
 
@@ -70,20 +70,30 @@ const PersonalAccountPage = () => {
             <div className="px-4 py-2 text-right">市場價值（港幣）</div>
           </div>
           <div className="grid grid-cols-[8px_1fr_150px] border-b border-[#EAE6E1] bg-white">
-            <div className="bg-[#6B8FB0]" />
-            <div className="px-4 py-3 text-[18px] leading-[1.5] text-[#1F1F1F]">友邦強積金優選計劃 - 大中華股票基金</div>
-            <div className="px-4 py-3 text-[18px] font-semibold text-right text-[#1F1F1F]">$ 30,426.94</div>
+            <div className="bg-[#F59E0B]" />
+            <div className="px-4 py-3 text-[18px] leading-[1.5] text-[#1F1F1F]">友邦強積金優選計劃 - 美洲基金</div>
+            <div className="px-4 py-3 text-[18px] font-semibold text-right text-[#1F1F1F]">$ 32,150.50</div>
+          </div>
+          <div className="grid grid-cols-[8px_1fr_150px] border-b border-[#EAE6E1] bg-white">
+            <div className="bg-[#F59E0B]" />
+            <div className="px-4 py-3 text-[18px] leading-[1.5] text-[#1F1F1F]">友邦強積金優選計劃 - 北美股票基金</div>
+            <div className="px-4 py-3 text-[18px] font-semibold text-right text-[#1F1F1F]">$ 31,980.25</div>
+          </div>
+          <div className="grid grid-cols-[8px_1fr_150px] border-b border-[#EAE6E1] bg-white">
+            <div className="bg-[#F59E0B]" />
+            <div className="px-4 py-3 text-[18px] leading-[1.5] text-[#1F1F1F]">友邦強積金優選計劃 - 增長組合</div>
+            <div className="px-4 py-3 text-[18px] font-semibold text-right text-[#1F1F1F]">$ 32,245.80</div>
           </div>
           <div className="grid grid-cols-[8px_1fr_150px] bg-white">
-            <div className="bg-[#1FB5B4]" />
-            <div className="px-4 py-3 text-[18px] leading-[1.5] text-[#1F1F1F]">友邦強積金優選計劃 - 亞洲股票基金</div>
-            <div className="px-4 py-3 text-[18px] font-semibold text-right text-[#1F1F1F]">$ 246.84</div>
+            <div className="bg-[#F59E0B]" />
+            <div className="px-4 py-3 text-[18px] leading-[1.5] text-[#1F1F1F]">友邦強積金優選計劃 - 均衡組合</div>
+            <div className="px-4 py-3 text-[18px] font-semibold text-right text-[#1F1F1F]">$ 32,020.36</div>
           </div>
         </div>
       )}
 
       <button onClick={() => setOpenOverview(v => !v)} className="w-full px-5 py-5 flex items-center justify-between border-b border-[#ECE7E1] text-left">
-        <div className="text-[18px] text-[#1F1F1F]">我目前持有的資產概覽（截至 12/03/2026）</div>
+        <div className="text-[18px] text-[#1F1F1F]">我目前持有的資產概覽（截至 14/03/2026）</div>
         {openOverview ? <ChevronUp size={22} className="text-[#1F1F1F]" /> : <ChevronDown size={22} className="text-[#1F1F1F]" />}
       </button>
 
