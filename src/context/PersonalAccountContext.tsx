@@ -27,6 +27,7 @@ export interface PersonalAccountData {
   correspondenceDistrict: string;
   correspondencePostalCode: string;
   directMarketingConsent: string;
+  emailVerified: boolean;
 }
 
 const defaultData: PersonalAccountData = {
@@ -55,6 +56,7 @@ const defaultData: PersonalAccountData = {
   correspondenceDistrict: 'Ap Lei Chau',
   correspondencePostalCode: '',
   directMarketingConsent: '是',
+  emailVerified: false,
 };
 
 interface PersonalAccountContextType {

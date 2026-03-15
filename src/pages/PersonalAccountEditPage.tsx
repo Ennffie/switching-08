@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronDown, ChevronUp, Lightbulb, X, RefreshCcw, TriangleAlert } from 'lucide-react';
+import { ChevronLeft, ChevronDown, ChevronUp, Lightbulb, X, RefreshCcw, TriangleAlert, CheckCircle2 } from 'lucide-react';
 import { usePersonalAccount } from '../context/PersonalAccountContext';
 
 const countryCodes = [
@@ -41,6 +41,7 @@ const PersonalAccountEditPage = () => {
     if (emailCode.length !== 6) return;
     setTimeout(() => {
       if (emailCode === '123456') {
+        update('emailVerified', true);
         setShowEmailVerify(false);
       } else {
         setShowEmailVerify(false);
@@ -84,8 +85,14 @@ const PersonalAccountEditPage = () => {
             <div>
               <div className={labelCls}>電郵</div>
               <div className="grid grid-cols-[1fr_104px] rounded-[6px] overflow-hidden border border-[#E1DDDD] bg-white">
-                <input value={data.email} onChange={e => update('email', e.target.value)} className="h-[58px] px-4 text-[18px] text-[#111] outline-none" />
-                <button onClick={() => { setEmailCode(''); setResendMode(false); setShowVerifyFailed(false); setShowEmailVerify(true); }} className="bg-[#F6E6AA] text-[18px] font-medium text-[#1F1F1F]">驗證</button>
+                <input value={data.email} onChange={e => { update('email', e.target.value); update('emailVerified', false); }} className="h-[58px] px-4 text-[18px] text-[#111] outline-none" />
+                {data.emailVerified ? (
+                  <div className="bg-white flex items-center justify-center">
+                    <CheckCircle2 size={30} strokeWidth={2.1} className="text-[#E1AA2B]" />
+                  </div>
+                ) : (
+                  <button onClick={() => { setEmailCode(''); setResendMode(false); setShowVerifyFailed(false); setShowEmailVerify(true); }} className="bg-[#F6E6AA] text-[18px] font-medium text-[#1F1F1F]">驗證</button>
+                )}
               </div>
             </div>
             <div>
