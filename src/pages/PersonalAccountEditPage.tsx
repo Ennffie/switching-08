@@ -15,6 +15,8 @@ const maskEmail = (email: string) => {
   return `${local.slice(0, visible)}${'*'.repeat(Math.max(0, local.length - visible))}@${domain}`;
 };
 
+const randomCode = () => String(Math.floor(100000 + Math.random() * 900000));
+
 const PersonalAccountEditPage = () => {
   const navigate = useNavigate();
   const { data, setData } = usePersonalAccount();
@@ -24,23 +26,32 @@ const PersonalAccountEditPage = () => {
   const [showSecondPhoneCodes, setShowSecondPhoneCodes] = useState(false);
   const [showEmailVerify, setShowEmailVerify] = useState(false);
   const [showVerifyFailed, setShowVerifyFailed] = useState(false);
+  const [showOtpNotice, setShowOtpNotice] = useState(false);
   const [emailCode, setEmailCode] = useState('');
   const [countdown, setCountdown] = useState(60);
   const [resendMode, setResendMode] = useState(false);
+  const [latestOtp, setLatestOtp] = useState('123456');
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   useEffect(() => {
-    if (!showEmailVerify) return;
+    if (!showEmailVerify) {
+      setShowOtpNotice(false);
+      return;
+    }
     setCountdown(60);
     const t = setInterval(() => setCountdown(prev => (prev > 0 ? prev - 1 : 0)), 1000);
-    return () => clearInterval(t);
-  }, [showEmailVerify]);
+    const n = setTimeout(() => setShowOtpNotice(true), 500);
+    return () => {
+      clearInterval(t);
+      clearTimeout(n);
+    };
+  }, [showEmailVerify, latestOtp]);
 
   useEffect(() => {
     if (emailCode.length !== 6) return;
-    setTimeout(() => {
-      if (emailCode === '123456') {
+    const timer = setTimeout(() => {
+      if (emailCode === latestOtp) {
         update('emailVerified', true);
         setShowEmailVerify(false);
       } else {
@@ -49,12 +60,22 @@ const PersonalAccountEditPage = () => {
         setShowVerifyFailed(true);
       }
     }, 180);
-  }, [emailCode]);
+    return () => clearTimeout(timer);
+  }, [emailCode, latestOtp]);
 
   const update = (key: keyof typeof data, value: string | boolean) => setData(prev => ({ ...prev, [key]: value }));
   const inputCls = 'w-full h-[58px] rounded-[6px] border border-[#E1DDDD] bg-white px-4 text-[18px] text-[#111] outline-none';
   const labelCls = 'text-[16px] text-[#8F8B8B] mb-3';
   const maskedEmail = useMemo(() => maskEmail(data.email), [data.email]);
+
+  const openEmailVerification = () => {
+    setLatestOtp(randomCode());
+    setEmailCode('');
+    setResendMode(false);
+    setShowVerifyFailed(false);
+    setShowOtpNotice(false);
+    setShowEmailVerify(true);
+  };
 
   const sectionHeader = (title: string, open: boolean, onClick: () => void) => (
     <button onClick={onClick} className="w-full bg-white px-5 py-5 flex items-center justify-between border-y border-[#ECE7E1] text-left">
@@ -67,7 +88,30 @@ const PersonalAccountEditPage = () => {
   const delCode = () => setEmailCode(prev => prev.slice(0, -1));
 
   return (
-    <div className="min-h-screen bg-[#FAF9F8]">
+    <div className="min-h-screen bg-[#FAF9F8] relative overflow-x-hidden">
+      {showOtpNotice && (
+        <div className="fixed top-2 left-2 right-2 z-[70] animate-[slideDown_0.42s_ease-out]">
+          <div className="rounded-[20px] bg-[#F1F1F3]/95 backdrop-blur px-4 py-3 shadow-[0_10px_24px_rgba(0,0,0,0.20)] border border-white/50">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#C9D7F8] flex items-center justify-center text-[#6077B8] text-[18px]">👤</div>
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-3 mb-1">
+                  <div className="text-[15px] font-semibold text-[#111]">#eMPFsecure</div>
+                  <div className="text-[14px] text-[#6A6A6A]">now</div>
+                </div>
+                <div className="text-[15px] leading-[1.3] text-[#111] line-clamp-2">
+                  積金易平台：你的一次性密碼為 {latestOtp}。請以此一次性密碼於積金易平台進行相關交易／服務。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`@keyframes slideDown { from { transform: translateY(-110%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }`}</style>
+
       <div className="sticky top-0 z-20 bg-white shadow-sm">
         <div className="px-4 pt-3 pb-2 flex items-center justify-center relative">
           <button onClick={() => navigate(-1)} className="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-gray-700"><ChevronLeft size={24} /></button>
@@ -78,7 +122,7 @@ const PersonalAccountEditPage = () => {
         </div>
       </div>
 
-      <div className={showEmailVerify || showVerifyFailed ? 'pb-[360px]' : 'pb-0'}>
+      <div className={showEmailVerify || showVerifyFailed ? 'pb-[360px]' : 'pb-12'}>
         {sectionHeader('聯絡資料', openContact, () => setOpenContact(v => !v))}
         {openContact && (
           <div className="bg-[#FAF9F8] px-5 py-8 space-y-7 border-b border-[#ECE7E1]">
@@ -91,7 +135,7 @@ const PersonalAccountEditPage = () => {
                     <CheckCircle2 size={30} strokeWidth={2.1} className="text-[#E1AA2B]" />
                   </div>
                 ) : (
-                  <button onClick={() => { setEmailCode(''); setResendMode(false); setShowVerifyFailed(false); setShowEmailVerify(true); }} className="bg-[#F6E6AA] text-[18px] font-medium text-[#1F1F1F]">驗證</button>
+                  <button onClick={openEmailVerification} className="bg-[#F6E6AA] text-[18px] font-medium text-[#1F1F1F]">驗證</button>
                 )}
               </div>
             </div>
@@ -155,10 +199,12 @@ const PersonalAccountEditPage = () => {
               <div className="text-center text-[24px] font-bold text-[#E6A23C] mb-5">輸入驗證碼</div>
               <div className="text-[18px] leading-[1.7] text-[#1F1F1F] mb-7">請輸入我們以電郵發送到<strong>{maskedEmail}</strong>的驗證碼。</div>
               <div className="flex justify-between gap-2 mb-8">{Array.from({ length: 6 }).map((_, i) => <div key={i} className="w-[48px] h-[58px] rounded-[6px] border border-[#D8D5D5] bg-white flex items-center justify-center text-[28px] text-[#1F1F1F]">{emailCode[i] || (i === emailCode.length ? '|' : '')}</div>)}</div>
-              <div className="text-center">{resendMode ? (<><div className="text-[20px] text-[#1F1F1F] mb-2">未收到驗證碼？</div><button onClick={() => { setEmailCode(''); setCountdown(60); setResendMode(false); }} className="text-[20px] text-[#1E3557] font-semibold underline">重新發送</button></>) : (<><div className="text-[20px] text-[#1F1F1F] mb-2">未收到驗證碼？</div><div className="text-[18px] text-[#B4B0B0]">可於{countdown}秒後重新發送</div></>)}</div>
+              <div className="text-center">{resendMode ? (<><div className="text-[20px] text-[#1F1F1F] mb-2">未收到驗證碼？</div><button onClick={() => { setLatestOtp(randomCode()); setEmailCode(''); setCountdown(60); setResendMode(false); setShowOtpNotice(false); setTimeout(() => setShowOtpNotice(true), 500); }} className="text-[20px] text-[#1E3557] font-semibold underline">重新發送</button></>) : (<><div className="text-[20px] text-[#1F1F1F] mb-2">未收到驗證碼？</div><div className="text-[18px] text-[#B4B0B0]">可於{countdown}秒後重新發送</div></>)}</div>
             </div>
           </div>
           <div className="fixed left-0 right-0 bottom-0 z-50 bg-[#D1D5DB] border-t border-[#BFC5CD] px-[6px] pt-[6px] pb-[14px]">
+            <div className="text-center text-[15px] text-[#111] py-1.5">From Messages</div>
+            <div className="text-center text-[20px] font-medium text-[#111] pb-2">{latestOtp}</div>
             <div className="grid grid-cols-3 gap-[5px]">
               {[['1', ''], ['2', 'ABC'], ['3', 'DEF'], ['4', 'GHI'], ['5', 'JKL'], ['6', 'MNO'], ['7', 'PQRS'], ['8', 'TUV'], ['9', 'WXYZ']].map(([n, sub]) => <button key={n} onClick={() => pressCode(n)} className="h-[58px] rounded-[6px] bg-white flex flex-col items-center justify-center shadow-[0_1px_0_rgba(0,0,0,0.16)]"><span className="text-[18px] leading-none text-black">{n}</span>{sub ? <span className="text-[9px] leading-none mt-1 tracking-[0.12em] text-black font-semibold">{sub}</span> : <span className="h-[9px] mt-1" />}</button>)}
               <div className="h-[58px]" />
