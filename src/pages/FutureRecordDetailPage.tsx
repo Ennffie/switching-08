@@ -2,20 +2,18 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronUp, ChevronDown, Info } from 'lucide-react';
 import { useFutureSubmission } from '../context/FutureSubmissionContext';
-import { useFutureInvest } from '../context/FutureInvestContext';
 
 const FutureRecordDetailPage = () => {
   const navigate = useNavigate();
-  const { referenceNumber, submittedAt } = useFutureSubmission();
-  const { employerMandatoryFunds, employeeMandatoryFunds } = useFutureInvest();
+  const { referenceNumber, submittedAt, submittedEmployerMandatoryFunds, submittedEmployeeMandatoryFunds } = useFutureSubmission();
 
   const [activeTab, setActiveTab] = useState<'plan' | 'future'>('plan');
   const [basicOpen, setBasicOpen] = useState(true);
   const [detailOpen, setDetailOpen] = useState(true);
 
   const allFundNames = Array.from(new Set([
-    ...employerMandatoryFunds.filter(f => f.allocation > 0).map(f => f.name),
-    ...employeeMandatoryFunds.filter(f => f.allocation > 0).map(f => f.name),
+    ...submittedEmployerMandatoryFunds.map(f => f.name),
+    ...submittedEmployeeMandatoryFunds.map(f => f.name),
   ]));
 
   const getAllocation = (list: { name: string; allocation: number }[], name: string) => {
@@ -130,8 +128,8 @@ const FutureRecordDetailPage = () => {
                   {allFundNames.length > 0 ? allFundNames.map((name, idx) => (
                     <div key={idx} className="grid grid-cols-3 border-t border-[#EEE9E3] text-[16px] text-[#1F1F1F]">
                       <div className="p-3 leading-[1.5]">{name}</div>
-                      <div className="p-3">{getAllocation(employerMandatoryFunds, name)}%</div>
-                      <div className="p-3">{getAllocation(employeeMandatoryFunds, name)}%</div>
+                      <div className="p-3">{getAllocation(submittedEmployerMandatoryFunds, name)}%</div>
+                      <div className="p-3">{getAllocation(submittedEmployeeMandatoryFunds, name)}%</div>
                     </div>
                   )) : null}
                 </div>

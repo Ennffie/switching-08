@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ExternalLink, Info, ArrowUpDown, RotateCcw, X } from 'lucide-react';
 import StepBar from '../components/StepBar';
 import { useFutureInvest } from '../context/FutureInvestContext';
+import { useFutureSubmission } from '../context/FutureSubmissionContext';
 
 interface Fund {
   id: string;
@@ -56,6 +57,7 @@ const FutureInvestPage = () => {
     setEmployerMandatoryFunds: setConfirmEmployerFunds,
     setEmployeeMandatoryFunds: setConfirmEmployeeFunds,
   } = useFutureInvest();
+  const { setSubmittedEmployerMandatoryFunds, setSubmittedEmployeeMandatoryFunds } = useFutureSubmission();
 
   const [contributionType, setContributionType] = useState<ContributionType>('employer-mandatory');
   const [employerMandatoryFunds, setEmployerMandatoryFunds] = useState<Fund[]>(() => allInFunds.map(f => { const saved = savedEmployerFunds.find(sf => sf.name === f.name); return saved ? { ...f, allocation: saved.allocation } : f; }));
@@ -209,8 +211,12 @@ const FutureInvestPage = () => {
         </div>
         <button onClick={() => {
           if (!isNextEnabled) return;
-          setConfirmEmployerFunds(employerMandatoryFunds.filter(f => f.allocation > 0).map(f => ({ name: f.name, allocation: f.allocation })));
-          setConfirmEmployeeFunds(employeeMandatoryFunds.filter(f => f.allocation > 0).map(f => ({ name: f.name, allocation: f.allocation })));
+          const employerSaved = employerMandatoryFunds.filter(f => f.allocation > 0).map(f => ({ name: f.name, allocation: f.allocation }));
+          const employeeSaved = employeeMandatoryFunds.filter(f => f.allocation > 0).map(f => ({ name: f.name, allocation: f.allocation }));
+          setConfirmEmployerFunds(employerSaved);
+          setConfirmEmployeeFunds(employeeSaved);
+          setSubmittedEmployerMandatoryFunds(employerSaved);
+          setSubmittedEmployeeMandatoryFunds(employeeSaved);
           navigate('/invest/future-confirm');
         }} className={`w-full h-[58px] rounded-full text-[19px] font-semibold ${isNextEnabled ? 'bg-[#19345B] text-white' : 'bg-[#E6E3E3] text-[#B8B4B4]'}`}>下一步</button>
       </div>
