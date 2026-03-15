@@ -28,6 +28,7 @@ import RoomCleanlinessQuizPage from './pages/RoomCleanlinessQuizPage';
 import DISInfoPage from './pages/DISInfoPage';
 import TodoPage from './pages/TodoPage';
 import ProfilePage from './pages/ProfilePage';
+import AccountManagementPage from './pages/AccountManagementPage';
 import EnrolmentInstructionPage from './pages/EnrolmentInstructionPage';
 import EnrolmentStep1Page from './pages/EnrolmentStep1Page';
 import EnrolmentPersonalInfoPage from './pages/EnrolmentPersonalInfoPage';
@@ -69,6 +70,7 @@ function App() {
           <Route path="/dis-info" element={<DISInfoPage />} />
           <Route path="/todo" element={<TodoPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/account-management" element={<AccountManagementPage />} />
           <Route path="/enrolment-instruction" element={<EnrolmentInstructionPage />} />
           <Route path="/enrolment-step-1" element={<EnrolmentStep1Page />} />
           <Route path="/enrolment-identity" element={<EnrolmentIdentityPage />} />

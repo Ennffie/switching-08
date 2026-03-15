@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BottomNav from '../components/BottomNav';
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -23,10 +25,10 @@ const ProfilePage = () => {
 
       <div className="px-4 pb-6 space-y-4">
         {items.map((item) => (
-          <div key={item.label} className="bg-white rounded-[18px] px-5 py-5 flex items-center gap-4 border border-[#F1F1F1] shadow-[0_1px_4px_rgba(0,0,0,0.03)]">
+          <button key={item.label} onClick={() => item.label === '帳戶管理' ? navigate('/account-management') : undefined} className="w-full bg-white rounded-[18px] px-5 py-5 flex items-center gap-4 border border-[#F1F1F1] shadow-[0_1px_4px_rgba(0,0,0,0.03)] text-left">
             <img src={item.icon} alt={item.label} className="w-11 h-11 object-contain flex-shrink-0" />
             <span className="text-[17px] font-medium text-[#1f1f1f] tracking-[-0.01em]">{item.label}</span>
-          </div>
+          </button>
         ))}
 
         <button className="w-full flex items-center justify-center gap-2 pt-1 pb-3 mt-1">
