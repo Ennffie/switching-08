@@ -25,7 +25,7 @@ const AccountManagementPage = () => {
             <div className="text-[20px] font-semibold text-[#1F1F1F] tracking-[-0.01em]">積金易帳戶管理</div>
           </div>
           <button onClick={() => setOpenMPF(v => !v)} className="w-full bg-white rounded-[18px] border border-[#D9D4CC] px-6 py-6 shadow-[0_4px_18px_rgba(0,0,0,0.05)] flex items-center gap-5 text-left">
-            <img src="./icons/profile-account-management-mpf.png" alt="強積金帳戶管理" className="w-[58px] h-[58px] object-contain flex-shrink-0" />
+            <img src="./icons/icon-mpf-account-management.png" alt="強積金帳戶管理" className="w-[58px] h-[58px] object-contain flex-shrink-0" />
             <div className="flex-1 text-[20px] font-semibold text-[#1F1F1F] tracking-[-0.01em]">強積金帳戶管理</div>
             <ChevronDown size={24} className={`text-[#1F1F1F] transition-transform ${openMPF ? 'rotate-180' : ''}`} />
           </button>
