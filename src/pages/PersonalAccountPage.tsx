@@ -224,7 +224,7 @@ const PersonalAccountPage = () => {
       )}
 
       <button onClick={() => setShowShortcuts(true)} className="fixed bottom-24 right-4 w-12 h-12 bg-[#1e3a5f] rounded-full flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.22)] z-40">
-        <img src="./icons/icon-menu-grid.png" alt="menu" className="w-5 h-5 object-contain invert" />
+        <svg className="w-[22px] h-[22px] text-white" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
       </button>
 
 
