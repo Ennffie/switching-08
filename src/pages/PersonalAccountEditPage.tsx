@@ -172,7 +172,7 @@ const PersonalAccountEditPage = () => {
             <div className="relative">
               <div className={labelCls}>第二電話號碼（可選填）</div>
               <div className="grid grid-cols-[126px_1fr] gap-3">
-                <button onClick={() => setShowSecondPhoneCodes(v => !v)} className="h-[58px] rounded-[6px] border border-[#E3C16A] bg-white px-4 flex items-center justify-between text-[18px] text-[#B7B3B3]"><span>{data.secondPhoneCountryCode || '請…'}</span><ChevronDown size={20} /></button>
+                <button onClick={() => setShowSecondPhoneCodes(v => !v)} className="h-[58px] rounded-[6px] border border-[#E1DDDD] bg-white px-4 flex items-center justify-between text-[18px] text-[#B7B3B3]"><span>{data.secondPhoneCountryCode || '請…'}</span><ChevronDown size={20} /></button>
                 <input value={data.secondPhoneNumber} onChange={e => update('secondPhoneNumber', e.target.value)} className={inputCls} />
               </div>
               {showSecondPhoneCodes && <div className="absolute left-0 top-[104px] z-20 w-[126px] max-h-[320px] overflow-y-auto rounded-[6px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.14)] border border-[#E7E3E3]">{countryCodes.map(code => <button key={code} onClick={() => { update('secondPhoneCountryCode', code); setShowSecondPhoneCodes(false); }} className="w-full text-left px-4 py-4 text-[18px] text-[#111] border-b border-[#F1EFEF] last:border-b-0">{code}</button>)}</div>}
