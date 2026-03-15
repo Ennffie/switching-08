@@ -218,14 +218,14 @@ const PersonalAccountEditPage = () => {
                             ))}
                             <div className="border-t border-[#ECECEC]" />
                             {countryList.filter(item => item !== '中國' && !regionChoices.includes(item)).map(item => (
-                              <button key={item} onClick={() => pickCountry(item)} className={`w-full text-left pl-[68px] pr-8 py-4 text-[22px] leading-none ${data.residentialCountry === item ? 'bg-[#FEF7EE] text-[#111]' : 'bg-white text-[#111]'}`}>
+                              <button key={item} onClick={() => pickCountry(item)} className={`w-full text-left px-5 py-4 text-[22px] leading-none ${data.residentialCountry === item ? 'bg-[#FEF7EE] text-[#111]' : 'bg-white text-[#111]'}`}>
                                 {item}
                               </button>
                             ))}
                           </>
                         ) : (
                           filteredCountries.filter(item => item !== '中國').map(item => (
-                            <button key={item} onClick={() => pickCountry(item)} className={`w-full text-left pl-[68px] pr-8 py-4 text-[22px] leading-none ${data.residentialCountry === item ? 'bg-[#FEF7EE] text-[#111]' : 'bg-white text-[#111]'}`}>
+                            <button key={item} onClick={() => pickCountry(item)} className={`w-full text-left px-5 py-4 text-[22px] leading-none ${data.residentialCountry === item ? 'bg-[#FEF7EE] text-[#111]' : 'bg-white text-[#111]'}`}>
                               {item}
                             </button>
                           ))
