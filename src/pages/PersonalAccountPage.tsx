@@ -6,25 +6,20 @@ import { usePersonalAccount } from '../context/PersonalAccountContext';
 const PersonalAccountPage = () => {
   const navigate = useNavigate();
   const { data } = usePersonalAccount();
-  const [openContact, setOpenContact] = useState(true);
-  const [openAddress, setOpenAddress] = useState(false);
-  const [openCommAddress, setOpenCommAddress] = useState(false);
-  const [openCommMethod, setOpenCommMethod] = useState(false);
+  const [activeTab, setActiveTab] = useState<'overview' | 'details'>('overview');
+  const [openAssets, setOpenAssets] = useState(true);
+  const [openSummary, setOpenSummary] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const sectionHeader = (title: string, open: boolean, onClick: () => void, isGray = false) => (
-    <button onClick={onClick} className="w-full bg-white px-5 py-5 flex items-center justify-between border-y border-[#ECE7E1] text-left">
-      <div className={`text-[18px] font-medium ${isGray ? 'text-[#8F8B8B]' : 'text-[#1F1F1F]'}`}>{title}</div>
-      {open ? <ChevronUp size={22} className="text-[#1F1F1F]" /> : <ChevronDown size={22} className="text-[#1F1F1F]" />}
-    </button>
-  );
+  const totalBalance = '$ 30,673.78';
+  const gainValue = '$ 17,528.34';
+  const asOfDate = '12/03/2026';
 
   return (
     <div className="min-h-screen bg-[#FAF9F8] pb-24">
-      {/* Header */}
       <div className="sticky top-0 z-20 bg-white shadow-sm">
         <div className="px-4 pt-3 pb-2 flex items-center justify-center relative">
           <button onClick={() => navigate(-1)} className="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-gray-700">
@@ -37,127 +32,114 @@ const PersonalAccountPage = () => {
         </div>
       </div>
 
-      {/* Plan Name Header */}
-      <div className="px-5 py-4">
-        <div className="text-[20px] font-semibold text-[#1F1F1F]">宏利環球精選（強積金）計劃</div>
+      <div className="px-5 py-5 bg-white">
+        <div className="flex items-center gap-4">
+          <img src="./icons/aia-logo.png" alt="AIA" className="w-[52px] h-[52px] object-contain" />
+          <div className="flex-1 text-[20px] font-semibold text-[#1F1F1F]">友邦強積金優選計劃</div>
+          <ChevronDown size={22} className="text-[#1F1F1F]" />
+        </div>
       </div>
 
-      {/* Account Card */}
-      <div className="bg-[#FFF8F0] mx-4 rounded-[12px] p-5 relative">
-        <div className="text-[20px] font-bold text-[#1F1F1F] mb-1">宏利環球精選（強積金）計劃</div>
-        <div className="text-[14px] text-[#7C7878] mb-4">帳戶號碼：70741425</div>
-        <button 
-          onClick={() => navigate('/personal-account-edit')} 
-          className="absolute right-4 top-4 w-[36px] h-[36px] flex items-center justify-center"
-        >
-          <svg className="w-[24px] h-[24px] text-[#1F1F1F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M12 8v8M8 12h8" />
-          </svg>
-        </button>
+      <div className="bg-white px-6 pt-2">
+        <div className="flex border-b border-[#E5E1DD]">
+          <button
+            onClick={() => setActiveTab('overview')}
+            className={`relative flex-1 pb-4 pt-3 text-[17px] font-semibold ${activeTab === 'overview' ? 'text-[#E4A11B]' : 'text-[#B8B2AE]'}`}
+          >
+            帳戶概覽
+            {activeTab === 'overview' && <span className="absolute left-0 right-0 -bottom-[1px] h-[4px] rounded-full bg-[#F2A100]" />}
+          </button>
+          <button
+            onClick={() => setActiveTab('details')}
+            className={`relative flex-1 pb-4 pt-3 text-[17px] font-semibold ${activeTab === 'details' ? 'text-[#E4A11B]' : 'text-[#B8B2AE]'}`}
+          >
+            帳戶資料
+            {activeTab === 'details' && <span className="absolute left-0 right-0 -bottom-[1px] h-[4px] rounded-full bg-[#F2A100]" />}
+          </button>
+        </div>
       </div>
 
-      {/* Account Balance */}
-      <div className="px-5 py-4">
-        <div className="text-[14px] text-[#8F8B8B] mb-1">帳戶結餘（港幣）</div>
-        <div className="text-[28px] font-bold text-[#1F1F1F]">$ 30,673.78</div>
-      </div>
-
-      {/* Effective Date */}
-      <div className="px-5 pb-4">
-        <div className="text-[14px] text-[#8F8B8B] mb-1">帳戶生效日期（日／月／年）</div>
-        <div className="text-[16px] text-[#1F1F1F]">24/09/2011</div>
-      </div>
-
-      {/* Contact Section */}
-      {sectionHeader('聯絡資料', openContact, () => setOpenContact(v => !v), true)}
-      {openContact && (
-        <div className="px-5 py-5 space-y-4 bg-white">
-          <div>
-            <div className="text-[14px] text-[#8F8B8B] mb-1">電郵地址</div>
-            <div className="text-[16px] text-[#1F1F1F] uppercase">{data.email || 'enfieldlaw@yahoo.com.hk'}</div>
+      {activeTab === 'overview' && (
+        <>
+          <div className="bg-white px-5 pt-6 pb-7">
+            <div className="mx-auto relative w-[290px] h-[290px]">
+              <div className="absolute inset-0 rounded-full" style={{ background: 'conic-gradient(#1AA6A1 0deg 4deg, #7597B8 4deg 360deg)' }} />
+              <div className="absolute inset-[34px] rounded-full bg-white flex flex-col items-center justify-center text-center">
+                <div className="text-[20px] font-medium text-[#1F1F1F] mb-2">總結餘</div>
+                <div className="text-[25px] font-bold text-[#111] mb-2">{totalBalance}</div>
+                <div className="flex items-center gap-2 text-[#2AA69A] text-[18px] font-medium">
+                  <span>▲</span>
+                  <span>{gainValue}</span>
+                </div>
+              </div>
+            </div>
+            <div className="text-center mt-6 text-[16px] text-[#1F1F1F]">截至 {asOfDate}</div>
           </div>
-          <div>
-            <div className="text-[14px] text-[#8F8B8B] mb-1">手機號碼</div>
-            <div className="text-[16px] text-[#1F1F1F]">+852 {data.mobileNumber || '98849795'}</div>
+
+          <button onClick={() => setOpenAssets(v => !v)} className="w-full bg-white px-5 py-5 flex items-center justify-between border-t border-b border-[#ECE7E1] text-left mt-2">
+            <div className="text-[18px] text-[#1F1F1F] leading-[1.45]">我目前持有的資產（以供款類別劃分） （截至 {asOfDate}）</div>
+            {openAssets ? <ChevronUp size={22} className="text-[#1F1F1F] flex-shrink-0 ml-3" /> : <ChevronDown size={22} className="text-[#1F1F1F] flex-shrink-0 ml-3" />}
+          </button>
+
+          {openAssets && (
+            <div className="bg-white">
+              <div className="grid grid-cols-2 border-b border-[#E7E0D6]">
+                <div className="text-center py-4 text-[18px] font-semibold text-[#1F1F1F] border-r border-[#E7E0D6]">市場價值</div>
+                <div className="text-center py-4 text-[18px] font-semibold text-[#CFC8C1]">強制性供款</div>
+              </div>
+              <div className="bg-[#F2A100] text-white grid grid-cols-[1fr_140px] px-4 py-2 text-[16px] font-semibold">
+                <div>基金名稱</div>
+                <div className="text-right">市場價值（港幣）</div>
+              </div>
+              <div className="grid grid-cols-[8px_1fr_140px] items-start border-b border-[#ECE7E1] bg-white">
+                <div className="bg-[#F2A100] h-full min-h-[72px]" />
+                <div className="px-4 py-3 text-[16px] leading-[1.45] text-[#1F1F1F]">友邦強積金優選計劃 - 大中華股票基金</div>
+                <div className="px-4 py-3 text-right text-[18px] font-semibold text-[#1F1F1F]">$ 30,426.94</div>
+              </div>
+              <div className="grid grid-cols-[8px_1fr_140px] items-start border-b border-[#ECE7E1] bg-white">
+                <div className="bg-[#19A7A4] h-full min-h-[72px]" />
+                <div className="px-4 py-3 text-[16px] leading-[1.45] text-[#1F1F1F]">友邦強積金優選計劃 - 亞洲股票基金</div>
+                <div className="px-4 py-3 text-right text-[18px] font-semibold text-[#1F1F1F]">$ 246.84</div>
+              </div>
+            </div>
+          )}
+
+          <button onClick={() => setOpenSummary(v => !v)} className="w-full bg-white px-5 py-5 flex items-center justify-between border-t border-b border-[#ECE7E1] text-left mt-3">
+            <div className="text-[18px] text-[#1F1F1F] leading-[1.45]">我目前持有的資產概覽（截至 {asOfDate}）</div>
+            {openSummary ? <ChevronUp size={22} className="text-[#1F1F1F] flex-shrink-0 ml-3" /> : <ChevronDown size={22} className="text-[#1F1F1F] flex-shrink-0 ml-3" />}
+          </button>
+        </>
+      )}
+
+      {activeTab === 'details' && (
+        <div className="bg-white">
+          <div className="bg-[#FFF8F0] mx-4 mt-4 rounded-[12px] p-5 relative">
+            <div className="text-[20px] font-bold text-[#1F1F1F] mb-1">友邦強積金優選計劃</div>
+            <div className="text-[14px] text-[#7C7878] mb-1">帳戶號碼：70741425</div>
+            <button onClick={() => navigate('/personal-account-edit')} className="absolute right-4 top-4 w-[36px] h-[36px] flex items-center justify-center">
+              <svg className="w-[24px] h-[24px] text-[#1F1F1F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M12 8v8M8 12h8" />
+              </svg>
+            </button>
           </div>
-          <div>
-            <div className="text-[14px] text-[#8F8B8B] mb-1">第二電話號碼（可選填）</div>
-            <div className="text-[16px] text-[#1F1F1F]">+852 {data.secondPhoneNumber || '98849795'}</div>
+
+          <button className="w-full bg-white px-5 py-5 flex items-center justify-between border-y border-[#ECE7E1] text-left mt-4">
+            <div className="text-[18px] font-medium text-[#8F8B8B]">聯絡資料</div>
+            <ChevronUp size={22} className="text-[#1F1F1F]" />
+          </button>
+          <div className="px-5 py-5 space-y-4 bg-white">
+            <div>
+              <div className="text-[14px] text-[#8F8B8B] mb-1">電郵地址</div>
+              <div className="text-[16px] text-[#1F1F1F] uppercase">{data.email || 'enfieldlaw@yahoo.com.hk'}</div>
+            </div>
+            <div>
+              <div className="text-[14px] text-[#8F8B8B] mb-1">手機號碼</div>
+              <div className="text-[16px] text-[#1F1F1F]">+852 {data.mobileNumber || '98849795'}</div>
+            </div>
           </div>
         </div>
       )}
-
-      {/* Address Section */}
-      {sectionHeader('地址', openAddress, () => setOpenAddress(v => !v), true)}
-      {openAddress && (
-        <div className="px-5 py-5 space-y-4 bg-white">
-          <div>
-            <div className="text-[14px] text-[#8F8B8B] mb-1">國家／地區</div>
-            <div className="text-[16px] text-[#1F1F1F]">{data.residentialCountry || 'HK'}</div>
-          </div>
-          <div>
-            <div className="text-[14px] text-[#8F8B8B] mb-1">單位／室（例如：「2室」、「A室」）</div>
-            <div className="text-[16px] text-[#1F1F1F]">{data.residentialUnit || '2/F'}</div>
-          </div>
-          <div>
-            <div className="text-[14px] text-[#8F8B8B] mb-1">層數（例如：「12樓」）</div>
-            <div className="text-[16px] text-[#1F1F1F]">{data.residentialFloor || '56 SAN HING STREET'}</div>
-          </div>
-          <div>
-            <div className="text-[14px] text-[#8F8B8B] mb-1">座（例如：「C座」）</div>
-            <div className="text-[16px] text-[#1F1F1F]">{data.residentialBlock || 'CHEUNG CHAU'}</div>
-          </div>
-          <div>
-            <div className="text-[14px] text-[#8F8B8B] mb-1">大廈</div>
-            <div className="text-[16px] text-[#1F1F1F]">{data.residentialBuilding || 'NEW TERRITORIES'}</div>
-          </div>
-        </div>
-      )}
-
-      {/* Communication Address Section */}
-      {sectionHeader('通訊地址', openCommAddress, () => setOpenCommAddress(v => !v), true)}
-      {openCommAddress && (
-        <div className="px-5 py-5 bg-white">
-          <div className="text-[16px] text-[#1F1F1F] leading-[1.7]">
-            {data.correspondenceSameAsResidential ? '與住址相同' : (
-              <>
-                {data.correspondenceUnit && <div>{data.correspondenceUnit}</div>}
-                {data.correspondenceFloor && <div>{data.correspondenceFloor}</div>}
-                {data.correspondenceBlock && <div>{data.correspondenceBlock}</div>}
-                {data.correspondenceBuilding && <div>{data.correspondenceBuilding}</div>}
-                {data.correspondenceStreet && <div>{data.correspondenceStreet}</div>}
-                {data.correspondenceDistrict && <div>{data.correspondenceDistrict}</div>}
-                {data.correspondenceCountry || '香港'}
-              </>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Communication Method Section */}
-      {sectionHeader('通訊方式', openCommMethod, () => setOpenCommMethod(v => !v), true)}
-      {openCommMethod && (
-        <div className="px-5 py-5 bg-white">
-          <div className="text-[16px] text-[#1F1F1F] leading-[1.7]">
-            {data.directMarketingConsent === '是' ? '已同意直接促銷' : '未同意直接促銷'}
-          </div>
-        </div>
-      )}
-
-      {/* Update Button */}
-      <div className="fixed bottom-6 left-4 right-4">
-        <button 
-          onClick={() => navigate('/personal-account-edit')} 
-          className="w-full h-[58px] rounded-full bg-[#1B355C] text-white text-[20px] font-semibold flex items-center justify-center gap-3 shadow-lg"
-        >
-          <svg className="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M12 8v8M8 12h8" />
-          </svg>
-          <span>更新</span>
-        </button>
-      </div>
     </div>
   );
 };
