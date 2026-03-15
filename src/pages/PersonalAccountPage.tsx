@@ -34,7 +34,7 @@ const PersonalAccountPage = () => {
 
       <div className="px-5 py-5 bg-white">
         <div className="flex items-center gap-4">
-          <img src="./icons/aia-logo.png" alt="AIA" className="w-[52px] h-[52px] object-contain" />
+          <img src="./icons/aia-logo-new.jpg" alt="AIA" className="w-[52px] h-[52px] object-contain rounded-full" />
           <div className="flex-1 text-[20px] font-semibold text-[#1F1F1F]">友邦強積金優選計劃</div>
           <ChevronDown size={22} className="text-[#1F1F1F]" />
         </div>
