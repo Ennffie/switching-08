@@ -23,7 +23,7 @@ const FutureRecordsPage = () => {
   return (
     <div className="min-h-screen bg-[#f5f5f5] flex flex-col">
       <div className="bg-white px-4 py-3 flex items-center justify-between border-b border-gray-200">
-        <button onClick={() => navigate(-1)} className="p-2 -ml-2">
+        <button onClick={() => navigate('/')} className="p-2 -ml-2">
           <ChevronLeft size={24} className="text-gray-700" />
         </button>
         <h1 className="text-base font-medium text-gray-900">我的紀錄</h1>
