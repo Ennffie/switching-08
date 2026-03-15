@@ -148,8 +148,8 @@ const PersonalAccountPage = () => {
           </button>
           {openContact && (
             <div className="px-5 py-6 space-y-8 border-b border-[#ECE7E1]">
-              <div><div className="text-[18px] text-[#B0ACAC] mb-2">電郵地址</div><div className="text-[22px] text-[#111]">enfieldlaw@yahoo.com.hk</div></div>
-              <div><div className="text-[18px] text-[#B0ACAC] mb-2">手機號碼</div><div className="text-[22px] text-[#111]">+852 98849795</div></div>
+              <div><div className="text-[18px] text-[#B0ACAC] mb-2">電郵地址</div><div className="text-[22px] text-[#111]">wong.kaming89@gmail.com</div></div>
+              <div><div className="text-[18px] text-[#B0ACAC] mb-2">手機號碼</div><div className="text-[22px] text-[#111]">+852 96823451</div></div>
             </div>
           )}
 
@@ -162,21 +162,25 @@ const PersonalAccountPage = () => {
               <div>
                 <div className="text-[22px] font-semibold text-[#111] mb-6">通訊地址</div>
                 <div className="space-y-6">
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">國家／地區</div><div className="text-[22px] text-[#111]">香港</div></div>
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">單位／室（例如：「2室」、「A室」）</div><div className="text-[22px] text-[#111]">G/F</div></div>
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">層數（例如：「12樓」）</div><div className="text-[22px] text-[#111]">6A MAN SHUN LANE</div></div>
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">座（例如：「C座」）</div><div className="text-[22px] text-[#111]">CHEUNG CHAU</div></div>
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">大廈</div><div className="text-[22px] text-[#111]">HONG KONG</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">國家／地區</div><div className="text-[22px] text-[#111]">Hong Kong</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">單位／室（例如：「2室」、「A室」）</div><div className="text-[22px] text-[#111]">Flat 8</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">層數（例如：「12樓」）</div><div className="text-[22px] text-[#111]">12/F</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">座（例如：「C座」）</div><div className="text-[22px] text-[#111]">Block B</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">大廈</div><div className="text-[22px] text-[#111]">Mei Hong Court, South Horizons</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">街道（街號及街道名稱）</div><div className="text-[22px] text-[#111]">8 South Horizons Drive</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">區域</div><div className="text-[22px] text-[#111]">Ap Lei Chau</div></div>
                 </div>
               </div>
               <div>
                 <div className="text-[22px] font-semibold text-[#111] mb-6">住址</div>
                 <div className="space-y-6">
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">國家／地區</div><div className="text-[22px] text-[#111]">香港</div></div>
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">單位／室（例如：「2室」、「A室」）</div><div className="text-[22px] text-[#111]">G/F</div></div>
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">層數（例如：「12樓」）</div><div className="text-[22px] text-[#111]">6A MAN SHUN LANE</div></div>
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">座（例如：「C座」）</div><div className="text-[22px] text-[#111]">CHEUNG CHAU</div></div>
-                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">大廈</div><div className="text-[22px] text-[#111]">HONG KONG</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">國家／地區</div><div className="text-[22px] text-[#111]">Hong Kong</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">單位／室（例如：「2室」、「A室」）</div><div className="text-[22px] text-[#111]">Flat 8</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">層數（例如：「12樓」）</div><div className="text-[22px] text-[#111]">12/F</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">座（例如：「C座」）</div><div className="text-[22px] text-[#111]">Block B</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">大廈</div><div className="text-[22px] text-[#111]">Mei Hong Court, South Horizons</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">街道（街號及街道名稱）</div><div className="text-[22px] text-[#111]">8 South Horizons Drive</div></div>
+                  <div><div className="text-[18px] text-[#B0ACAC] mb-2">區域</div><div className="text-[22px] text-[#111]">Ap Lei Chau</div></div>
                 </div>
               </div>
             </div>
