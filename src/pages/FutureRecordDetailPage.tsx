@@ -6,19 +6,16 @@ import { useFutureInvest } from '../context/FutureInvestContext';
 
 const FutureRecordDetailPage = () => {
   const navigate = useNavigate();
-  const { referenceNumber } = useFutureSubmission();
+  const { referenceNumber, submittedAt } = useFutureSubmission();
   const { employerMandatoryFunds, employeeMandatoryFunds } = useFutureInvest();
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
-  const timeStr = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 
   const [activeTab, setActiveTab] = useState<'plan' | 'future'>('plan');
   const [basicOpen, setBasicOpen] = useState(true);
   const [detailOpen, setDetailOpen] = useState(true);
 
   const allFundNames = Array.from(new Set([
-    ...employerMandatoryFunds.map(f => f.name),
-    ...employeeMandatoryFunds.map(f => f.name),
+    ...employerMandatoryFunds.filter(f => f.allocation > 0).map(f => f.name),
+    ...employeeMandatoryFunds.filter(f => f.allocation > 0).map(f => f.name),
   ]));
 
   const getAllocation = (list: { name: string; allocation: number }[], name: string) => {
@@ -66,7 +63,7 @@ const FutureRecordDetailPage = () => {
             </div>
             <div>
               <div className="text-[15px] text-[#9A9898] mb-2">提交日期及時間（日／月／年）（時：分）</div>
-              <div className="text-[18px] text-[#1F1F1F]">{dateStr}, {timeStr}</div>
+              <div className="text-[18px] text-[#1F1F1F]">{submittedAt}</div>
             </div>
             <div>
               <div className="text-[15px] text-[#9A9898] mb-2">交易來源</div>
@@ -136,13 +133,7 @@ const FutureRecordDetailPage = () => {
                       <div className="p-3">{getAllocation(employerMandatoryFunds, name)}%</div>
                       <div className="p-3">{getAllocation(employeeMandatoryFunds, name)}%</div>
                     </div>
-                  )) : (
-                    <div className="grid grid-cols-3 border-t border-[#EEE9E3] text-[16px] text-[#1F1F1F]">
-                      <div className="p-3 leading-[1.5]">預設投資策略</div>
-                      <div className="p-3">0%</div>
-                      <div className="p-3">0%</div>
-                    </div>
-                  )}
+                  )) : null}
                 </div>
               </div>
             )}

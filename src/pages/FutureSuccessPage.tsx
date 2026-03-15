@@ -3,10 +3,7 @@ import { useFutureSubmission } from '../context/FutureSubmissionContext';
 
 const FutureSuccessPage = () => {
   const navigate = useNavigate();
-  const { referenceNumber } = useFutureSubmission();
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
-  const timeStr = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  const { referenceNumber, submittedAt } = useFutureSubmission();
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -21,7 +18,7 @@ const FutureSuccessPage = () => {
 
         <div className="text-center text-gray-700 text-[15px] mb-14 space-y-2">
           <p>參考編號：{referenceNumber}</p>
-          <p>提交日期及時間：{dateStr}, {timeStr}</p>
+          <p>提交日期及時間：{submittedAt}</p>
         </div>
 
         <div className="w-full max-w-sm space-y-4">
