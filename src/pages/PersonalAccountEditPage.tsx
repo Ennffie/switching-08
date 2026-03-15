@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronDown, ChevronUp, Lightbulb, X } from 'lucide-react';
+import { ChevronLeft, ChevronDown, ChevronUp, Lightbulb, X, RefreshCcw, TriangleAlert } from 'lucide-react';
 import { usePersonalAccount } from '../context/PersonalAccountContext';
 
 const countryCodes = [
@@ -23,21 +23,30 @@ const PersonalAccountEditPage = () => {
   const [openComm, setOpenComm] = useState(false);
   const [showSecondPhoneCodes, setShowSecondPhoneCodes] = useState(false);
   const [showEmailVerify, setShowEmailVerify] = useState(false);
+  const [showVerifyFailed, setShowVerifyFailed] = useState(false);
   const [emailCode, setEmailCode] = useState('');
   const [countdown, setCountdown] = useState(60);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   useEffect(() => {
     if (!showEmailVerify) return;
     setCountdown(60);
-    const t = setInterval(() => {
-      setCountdown(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
+    const t = setInterval(() => setCountdown(prev => (prev > 0 ? prev - 1 : 0)), 1000);
     return () => clearInterval(t);
   }, [showEmailVerify]);
+
+  useEffect(() => {
+    if (emailCode.length !== 6) return;
+    setTimeout(() => {
+      if (emailCode === '123456') {
+        setShowEmailVerify(false);
+      } else {
+        setShowEmailVerify(false);
+        setShowVerifyFailed(true);
+      }
+    }, 180);
+  }, [emailCode]);
 
   const update = (key: keyof typeof data, value: string | boolean) => setData(prev => ({ ...prev, [key]: value }));
   const inputCls = 'w-full h-[58px] rounded-[6px] border border-[#E1DDDD] bg-white px-4 text-[18px] text-[#111] outline-none';
@@ -51,11 +60,7 @@ const PersonalAccountEditPage = () => {
     </button>
   );
 
-  const pressCode = (n: string) => {
-    if (emailCode.length >= 6) return;
-    setEmailCode(prev => prev + n);
-  };
-
+  const pressCode = (n: string) => { if (emailCode.length < 6) setEmailCode(prev => prev + n); };
   const delCode = () => setEmailCode(prev => prev.slice(0, -1));
 
   return (
@@ -70,7 +75,7 @@ const PersonalAccountEditPage = () => {
         </div>
       </div>
 
-      <div className={`pb-36 ${showEmailVerify ? 'pb-[360px]' : ''}`}>
+      <div className={`pb-36 ${(showEmailVerify || showVerifyFailed) ? 'pb-[360px]' : ''}`}>
         {sectionHeader('聯絡資料', openContact, () => setOpenContact(v => !v))}
         {openContact && (
           <div className="bg-[#FAF9F8] px-5 py-8 space-y-7 border-b border-[#ECE7E1]">
@@ -78,7 +83,7 @@ const PersonalAccountEditPage = () => {
               <div className={labelCls}>電郵</div>
               <div className="grid grid-cols-[1fr_104px] rounded-[6px] overflow-hidden border border-[#E1DDDD] bg-white">
                 <input value={data.email} onChange={e => update('email', e.target.value)} className="h-[58px] px-4 text-[18px] text-[#111] outline-none" />
-                <button onClick={() => { setEmailCode(''); setShowEmailVerify(true); }} className="bg-[#F6E6AA] text-[18px] font-medium text-[#1F1F1F]">驗證</button>
+                <button onClick={() => { setEmailCode(''); setShowVerifyFailed(false); setShowEmailVerify(true); }} className="bg-[#F6E6AA] text-[18px] font-medium text-[#1F1F1F]">驗證</button>
               </div>
             </div>
             <div>
@@ -92,18 +97,10 @@ const PersonalAccountEditPage = () => {
             <div className="relative">
               <div className={labelCls}>第二電話號碼（可選填）</div>
               <div className="grid grid-cols-[126px_1fr] gap-3">
-                <button onClick={() => setShowSecondPhoneCodes(v => !v)} className="h-[58px] rounded-[6px] border border-[#E3C16A] bg-white px-4 flex items-center justify-between text-[18px] text-[#B7B3B3]">
-                  <span>{data.secondPhoneCountryCode || '請…'}</span><ChevronDown size={20} />
-                </button>
+                <button onClick={() => setShowSecondPhoneCodes(v => !v)} className="h-[58px] rounded-[6px] border border-[#E3C16A] bg-white px-4 flex items-center justify-between text-[18px] text-[#B7B3B3]"><span>{data.secondPhoneCountryCode || '請…'}</span><ChevronDown size={20} /></button>
                 <input value={data.secondPhoneNumber} onChange={e => update('secondPhoneNumber', e.target.value)} className={inputCls} />
               </div>
-              {showSecondPhoneCodes && (
-                <div className="absolute left-0 top-[104px] z-20 w-[126px] max-h-[320px] overflow-y-auto rounded-[6px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.14)] border border-[#E7E3E3]">
-                  {countryCodes.map(code => (
-                    <button key={code} onClick={() => { update('secondPhoneCountryCode', code); setShowSecondPhoneCodes(false); }} className="w-full text-left px-4 py-4 text-[18px] text-[#111] border-b border-[#F1EFEF] last:border-b-0">{code}</button>
-                  ))}
-                </div>
-              )}
+              {showSecondPhoneCodes && <div className="absolute left-0 top-[104px] z-20 w-[126px] max-h-[320px] overflow-y-auto rounded-[6px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.14)] border border-[#E7E3E3]">{countryCodes.map(code => <button key={code} onClick={() => { update('secondPhoneCountryCode', code); setShowSecondPhoneCodes(false); }} className="w-full text-left px-4 py-4 text-[18px] text-[#111] border-b border-[#F1EFEF] last:border-b-0">{code}</button>)}</div>}
             </div>
           </div>
         )}
@@ -148,34 +145,36 @@ const PersonalAccountEditPage = () => {
               <button onClick={() => setShowEmailVerify(false)} className="absolute right-5 top-5 text-[#1F1F1F]"><X size={26} /></button>
               <div className="text-center text-[24px] font-bold text-[#E6A23C] mb-5">輸入驗證碼</div>
               <div className="text-[18px] leading-[1.7] text-[#1F1F1F] mb-7">請輸入我們以電郵發送到<strong>{maskedEmail}</strong>的驗證碼。</div>
-              <div className="flex justify-between gap-2 mb-8">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="w-[48px] h-[58px] rounded-[6px] border border-[#D8D5D5] bg-white flex items-center justify-center text-[28px] text-[#1F1F1F]">
-                    {emailCode[i] || (i === emailCode.length ? '|' : '')}
-                  </div>
-                ))}
-              </div>
-              <div className="text-center">
-                <div className="text-[20px] text-[#1F1F1F] mb-2">未收到驗證碼？</div>
-                <div className="text-[18px] text-[#B4B0B0]">可於{countdown}秒後重新發送</div>
-              </div>
+              <div className="flex justify-between gap-2 mb-8">{Array.from({ length: 6 }).map((_, i) => <div key={i} className="w-[48px] h-[58px] rounded-[6px] border border-[#D8D5D5] bg-white flex items-center justify-center text-[28px] text-[#1F1F1F]">{emailCode[i] || (i === emailCode.length ? '|' : '')}</div>)}</div>
+              <div className="text-center"><div className="text-[20px] text-[#1F1F1F] mb-2">未收到驗證碼？</div><div className="text-[18px] text-[#B4B0B0]">可於{countdown}秒後重新發送</div></div>
             </div>
           </div>
           <div className="fixed left-0 right-0 bottom-0 z-50 bg-[#D1D5DB] border-t border-[#BFC5CD] px-[6px] pt-[6px] pb-[14px]">
             <div className="grid grid-cols-3 gap-[5px]">
-              {[
-                ['1', ''], ['2', 'ABC'], ['3', 'DEF'],
-                ['4', 'GHI'], ['5', 'JKL'], ['6', 'MNO'],
-                ['7', 'PQRS'], ['8', 'TUV'], ['9', 'WXYZ'],
-              ].map(([n, sub]) => (
-                <button key={n} onClick={() => pressCode(n)} className="h-[58px] rounded-[6px] bg-white flex flex-col items-center justify-center shadow-[0_1px_0_rgba(0,0,0,0.16)]">
-                  <span className="text-[18px] leading-none text-black">{n}</span>
-                  {sub ? <span className="text-[9px] leading-none mt-1 tracking-[0.12em] text-black font-semibold">{sub}</span> : <span className="h-[9px] mt-1" />}
-                </button>
-              ))}
+              {[['1', ''], ['2', 'ABC'], ['3', 'DEF'], ['4', 'GHI'], ['5', 'JKL'], ['6', 'MNO'], ['7', 'PQRS'], ['8', 'TUV'], ['9', 'WXYZ']].map(([n, sub]) => <button key={n} onClick={() => pressCode(n)} className="h-[58px] rounded-[6px] bg-white flex flex-col items-center justify-center shadow-[0_1px_0_rgba(0,0,0,0.16)]"><span className="text-[18px] leading-none text-black">{n}</span>{sub ? <span className="text-[9px] leading-none mt-1 tracking-[0.12em] text-black font-semibold">{sub}</span> : <span className="h-[9px] mt-1" />}</button>)}
               <div className="h-[58px]" />
               <button onClick={() => pressCode('0')} className="h-[58px] rounded-[6px] bg-white flex items-center justify-center shadow-[0_1px_0_rgba(0,0,0,0.16)]"><span className="text-[18px] leading-none text-black">0</span></button>
               <button onClick={delCode} className="h-[58px] rounded-[6px] bg-[#D1D5DB] flex items-center justify-center"><span className="inline-flex items-center justify-center w-[28px] h-[20px] border-[1.5px] border-black rounded-[6px] text-[14px] leading-none text-black">⌫</span></button>
+            </div>
+          </div>
+        </>
+      )}
+
+      {showVerifyFailed && (
+        <>
+          <div className="fixed inset-0 bg-black/45 z-50" />
+          <div className="fixed inset-x-0 top-[84px] z-[60] px-5">
+            <div className="bg-white rounded-[24px] shadow-[0_12px_32px_rgba(0,0,0,0.28)] px-6 pt-6 pb-8 relative text-center">
+              <button onClick={() => setShowVerifyFailed(false)} className="absolute right-5 top-5 text-[#1F1F1F]"><X size={26} /></button>
+              <div className="flex items-center justify-center mb-5 mt-4 relative h-[120px]">
+                <RefreshCcw size={98} strokeWidth={1.8} className="text-[#1F1F1F]" />
+                <div className="absolute right-[88px] bottom-[10px] bg-white"><TriangleAlert size={54} strokeWidth={1.8} className="text-[#1F1F1F] fill-[#FFF3CF]" /></div>
+              </div>
+              <div className="text-[26px] font-bold text-[#E0A132] mb-3">驗證失敗。</div>
+              <div className="text-[18px] text-[#1F1F1F] mb-10">無效的一次性密碼。</div>
+              <button onClick={() => setShowVerifyFailed(false)} className="w-full h-[58px] rounded-full bg-[#1E3B6B] text-white text-[22px] font-semibold mb-8">知道了</button>
+              <div className="text-[14px] text-[#9A9595] leading-[1.45]">職員專用</div>
+              <div className="text-[13px] text-[#9A9595] leading-[1.5] break-all">REG0001 FF:ACCOUNT_OVERVIEW 1e[4a96696d-4abe-4385-8f11-6f5b0ef29428 / BE:4775957ed707dbb13e87705631436a1b 20260315203810</div>
             </div>
           </div>
         </>
