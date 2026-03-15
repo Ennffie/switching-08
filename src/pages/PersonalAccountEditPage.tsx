@@ -86,6 +86,7 @@ const PersonalAccountEditPage = () => {
   const labelCls = 'text-[16px] text-[#8F8B8B] mb-3';
   const maskedEmail = useMemo(() => maskEmail(data.email), [data.email]);
   const showCityError = data.residentialCountry === '其他';
+  const cityDisabled = data.residentialCountry === '香港';
   const filteredCountries = countryList.filter(item => item.includes(countrySearch));
 
   const openVerification = (target: VerifyTarget) => {
@@ -237,7 +238,7 @@ const PersonalAccountEditPage = () => {
 
               <div>
                 <div className={`${showCityError ? 'text-[#B3261E]' : labelCls}`}>城市</div>
-                <input value={data.residentialCity} onChange={e => update('residentialCity', e.target.value)} className={`w-full h-[58px] rounded-[6px] border px-4 text-[18px] text-[#111] outline-none ${showCityError ? 'border-[#B3261E] bg-white' : 'border-[#E1DDDD] bg-white'}`} />
+                <input value={cityDisabled ? '' : data.residentialCity} disabled={cityDisabled} onChange={e => update('residentialCity', e.target.value)} className={`w-full h-[58px] rounded-[6px] border px-4 text-[18px] outline-none ${cityDisabled ? 'border-[#E1DDDD] bg-[#F3F1F1] text-[#999]' : showCityError ? 'border-[#B3261E] bg-white text-[#111]' : 'border-[#E1DDDD] bg-white text-[#111]'}`} />
                 {showCityError && <div className="text-[15px] text-[#B3261E] mt-2">無效的地址格式</div>}
               </div>
 
