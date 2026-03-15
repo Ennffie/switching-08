@@ -274,7 +274,7 @@ const TermsPage = () => {
 
             {/* Next Step Button */}
             <button 
-              onClick={() => navigate('/invest/success')}
+              onClick={() => navigate('/invest/future-success')}
               className="w-full py-4 bg-[#1e3a5f] text-white rounded-full text-lg font-medium active:scale-[0.98] transition-transform"
             >
               下一步
