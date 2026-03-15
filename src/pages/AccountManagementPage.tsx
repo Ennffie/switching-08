@@ -63,7 +63,14 @@ const AccountManagementPage = () => {
               </div>
             </div>
             <div className="px-6 pb-6 pt-2 bg-white">
-              <button className="w-full h-[60px] rounded-full bg-[#243C67] text-white text-[22px] font-semibold">選擇</button>
+              <button onClick={() => {
+                if (selectedPlan === 'VC56442131') {
+                  setShowPlanModal(false);
+                  navigate('/personal-account');
+                  return;
+                }
+                setShowPlanModal(false);
+              }} className="w-full h-[60px] rounded-full bg-[#243C67] text-white text-[22px] font-semibold">選擇</button>
             </div>
           </div>
         </div>
