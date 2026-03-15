@@ -26,6 +26,7 @@ const PersonalAccountEditPage = () => {
   const [showVerifyFailed, setShowVerifyFailed] = useState(false);
   const [emailCode, setEmailCode] = useState('');
   const [countdown, setCountdown] = useState(60);
+  const [resendMode, setResendMode] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -43,6 +44,7 @@ const PersonalAccountEditPage = () => {
         setShowEmailVerify(false);
       } else {
         setShowEmailVerify(false);
+        setResendMode(true);
         setShowVerifyFailed(true);
       }
     }, 180);
@@ -83,7 +85,7 @@ const PersonalAccountEditPage = () => {
               <div className={labelCls}>電郵</div>
               <div className="grid grid-cols-[1fr_104px] rounded-[6px] overflow-hidden border border-[#E1DDDD] bg-white">
                 <input value={data.email} onChange={e => update('email', e.target.value)} className="h-[58px] px-4 text-[18px] text-[#111] outline-none" />
-                <button onClick={() => { setEmailCode(''); setShowVerifyFailed(false); setShowEmailVerify(true); }} className="bg-[#F6E6AA] text-[18px] font-medium text-[#1F1F1F]">驗證</button>
+                <button onClick={() => { setEmailCode(''); setResendMode(false); setShowVerifyFailed(false); setShowEmailVerify(true); }} className="bg-[#F6E6AA] text-[18px] font-medium text-[#1F1F1F]">驗證</button>
               </div>
             </div>
             <div>
@@ -146,7 +148,7 @@ const PersonalAccountEditPage = () => {
               <div className="text-center text-[24px] font-bold text-[#E6A23C] mb-5">輸入驗證碼</div>
               <div className="text-[18px] leading-[1.7] text-[#1F1F1F] mb-7">請輸入我們以電郵發送到<strong>{maskedEmail}</strong>的驗證碼。</div>
               <div className="flex justify-between gap-2 mb-8">{Array.from({ length: 6 }).map((_, i) => <div key={i} className="w-[48px] h-[58px] rounded-[6px] border border-[#D8D5D5] bg-white flex items-center justify-center text-[28px] text-[#1F1F1F]">{emailCode[i] || (i === emailCode.length ? '|' : '')}</div>)}</div>
-              <div className="text-center"><div className="text-[20px] text-[#1F1F1F] mb-2">未收到驗證碼？</div><div className="text-[18px] text-[#B4B0B0]">可於{countdown}秒後重新發送</div></div>
+              <div className="text-center">{resendMode ? (<><div className="text-[20px] text-[#1F1F1F] mb-2">未收到驗證碼？</div><button onClick={() => { setEmailCode(''); setCountdown(60); setResendMode(false); }} className="text-[20px] text-[#1E3557] font-semibold underline">重新發送</button></>) : (<><div className="text-[20px] text-[#1F1F1F] mb-2">未收到驗證碼？</div><div className="text-[18px] text-[#B4B0B0]">可於{countdown}秒後重新發送</div></>)}</div>
             </div>
           </div>
           <div className="fixed left-0 right-0 bottom-0 z-50 bg-[#D1D5DB] border-t border-[#BFC5CD] px-[6px] pt-[6px] pb-[14px]">
@@ -172,7 +174,7 @@ const PersonalAccountEditPage = () => {
               </div>
               <div className="text-[26px] font-bold text-[#E0A132] mb-3">驗證失敗。</div>
               <div className="text-[18px] text-[#1F1F1F] mb-10">無效的一次性密碼。</div>
-              <button onClick={() => setShowVerifyFailed(false)} className="w-full h-[58px] rounded-full bg-[#1E3B6B] text-white text-[22px] font-semibold mb-8">知道了</button>
+              <button onClick={() => { setShowVerifyFailed(false); setShowEmailVerify(true); }} className="w-full h-[58px] rounded-full bg-[#1E3B6B] text-white text-[22px] font-semibold mb-8">知道了</button>
               <div className="text-[14px] text-[#9A9595] leading-[1.45]">職員專用</div>
               <div className="text-[13px] text-[#9A9595] leading-[1.5] break-all">REG0001 FF:ACCOUNT_OVERVIEW 1e[4a96696d-4abe-4385-8f11-6f5b0ef29428 / BE:4775957ed707dbb13e87705631436a1b 20260315203810</div>
             </div>
