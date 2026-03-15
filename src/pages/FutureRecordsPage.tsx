@@ -38,7 +38,7 @@ const FutureRecordsPage = () => {
         <p className="text-sm text-gray-500 mb-4">共 1 個結果</p>
         <div className="space-y-4">
           {records.map((record, index) => (
-            <div key={index} className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <button key={index} onClick={() => navigate('/invest/future-record-detail')} className="w-full text-left bg-white rounded-xl p-4 shadow-sm border border-gray-100">
               <div className="bg-[#FFF3D9] p-3 rounded-lg mb-3">
                 <p className="text-xs text-gray-700">參考編號：#{record.referenceNumber}</p>
                 <p className="text-xs text-gray-700">交易#1的參考編號：#{record.transactionNumber}</p>
@@ -61,7 +61,7 @@ const FutureRecordsPage = () => {
                 <p className="text-gray-500">交易來源</p>
                 <p className="text-right text-gray-900">{record.source}</p>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>

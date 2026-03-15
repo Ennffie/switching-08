@@ -1,0 +1,156 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ChevronLeft, ChevronUp, ChevronDown, Info } from 'lucide-react';
+import { useFutureSubmission } from '../context/FutureSubmissionContext';
+import { useFutureInvest } from '../context/FutureInvestContext';
+
+const FutureRecordDetailPage = () => {
+  const navigate = useNavigate();
+  const { referenceNumber } = useFutureSubmission();
+  const { employerMandatoryFunds, employeeMandatoryFunds } = useFutureInvest();
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const timeStr = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+  const [activeTab, setActiveTab] = useState<'plan' | 'future'>('plan');
+  const [basicOpen, setBasicOpen] = useState(true);
+  const [detailOpen, setDetailOpen] = useState(true);
+
+  const allFundNames = Array.from(new Set([
+    ...employerMandatoryFunds.map(f => f.name),
+    ...employeeMandatoryFunds.map(f => f.name),
+  ]));
+
+  const getAllocation = (list: { name: string; allocation: number }[], name: string) => {
+    return list.find(f => f.name === name)?.allocation ?? 0;
+  };
+
+  return (
+    <div className="min-h-screen bg-white flex flex-col">
+      <div className="sticky top-0 z-30 bg-white border-b border-gray-200">
+        <div className="px-4 py-3 flex items-center">
+          <button onClick={() => navigate(-1)} className="p-2 -ml-2">
+            <ChevronLeft size={24} className="text-gray-700" />
+          </button>
+          <h1 className="flex-1 text-center text-base font-medium text-gray-900 mr-8">紀錄詳情</h1>
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-y-auto pb-8">
+        <div className="p-4">
+          <div className="bg-[#FFF5EA] rounded-2xl px-4 py-4 mb-6">
+            <div className="flex items-start gap-3">
+              <Info size={22} className="text-[#1F1F1F] mt-0.5 flex-shrink-0" />
+              <div className="flex-1">
+                <p className="text-[15px] leading-[1.6] text-[#1F1F1F] mb-4">請留意，任何於當日下午4時或之後的更改及提交的指示，將於下一個工作天處理。</p>
+                <button className="h-[42px] px-8 rounded-full border border-[#1A2E49] text-[#1A2E49] text-[17px] font-medium bg-white">取消指示</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button onClick={() => setBasicOpen(v => !v)} className="w-full px-4 py-4 flex items-center justify-between border-t border-b border-[#ECECEC]">
+          <span className="text-[18px] text-[#1F1F1F]">基本資料</span>
+          {basicOpen ? <ChevronUp size={20} className="text-[#1F1F1F]" /> : <ChevronDown size={20} className="text-[#1F1F1F]" />}
+        </button>
+
+        {basicOpen && (
+          <div className="px-4 py-5 space-y-6">
+            <div>
+              <div className="text-[15px] text-[#9A9898] mb-2">提交參考編號</div>
+              <div className="text-[18px] text-[#1F1F1F]">{referenceNumber}</div>
+            </div>
+            <div>
+              <div className="text-[15px] text-[#9A9898] mb-2">交易參考編號</div>
+              <div className="text-[18px] text-[#1F1F1F]">{referenceNumber}</div>
+            </div>
+            <div>
+              <div className="text-[15px] text-[#9A9898] mb-2">提交日期及時間（日／月／年）（時：分）</div>
+              <div className="text-[18px] text-[#1F1F1F]">{dateStr}, {timeStr}</div>
+            </div>
+            <div>
+              <div className="text-[15px] text-[#9A9898] mb-2">交易來源</div>
+              <div className="text-[18px] text-[#1F1F1F]">流動應用程式</div>
+            </div>
+            <div>
+              <div className="text-[15px] text-[#9A9898] mb-2">狀態</div>
+              <div className="text-[18px] text-[#1F1F1F]">待批量處理</div>
+            </div>
+          </div>
+        )}
+
+        <div className="mt-3 border-t border-[#ECECEC]">
+          <div className="flex">
+            <button onClick={() => setActiveTab('plan')} className={`flex-1 py-4 text-[18px] font-medium relative ${activeTab === 'plan' ? 'text-[#E6A23C]' : 'text-[#C5C1C1]'}`}>
+              選擇計劃及帳戶
+              {activeTab === 'plan' && <div className="absolute left-8 right-8 bottom-0 h-[4px] bg-[#F5A623] rounded-full" />}
+            </button>
+            <button onClick={() => setActiveTab('future')} className={`flex-1 py-4 text-[18px] font-medium relative ${activeTab === 'future' ? 'text-[#E6A23C]' : 'text-[#C5C1C1]'}`}>
+              未來供款的投資
+              {activeTab === 'future' && <div className="absolute left-8 right-8 bottom-0 h-[4px] bg-[#F5A623] rounded-full" />}
+            </button>
+          </div>
+        </div>
+
+        {activeTab === 'plan' && (
+          <div>
+            <button onClick={() => setDetailOpen(v => !v)} className="w-full px-4 py-4 flex items-center justify-between border-t border-b border-[#ECECEC]">
+              <span className="text-[18px] text-[#1F1F1F]">選擇計劃</span>
+              {detailOpen ? <ChevronUp size={20} className="text-[#1F1F1F]" /> : <ChevronDown size={20} className="text-[#1F1F1F]" />}
+            </button>
+            {detailOpen && (
+              <div className="px-4 py-6">
+                <div className="flex items-start gap-4">
+                  <img src="./icons/aia-logo-new.jpg" alt="友邦" className="w-12 h-12 object-contain mt-1" />
+                  <div>
+                    <div className="text-[18px] font-semibold text-[#1F1F1F] mb-4">友邦強積金優選計劃</div>
+                    <div className="text-[15px] text-[#9A9898] mb-1">帳戶類別</div>
+                    <div className="text-[18px] text-[#1F1F1F] mb-5">一般僱員</div>
+                    <div className="text-[15px] text-[#9A9898] mb-1">成員帳戶號碼</div>
+                    <div className="text-[18px] text-[#1F1F1F]">56442131</div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'future' && (
+          <div>
+            <button onClick={() => setDetailOpen(v => !v)} className="w-full px-4 py-4 flex items-center justify-between border-t border-b border-[#ECECEC]">
+              <span className="text-[18px] text-[#1F1F1F]">投資授權</span>
+              {detailOpen ? <ChevronUp size={20} className="text-[#1F1F1F]" /> : <ChevronDown size={20} className="text-[#1F1F1F]" />}
+            </button>
+            {detailOpen && (
+              <div className="px-4 py-5">
+                <p className="text-[15px] leading-[1.6] text-[#1F1F1F] mb-4">請留意，任何於當日下午4時或之後的更改或提交的指示，將於下一個工作天處理。</p>
+                <div className="overflow-hidden border border-[#E6E0D8]">
+                  <div className="grid grid-cols-3 bg-[#F5A623] text-white text-[16px] font-medium">
+                    <div className="p-3">基金名稱</div>
+                    <div className="p-3">僱主強制性供款（港幣）</div>
+                    <div className="p-3">僱員強制性供款（港幣）</div>
+                  </div>
+                  {allFundNames.length > 0 ? allFundNames.map((name, idx) => (
+                    <div key={idx} className="grid grid-cols-3 border-t border-[#EEE9E3] text-[16px] text-[#1F1F1F]">
+                      <div className="p-3 leading-[1.5]">{name}</div>
+                      <div className="p-3">{getAllocation(employerMandatoryFunds, name)}%</div>
+                      <div className="p-3">{getAllocation(employeeMandatoryFunds, name)}%</div>
+                    </div>
+                  )) : (
+                    <div className="grid grid-cols-3 border-t border-[#EEE9E3] text-[16px] text-[#1F1F1F]">
+                      <div className="p-3 leading-[1.5]">預設投資策略</div>
+                      <div className="p-3">0%</div>
+                      <div className="p-3">0%</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default FutureRecordDetailPage;
