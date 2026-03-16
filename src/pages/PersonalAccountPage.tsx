@@ -21,7 +21,6 @@ const PersonalAccountPage = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'details'>('overview');
   const [openContact, setOpenContact] = useState(true);
   const [openAddress, setOpenAddress] = useState(false);
-  const [openCommAddress, setOpenCommAddress] = useState(false);
   const [openCommMethod, setOpenCommMethod] = useState(false);
 
   useEffect(() => {
@@ -137,6 +136,10 @@ const PersonalAccountPage = () => {
             </a>
           </div>
 
+          <div className="px-5 pt-5 pb-3 bg-white border-b border-[#ECE7E1]">
+            <div className="text-[22px] font-semibold text-[#111]">通訊地址</div>
+          </div>
+
           <div className="px-5 pt-6 pb-2 bg-white">
             <div className="text-[14px] text-[#8F8B8B] mb-1">帳戶結餘（港幣）</div>
             <div className="text-[16px] text-[#111] font-medium">$ 30,673.78</div>
@@ -162,18 +165,6 @@ const PersonalAccountPage = () => {
               <Field label="層數（例如：「12樓」）" value={data.residentialFloor || '6A MAN SHUN LANE'} />
               <Field label="座（例如：「C座」）" value={data.residentialBlock || 'CHEUNG CHAU'} />
               <Field label="大廈" value={data.residentialBuilding || 'HONG KONG'} />
-            </div>
-          )}
-
-          {sectionHeader('通訊地址', openCommAddress, () => setOpenCommAddress(v => !v))}
-          {openCommAddress && (
-            <div className="px-5 py-5 bg-white space-y-7 border-b border-[#ECE7E1]">
-              <div className="text-[22px] font-semibold text-[#111]">通訊地址</div>
-              <Field label="國家／地區" value={data.correspondenceCountry || data.residentialCountry || '香港'} />
-              <Field label="單位／室（例如：「2室」、「A室」）" value={data.correspondenceUnit || data.residentialUnit || 'G/F'} />
-              <Field label="層數（例如：「12樓」）" value={data.correspondenceFloor || data.residentialFloor || '6A MAN SHUN LANE'} />
-              <Field label="座（例如：「C座」）" value={data.correspondenceBlock || data.residentialBlock || 'CHEUNG CHAU'} />
-              <Field label="大廈" value={data.correspondenceBuilding || data.residentialBuilding || 'HONG KONG'} />
             </div>
           )}
 
