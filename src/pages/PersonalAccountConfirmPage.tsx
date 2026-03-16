@@ -106,7 +106,7 @@ const PersonalAccountConfirmPage = () => {
         <button onClick={() => navigate('/enrolment-terms')} className="w-full h-[58px] rounded-full bg-[#19345B] text-white text-[21px] font-semibold mb-5">
           提交
         </button>
-        <button onClick={() => navigate(-1)} className="w-full text-center text-[20px] text-[#1F1F1F] font-medium">
+        <button onClick={() => navigate('/personal-account-edit')} className="w-full text-center text-[20px] text-[#1F1F1F] font-medium">
           返回
         </button>
       </div>
