@@ -170,8 +170,13 @@ const PersonalAccountPage = () => {
 
           {sectionHeader('通訊方式', openCommMethod)}
           {openCommMethod && (
-            <div className="px-5 py-5 bg-white border-b border-[#ECE7E1]">
-              <div className="text-[16px] text-[#111] leading-[1.7]">{data.directMarketingConsent === '是' ? '已同意直接促銷' : '未同意直接促銷'}</div>
+            <div className="px-5 pt-5 pb-6 bg-white border-b border-[#ECE7E1]">
+              <div className="text-[17px] leading-[1.65] text-[#6D6A67] font-normal">
+                直接促銷同意書：閣下同意積金易平台有限公司根據其
+                <a href="https://eMPF.org.hk/pics" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#4D4A46] underline underline-offset-[2px]">收集個人資料聲明（eMPF.org.hk/pics）</a>
+                內的「直接促銷」部分，使用閣下的個人資料作直接促銷之用途。閣下在此作出之指示，將取代閣下先前可能已向積金易平台有限公司提供的任何有關選擇「直接促銷」的指示。
+              </div>
+              <div className="mt-4 text-[18px] leading-none font-medium text-[#111]">{data.directMarketingConsent || '是'}</div>
             </div>
           )}
 
