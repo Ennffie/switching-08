@@ -37,7 +37,7 @@ const PersonalAccountSubmittedPage = () => {
       </div>
 
       <div className="px-6 pb-10 space-y-6">
-        <button onClick={() => navigate('/personal-account')} className="w-full h-[58px] rounded-full bg-[#233C6A] text-white text-[20px] font-semibold shadow-[0_4px_12px_rgba(0,0,0,0.14)]">
+        <button onClick={() => navigate('/invest/future-record-detail')} className="w-full h-[58px] rounded-full bg-[#233C6A] text-white text-[20px] font-semibold shadow-[0_4px_12px_rgba(0,0,0,0.14)]">
           查閱提交狀態
         </button>
         <button onClick={() => navigate('/personal-account')} className="w-full h-[58px] rounded-full border-2 border-[#2B2B2B] text-[#1F1F1F] text-[20px] font-medium bg-white">
