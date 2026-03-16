@@ -7,7 +7,7 @@ const FutureRecordDetailPage = () => {
   const navigate = useNavigate();
   const { referenceNumber, submittedAt, submittedEmployerMandatoryFunds, submittedEmployeeMandatoryFunds } = useFutureSubmission();
 
-  const [activeTab, setActiveTab] = useState<'plan' | 'future'>('plan');
+  const [activeTab, setActiveTab] = useState<'plan' | 'future'>('future');
   const [basicOpen, setBasicOpen] = useState(true);
   const [detailOpen, setDetailOpen] = useState(true);
 
@@ -81,7 +81,7 @@ const FutureRecordDetailPage = () => {
               {activeTab === 'plan' && <div className="absolute left-8 right-8 bottom-0 h-[4px] bg-[#F5A623] rounded-full" />}
             </button>
             <button onClick={() => setActiveTab('future')} className={`flex-1 py-4 text-[18px] font-medium relative ${activeTab === 'future' ? 'text-[#E6A23C]' : 'text-[#C5C1C1]'}`}>
-              未來供款的投資
+              基金轉換指示
               {activeTab === 'future' && <div className="absolute left-8 right-8 bottom-0 h-[4px] bg-[#F5A623] rounded-full" />}
             </button>
           </div>
@@ -113,20 +113,38 @@ const FutureRecordDetailPage = () => {
         {activeTab === 'future' && (
           <div>
             <button onClick={() => setDetailOpen(v => !v)} className="w-full px-4 py-4 flex items-center justify-between border-t border-b border-[#ECECEC]">
-              <span className="text-[18px] text-[#1F1F1F]">投資授權</span>
+              <span className="text-[18px] text-[#1F1F1F]">基金轉換指示 1</span>
               {detailOpen ? <ChevronUp size={20} className="text-[#1F1F1F]" /> : <ChevronDown size={20} className="text-[#1F1F1F]" />}
             </button>
             {detailOpen && (
               <div className="px-4 py-5">
-                <p className="text-[15px] leading-[1.6] text-[#1F1F1F] mb-4">請留意，任何於當日下午4時或之後的更改或提交的指示，將於下一個工作天處理。</p>
+                <p className="text-[15px] leading-[1.6] text-[#1F1F1F] mb-4">請確定以下基金轉換指示。</p>
+
+                <div className="text-[18px] font-semibold text-[#1F1F1F] mb-3">轉出現有基金</div>
+                <div className="overflow-hidden border border-[#E6E0D8] mb-8">
+                  <div className="grid grid-cols-3 bg-[#F5A623] text-white text-[16px] font-medium">
+                    <div className="p-3">基金名稱</div>
+                    <div className="p-3">僱主強制性供款（港幣）</div>
+                    <div className="p-3">僱主自願性供款（港幣）</div>
+                  </div>
+                  {allFundNames.length > 0 ? allFundNames.map((name, idx) => (
+                    <div key={`out-${idx}`} className="grid grid-cols-3 border-t border-[#EEE9E3] text-[16px] text-[#1F1F1F]">
+                      <div className="p-3 leading-[1.5]">{name}</div>
+                      <div className="p-3">{getAllocation(submittedEmployerMandatoryFunds, name)}%</div>
+                      <div className="p-3">{getAllocation(submittedEmployeeMandatoryFunds, name)}%</div>
+                    </div>
+                  )) : null}
+                </div>
+
+                <div className="text-[18px] font-semibold text-[#1F1F1F] mb-3">轉入基金</div>
                 <div className="overflow-hidden border border-[#E6E0D8]">
                   <div className="grid grid-cols-3 bg-[#F5A623] text-white text-[16px] font-medium">
                     <div className="p-3">基金名稱</div>
                     <div className="p-3">僱主強制性供款（港幣）</div>
-                    <div className="p-3">僱員強制性供款（港幣）</div>
+                    <div className="p-3">僱主自願性供款（港幣）</div>
                   </div>
                   {allFundNames.length > 0 ? allFundNames.map((name, idx) => (
-                    <div key={idx} className="grid grid-cols-3 border-t border-[#EEE9E3] text-[16px] text-[#1F1F1F]">
+                    <div key={`in-${idx}`} className="grid grid-cols-3 border-t border-[#EEE9E3] text-[16px] text-[#1F1F1F]">
                       <div className="p-3 leading-[1.5]">{name}</div>
                       <div className="p-3">{getAllocation(submittedEmployerMandatoryFunds, name)}%</div>
                       <div className="p-3">{getAllocation(submittedEmployeeMandatoryFunds, name)}%</div>
