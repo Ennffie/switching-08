@@ -2,18 +2,41 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronUp, ChevronDown, Info } from 'lucide-react';
 import { useFutureSubmission } from '../context/FutureSubmissionContext';
+import { useTransfer } from '../context/TransferContext';
 
 const FutureRecordDetailPage = () => {
   const navigate = useNavigate();
   const { referenceNumber, submittedAt, submittedEmployerMandatoryFunds, submittedEmployeeMandatoryFunds } = useFutureSubmission();
+  const { transferData } = useTransfer();
 
   const [activeTab, setActiveTab] = useState<'plan' | 'future'>('future');
   const [basicOpen, setBasicOpen] = useState(true);
   const [detailOpen, setDetailOpen] = useState(true);
 
-  const allFundNames = Array.from(new Set([
-    ...submittedEmployerMandatoryFunds.map(f => f.name),
-    ...submittedEmployeeMandatoryFunds.map(f => f.name),
+  const fallbackTransferOut = transferData.transferOut || [];
+  const fallbackTransferIn = transferData.transferIn || [];
+  const hasSubmitted = submittedEmployerMandatoryFunds.length > 0 || submittedEmployeeMandatoryFunds.length > 0;
+
+  const outMandatory = hasSubmitted
+    ? submittedEmployerMandatoryFunds
+    : (fallbackTransferOut.find(section => section.title.includes('強制'))?.funds || []).map(f => ({ name: f.name, allocation: f.percentage }));
+  const outVoluntary = hasSubmitted
+    ? submittedEmployeeMandatoryFunds
+    : (fallbackTransferOut.find(section => section.title.includes('自願'))?.funds || []).map(f => ({ name: f.name, allocation: f.percentage }));
+  const inMandatory = hasSubmitted
+    ? submittedEmployerMandatoryFunds
+    : (fallbackTransferIn.find(section => section.title.includes('強制'))?.funds || []).map(f => ({ name: f.name, allocation: f.percentage }));
+  const inVoluntary = hasSubmitted
+    ? submittedEmployeeMandatoryFunds
+    : (fallbackTransferIn.find(section => section.title.includes('自願'))?.funds || []).map(f => ({ name: f.name, allocation: f.percentage }));
+
+  const outFundNames = Array.from(new Set([
+    ...outMandatory.map(f => f.name),
+    ...outVoluntary.map(f => f.name),
+  ]));
+  const inFundNames = Array.from(new Set([
+    ...inMandatory.map(f => f.name),
+    ...inVoluntary.map(f => f.name),
   ]));
 
   const getAllocation = (list: { name: string; allocation: number }[], name: string) => {
@@ -127,11 +150,11 @@ const FutureRecordDetailPage = () => {
                     <div className="p-3">僱主強制性供款（港幣）</div>
                     <div className="p-3">僱主自願性供款（港幣）</div>
                   </div>
-                  {allFundNames.length > 0 ? allFundNames.map((name, idx) => (
+                  {outFundNames.length > 0 ? outFundNames.map((name, idx) => (
                     <div key={`out-${idx}`} className="grid grid-cols-3 border-t border-[#EEE9E3] text-[16px] text-[#1F1F1F]">
                       <div className="p-3 leading-[1.5]">{name}</div>
-                      <div className="p-3">{getAllocation(submittedEmployerMandatoryFunds, name)}%</div>
-                      <div className="p-3">{getAllocation(submittedEmployeeMandatoryFunds, name)}%</div>
+                      <div className="p-3">{getAllocation(outMandatory, name)}%</div>
+                      <div className="p-3">{getAllocation(outVoluntary, name)}%</div>
                     </div>
                   )) : null}
                 </div>
@@ -143,11 +166,11 @@ const FutureRecordDetailPage = () => {
                     <div className="p-3">僱主強制性供款（港幣）</div>
                     <div className="p-3">僱主自願性供款（港幣）</div>
                   </div>
-                  {allFundNames.length > 0 ? allFundNames.map((name, idx) => (
+                  {inFundNames.length > 0 ? inFundNames.map((name, idx) => (
                     <div key={`in-${idx}`} className="grid grid-cols-3 border-t border-[#EEE9E3] text-[16px] text-[#1F1F1F]">
                       <div className="p-3 leading-[1.5]">{name}</div>
-                      <div className="p-3">{getAllocation(submittedEmployerMandatoryFunds, name)}%</div>
-                      <div className="p-3">{getAllocation(submittedEmployeeMandatoryFunds, name)}%</div>
+                      <div className="p-3">{getAllocation(inMandatory, name)}%</div>
+                      <div className="p-3">{getAllocation(inVoluntary, name)}%</div>
                     </div>
                   )) : null}
                 </div>
