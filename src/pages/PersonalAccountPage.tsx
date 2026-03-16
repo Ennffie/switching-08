@@ -18,7 +18,7 @@ const Field = ({ label, value }: { label: string; value: string }) => (
 const PersonalAccountPage = () => {
   const navigate = useNavigate();
   const { data } = usePersonalAccount();
-  const [activeTab, setActiveTab] = useState<'overview' | 'details'>('details');
+  const [activeTab, setActiveTab] = useState<'overview' | 'details'>('overview');
   const [openContact] = useState(true);
   const [openAddress] = useState(true);
   const [openCommMethod] = useState(true);
