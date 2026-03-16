@@ -219,24 +219,27 @@ const TermsPage = () => {
 
       {/* Bottom Buttons */}
       {!showNextDayModal && (
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4 z-40">
-        <button 
-          onClick={() => setShowNextDayModal(true)}
-          disabled={!canAccept}
-          className={`w-full py-4 rounded-full text-lg font-medium mb-3 transition-all ${
-            canAccept 
-              ? 'bg-[#1e3a5f] text-white active:scale-[0.98]' 
-              : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-          }`}
-        >
-          接受
-        </button>
-        <button 
-          onClick={() => navigate(-1)}
-          className="w-full py-3 text-gray-700 text-lg font-medium"
-        >
-          拒絕
-        </button>
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4 z-40">
+          <button 
+            onClick={() => setShowNextDayModal(true)}
+            disabled={!canAccept}
+            className={`w-full py-4 rounded-full text-lg font-medium mb-3 transition-all ${
+              canAccept 
+                ? 'bg-[#1e3a5f] text-white active:scale-[0.98]' 
+                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+            }`}
+          >
+            接受
+          </button>
+          <button 
+            onClick={() => navigate(-1)}
+            className="w-full py-3 text-gray-700 text-lg font-medium"
+          >
+            拒絕
+          </button>
+        </div>
+      )}
+
       {showNextDayModal && (
         <div className="fixed inset-0 z-[200] bg-black/45 flex items-center justify-center px-4">
           <div className="relative w-full max-w-[520px] rounded-[28px] bg-white px-6 pt-6 pb-8 shadow-2xl">
@@ -271,9 +274,6 @@ const TermsPage = () => {
             </div>
           </div>
         </div>
-      )}
-
-      </div>
       )}
 
     </div>
