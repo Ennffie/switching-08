@@ -6,6 +6,7 @@ const TermsPage = () => {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [canAccept, setCanAccept] = useState(false);
+  const [showNextDayModal, setShowNextDayModal] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -219,7 +220,7 @@ const TermsPage = () => {
       {/* Bottom Buttons */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4 z-40">
         <button 
-          onClick={() => navigate('/invest/future-success')}
+          onClick={() => setShowNextDayModal(true)}
           disabled={!canAccept}
           className={`w-full py-4 rounded-full text-lg font-medium mb-3 transition-all ${
             canAccept 
@@ -235,6 +236,42 @@ const TermsPage = () => {
         >
           拒絕
         </button>
+      {showNextDayModal && (
+        <div className="fixed inset-0 z-[60] bg-black/35 flex items-center justify-center px-4">
+          <div className="relative w-full max-w-[520px] rounded-[28px] bg-white px-6 pt-6 pb-8 shadow-2xl">
+            <button
+              onClick={() => setShowNextDayModal(false)}
+              className="absolute right-5 top-5 text-[#1F1F1F]"
+            >
+              <ChevronDown size={28} className="rotate-45" />
+            </button>
+
+            <div className="flex flex-col items-center text-center pt-4">
+              <img
+                src="./images/icon-next-day.jpg"
+                alt="下一個工作日處理"
+                className="w-[150px] h-[150px] object-contain mb-6"
+              />
+
+              <h2 className="text-[22px] leading-[1.25] font-bold text-[#E6A23C] mb-5">
+                你的指示將於下一個工作日處理
+              </h2>
+
+              <p className="text-[15px] leading-[1.7] text-[#1F1F1F] mb-8">
+                你的投資指示於截止時間後提交，因此有關指示將會在下一個交易日處理。（提交投資指示的截止時間為每個工作天的下午四時正）
+              </p>
+
+              <button
+                onClick={() => navigate('/invest/success')}
+                className="w-full py-4 bg-[#1e3a5f] text-white rounded-full text-lg font-medium active:scale-[0.98] transition-transform"
+              >
+                下一步
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       </div>
 
     </div>
