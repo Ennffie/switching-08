@@ -9,6 +9,21 @@ const TermsPage = () => {
   const [showNextDayModal, setShowNextDayModal] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
+  const shouldShowNextDayModal = () => {
+    const now = new Date();
+    const hour = now.getHours();
+    return hour >= 16 && hour < 24;
+  };
+
+  const handleAccept = () => {
+    if (shouldShowNextDayModal()) {
+      setShowNextDayModal(true);
+      return;
+    }
+
+    navigate('/invest/success');
+  };
+
   useEffect(() => {
     // 頁面載入時滾到最頂
     window.scrollTo(0, 0);
@@ -221,7 +236,7 @@ const TermsPage = () => {
       {!showNextDayModal && (
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4 z-40">
           <button 
-            onClick={() => setShowNextDayModal(true)}
+            onClick={handleAccept}
             disabled={!canAccept}
             className={`w-full py-4 rounded-full text-lg font-medium mb-3 transition-all ${
               canAccept 
@@ -245,7 +260,8 @@ const TermsPage = () => {
           <div className="relative w-full max-w-[520px] rounded-[28px] bg-white px-6 pt-6 pb-8 shadow-2xl">
             <button
               onClick={() => setShowNextDayModal(false)}
-              className="absolute right-5 top-5 text-[#1F1F1F]"
+              className="absolute right-5 top-4 text-[#1F1F1F] text-[32px] leading-none"
+              aria-label="關閉"
             >
               ×
             </button>
