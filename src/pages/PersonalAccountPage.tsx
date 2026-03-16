@@ -132,9 +132,9 @@ const PersonalAccountPage = () => {
           <div className="bg-[#FFF8F0] mx-4 mt-4 rounded-[12px] p-5 relative">
             <div className="text-[20px] font-bold text-[#1F1F1F] mb-1">友邦強積金優選計劃</div>
             <div className="text-[14px] text-[#7C7878] mb-1">帳戶號碼：70741425</div>
-            <button onClick={() => navigate('/personal-account-edit')} className="absolute right-4 top-4 w-[36px] h-[36px] flex items-center justify-center">
+            <a href="https://mfp.mpfa.org.hk/mobile/tch/mpp_index.jsp" target="_blank" rel="noopener noreferrer" className="absolute right-4 top-4 w-[36px] h-[36px] flex items-center justify-center">
               <img src="./icons/icon-external.png" alt="external" className="w-[22px] h-[22px] object-contain" />
-            </button>
+            </a>
           </div>
 
           <div className="px-5 pt-6 pb-2 bg-white">
