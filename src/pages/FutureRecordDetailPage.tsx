@@ -7,7 +7,7 @@ const FutureRecordDetailPage = () => {
   const navigate = useNavigate();
   const { referenceNumber, submittedAt, submittedEmployerMandatoryFunds, submittedEmployeeMandatoryFunds } = useFutureSubmission();
 
-  const [activeTab, setActiveTab] = useState<'plan' | 'future'>('future');
+  const [activeTab, setActiveTab] = useState<'plan' | 'future'>('plan');
   const [basicOpen, setBasicOpen] = useState(true);
   const [detailOpen, setDetailOpen] = useState(true);
 
