@@ -15,6 +15,7 @@ import SelectPlanPage from './pages/SelectPlanPage';
 import FutureSelectPlanPage from './pages/FutureSelectPlanPage';
 import FutureInvestPage from './pages/FutureInvestPage';
 import FutureConfirmPage from './pages/FutureConfirmPage';
+import FutureTermsPage from './pages/FutureTermsPage';
 import FutureSuccessPage from './pages/FutureSuccessPage';
 import SwitchingRecordsPage from './pages/SwitchingRecordsPage';
 import FutureRecordDetailPage from './pages/FutureRecordDetailPage';
@@ -69,6 +70,7 @@ function App() {
           <Route path="/invest/future-select-plan" element={<FutureSelectPlanPage />} />
           <Route path="/invest/future-step-2" element={<FutureInvestPage />} />
           <Route path="/invest/future-confirm" element={<FutureConfirmPage />} />
+          <Route path="/invest/future-terms" element={<FutureTermsPage />} />
           <Route path="/invest/future-success" element={<FutureSuccessPage />} />
           <Route path="/invest/future-records" element={<FutureRecordsPage />} />
           <Route path="/invest/switching-records" element={<SwitchingRecordsPage />} />
