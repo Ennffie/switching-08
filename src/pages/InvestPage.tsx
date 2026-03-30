@@ -71,7 +71,7 @@ const InvestPage = () => {
               </div>
             </div>
             <div className="flex justify-end mt-4">
-              <button onClick={(e) => handleInfoClick(e, 'future')} className="text-[#E67E22] text-sm font-medium hover:underline">
+              <button onClick={(e) => handleInfoClick(e, 'future')} className="text-[#E67E22] text-sm font-medium underline">
                 了解更多
               </button>
             </div>
