@@ -44,17 +44,19 @@ const InvestPage = () => {
 
         <div className="space-y-5">
           <div onClick={() => handleCardClick('existing')} className="border-4 border-gray-200 rounded-2xl p-6 cursor-pointer hover:shadow-lg transition-shadow bg-white relative">
-            <button onClick={(e) => handleInfoClick(e, 'existing')} className="absolute top-5 right-5 p-1.5 text-gray-400 hover:text-gray-600">
-              <Info size={22} />
-            </button>
             <div className="flex items-start">
               <div className="flex-shrink-0 mr-5">
                 <img src="./icons/invest-existing.jpg" alt="現有帳戶結餘" className="w-16 h-16 object-contain" />
               </div>
-              <div className="flex-1 pr-10">
+              <div className="flex-1">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">現有帳戶結餘的投資</h3>
                 <p className="text-base text-gray-500 leading-relaxed">更改你現有帳戶結餘的投資組合，你可選擇指定基金轉換或單次投資組合重組</p>
               </div>
+            </div>
+            <div className="flex justify-end mt-4">
+              <button onClick={(e) => handleInfoClick(e, 'existing')} className="text-[#E67E22] text-sm font-medium underline">
+                了解更多
+              </button>
             </div>
           </div>
 
