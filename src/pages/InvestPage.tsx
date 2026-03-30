@@ -59,17 +59,19 @@ const InvestPage = () => {
           </div>
 
           <div onClick={() => handleCardClick('future')} className="border-4 border-gray-200 rounded-2xl p-6 cursor-pointer hover:shadow-lg transition-shadow bg-white relative">
-            <button onClick={(e) => handleInfoClick(e, 'future')} className="absolute top-5 right-5 p-1.5 text-gray-400 hover:text-gray-600">
-              <Info size={22} />
-            </button>
             <div className="flex items-start">
               <div className="flex-shrink-0 mr-5">
                 <img src="./icons/invest-future.jpg" alt="未來供款" className="w-16 h-16 object-contain" />
               </div>
-              <div className="flex-1 pr-10">
+              <div className="flex-1">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">未來供款的投資</h3>
                 <p className="text-base text-gray-500 leading-relaxed">適用於更改所有未來收到的款項的投資組合，包括供款及自另一計劃轉入之款項。</p>
               </div>
+            </div>
+            <div className="flex justify-end mt-4">
+              <button onClick={(e) => handleInfoClick(e, 'future')} className="text-[#E67E22] text-sm font-medium hover:underline">
+                了解更多
+              </button>
             </div>
           </div>
         </div>
