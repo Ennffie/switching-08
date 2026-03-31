@@ -125,7 +125,7 @@ const SelectPlanPage = () => {
           >
             <ChevronLeft size={24} />
           </button>
-          <h1 className="text-base font-medium text-gray-900">現有帳戶結餘的投資</h1>
+          <h1 className="text-base font-medium text-gray-900">基金轉換 / 重組投資組合</h1>
           <div className="w-8" />
         </div>
 
