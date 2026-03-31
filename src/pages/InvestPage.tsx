@@ -50,7 +50,7 @@ const InvestPage = () => {
                 <img src="./icons/invest-existing.jpg" alt="現有帳戶結餘" className="w-16 h-16 object-contain" />
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">現有帳戶結餘的投資</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">進行基金轉換/重組投資組合</h3>
                 <p className="text-base text-gray-500 leading-relaxed">更改你現有帳戶結餘的投資組合，你可選擇指定基金轉換或單次投資組合重組</p>
               </div>
             </div>
