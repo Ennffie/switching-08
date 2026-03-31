@@ -223,7 +223,9 @@ const SelectPlanPage = () => {
               }
             `}
           >
-            全部基金轉換
+            重設投資組合
+            <br />
+            （全部基金轉換）
           </button>
           <button
             onClick={handleNext}
