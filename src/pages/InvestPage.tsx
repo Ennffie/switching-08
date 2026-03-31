@@ -35,7 +35,7 @@ const InvestPage = () => {
         <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-gray-600 hover:text-gray-900">
           <ChevronLeft size={24} />
         </button>
-        <h1 className="text-lg font-medium text-[#E67E22]">投資</h1>
+        <h1 className="text-lg font-medium text-[#E67E22]">基金轉換 / 重組投資組合</h1>
         <div className="w-8" />
       </div>
 
