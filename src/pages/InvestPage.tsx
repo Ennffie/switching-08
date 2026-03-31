@@ -44,7 +44,8 @@ const InvestPage = () => {
 
         <div className="space-y-5">
           <div onClick={() => handleCardClick('existing')} className="border-4 border-gray-200 rounded-2xl p-6 cursor-pointer hover:shadow-lg transition-shadow bg-white relative">
-            <div className="flex items-start">
+            <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={32} />
+            <div className="flex items-start pr-10">
               <div className="flex-shrink-0 mr-5">
                 <img src="./icons/invest-existing.jpg" alt="現有帳戶結餘" className="w-16 h-16 object-contain" />
               </div>
@@ -53,16 +54,16 @@ const InvestPage = () => {
                 <p className="text-base text-gray-500 leading-relaxed">更改你現有帳戶結餘的投資組合，你可選擇指定基金轉換或單次投資組合重組</p>
               </div>
             </div>
-            <div className="flex justify-between items-center mt-4">
+            <div className="flex justify-start mt-4 pr-10">
               <button onClick={(e) => handleInfoClick(e, 'existing')} className="text-[#E67E22] text-sm font-medium underline">
                 了解更多
               </button>
-              <ChevronRight className="text-gray-400" size={20} />
             </div>
           </div>
 
           <div onClick={() => handleCardClick('future')} className="border-4 border-gray-200 rounded-2xl p-6 cursor-pointer hover:shadow-lg transition-shadow bg-white relative">
-            <div className="flex items-start">
+            <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={32} />
+            <div className="flex items-start pr-10">
               <div className="flex-shrink-0 mr-5">
                 <img src="./icons/invest-future.jpg" alt="未來供款" className="w-16 h-16 object-contain" />
               </div>
@@ -71,11 +72,10 @@ const InvestPage = () => {
                 <p className="text-base text-gray-500 leading-relaxed">適用於更改所有未來收到的款項的投資組合，包括供款及自另一計劃轉入之款項。</p>
               </div>
             </div>
-            <div className="flex justify-between items-center mt-4">
+            <div className="flex justify-start mt-4 pr-10">
               <button onClick={(e) => handleInfoClick(e, 'future')} className="text-[#E67E22] text-sm font-medium underline">
                 了解更多
               </button>
-              <ChevronRight className="text-gray-400" size={20} />
             </div>
           </div>
         </div>
