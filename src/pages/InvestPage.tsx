@@ -53,10 +53,11 @@ const InvestPage = () => {
                 <p className="text-base text-gray-500 leading-relaxed">更改你現有帳戶結餘的投資組合，你可選擇指定基金轉換或單次投資組合重組</p>
               </div>
             </div>
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-between items-center mt-4">
               <button onClick={(e) => handleInfoClick(e, 'existing')} className="text-[#E67E22] text-sm font-medium underline">
                 了解更多
               </button>
+              <ChevronRight className="text-gray-400" size={20} />
             </div>
           </div>
 
@@ -70,10 +71,11 @@ const InvestPage = () => {
                 <p className="text-base text-gray-500 leading-relaxed">適用於更改所有未來收到的款項的投資組合，包括供款及自另一計劃轉入之款項。</p>
               </div>
             </div>
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-between items-center mt-4">
               <button onClick={(e) => handleInfoClick(e, 'future')} className="text-[#E67E22] text-sm font-medium underline">
                 了解更多
               </button>
+              <ChevronRight className="text-gray-400" size={20} />
             </div>
           </div>
         </div>
