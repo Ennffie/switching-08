@@ -43,7 +43,7 @@ const InvestFutureInfoPage = () => {
             返回
           </button>
           <button 
-            onClick={() => navigate('/invest/future-select-plan')}
+            onClick={() => navigate('/invest/info')}
             className="flex-1 py-3 rounded-full bg-[#1e3a5f] text-white text-base font-medium"
           >
             進行指示
