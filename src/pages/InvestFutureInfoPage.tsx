@@ -32,6 +32,24 @@ const InvestFutureInfoPage = () => {
 
         <p className="text-[13px] text-[#666]">*為簡化說明，上述例子假設所有基金價格所指時間內保持不變。在實際情況下，若基金價格變動，現有強積金的投資組合結餘亦會隨之改變。</p>
       </div>
+
+      {/* Bottom Buttons */}
+      <div className="px-4 pb-8 pt-4 bg-white border-t border-gray-100">
+        <div className="flex gap-3">
+          <button 
+            onClick={() => navigate(-1)}
+            className="flex-1 py-3 rounded-full border-2 border-[#1e3a5f] text-[#1e3a5f] text-base font-medium"
+          >
+            返回
+          </button>
+          <button 
+            onClick={() => navigate('/invest/future-select-plan')}
+            className="flex-1 py-3 rounded-full bg-[#1e3a5f] text-white text-base font-medium"
+          >
+            進行指示
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
