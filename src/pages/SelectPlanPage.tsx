@@ -209,21 +209,40 @@ const SelectPlanPage = () => {
         </div>
       </div>
 
-      {/* Bottom Button */}
+      {/* Bottom Buttons */}
       <div className="fixed bottom-0 left-0 right-0 bg-white p-4 border-t border-gray-200">
-        <button
-          onClick={handleNext}
-          disabled={selectedPlan !== 'aia'}
-          className={`
-            w-full py-3 rounded-lg text-base font-medium transition-all
-            ${selectedPlan === 'aia' 
-              ? 'bg-[#1e3a5f] text-white' 
-              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            }
-          `}
-        >
-          下一步
-        </button>
+        <div className="flex gap-3">
+          <button
+            onClick={handleNext}
+            disabled={selectedPlan !== 'aia'}
+            className={`
+              flex-1 py-3 rounded-full text-sm font-medium transition-all
+              ${selectedPlan === 'aia' 
+                ? 'bg-[#1e3a5f] text-white' 
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }
+            `}
+          >
+            重設投資組合
+            <br />
+            （轉換全部）
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={selectedPlan !== 'aia'}
+            className={`
+              flex-1 py-3 rounded-full text-sm font-medium transition-all
+              ${selectedPlan === 'aia' 
+                ? 'bg-[#1e3a5f] text-white' 
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }
+            `}
+          >
+            基金轉換
+            <br />
+            （單一計劃內）
+          </button>
+        </div>
       </div>
 
       <div className="h-20" />
