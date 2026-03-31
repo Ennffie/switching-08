@@ -73,11 +73,11 @@ const MyMPFPage = () => {
             key={item.id} 
             className="menu-card"
             onClick={() => {
-              if (item.title === '投資') {
+              if (item.title === '基金轉換 / 重組投資組合') {
                 handleInvestClick();
               }
             }}
-            style={{ cursor: item.title === '投資' ? 'pointer' : 'default' }}
+            style={{ cursor: item.title === '基金轉換 / 重組投資組合' ? 'pointer' : 'default' }}
           >
             <div className="menu-card-icon">
               <img 
