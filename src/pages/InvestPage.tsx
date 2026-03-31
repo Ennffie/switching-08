@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useFutureInvest } from '../context/FutureInvestContext';
 import { useFutureSubmission } from '../context/FutureSubmissionContext';
 
