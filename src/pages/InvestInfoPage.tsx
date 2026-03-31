@@ -65,13 +65,13 @@ const InvestInfoPage = () => {
         <div className="flex gap-3">
           <button 
             onClick={() => navigate(-1)}
-            className="flex-1 py-3 rounded-lg border-2 border-[#1e3a5f] text-[#1e3a5f] text-base font-medium"
+            className="flex-1 py-3 rounded-full border-2 border-[#1e3a5f] text-[#1e3a5f] text-base font-medium"
           >
             返回
           </button>
           <button 
             onClick={() => navigate('/invest/select-plan')}
-            className="flex-1 py-3 rounded-lg bg-[#1e3a5f] text-white text-base font-medium"
+            className="flex-1 py-3 rounded-full bg-[#1e3a5f] text-white text-base font-medium"
           >
             進行指示
           </button>
