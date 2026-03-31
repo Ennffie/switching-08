@@ -40,7 +40,7 @@ const MyMPFPage = () => {
     {
       id: '4',
       icon: './icons/menu-invest.jpg',
-      title: '投資',
+      title: '進行基金轉換或重組投資',
       description: '進行基金轉換／重組投資組合，以及更改投資授權',
     },
     {
@@ -73,11 +73,11 @@ const MyMPFPage = () => {
             key={item.id} 
             className="menu-card"
             onClick={() => {
-              if (item.title === '基金轉換 / 重組投資組合') {
+              if (item.title === '進行基金轉換或重組投資') {
                 handleInvestClick();
               }
             }}
-            style={{ cursor: item.title === '基金轉換 / 重組投資組合' ? 'pointer' : 'default' }}
+            style={{ cursor: item.title === '進行基金轉換或重組投資' ? 'pointer' : 'default' }}
           >
             <div className="menu-card-icon">
               <img 

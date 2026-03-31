@@ -6,7 +6,7 @@ const HomePage = () => {
 
   const menuItems = [
     { icon: '💼', label: '我的帳戶', hasArrow: true },
-    { icon: '📊', label: '基金轉換 / 重組投資組合', hasArrow: true, onClick: () => navigate('/invest') },
+    { icon: '📊', label: '進行基金轉換或重組投資', hasArrow: true, onClick: () => navigate('/invest') },
     { icon: '📋', label: '計劃資料', hasArrow: true },
     { icon: '📄', label: '文件', hasArrow: true },
     { icon: '📈', label: '表現', hasArrow: true },
