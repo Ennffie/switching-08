@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ExternalLink, Info } from 'lucide-react';
-import { useTransfer } from '../context/TransferContext';
 import StepBar from '../components/StepBar';
 
 interface Fund {
@@ -184,6 +183,12 @@ const RebalancePage = () => {
       </div>
 
       <div className="h-20" />
+    </div>
+  );
+};
+
+export default RebalancePage;
+Name="h-20" />
     </div>
   );
 };
