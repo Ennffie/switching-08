@@ -22,6 +22,17 @@ const riskColors: Record<number, string> = {
   7: 'bg-red-500',
 };
 
+// 風險級別標籤
+const riskLabels: Record<number, string> = {
+  1: '低風險',
+  2: '低風險',
+  3: '中低風險',
+  4: '中低風險',
+  5: '中高風險',
+  6: '高風險',
+  7: '高風險',
+};
+
 // 完整基金列表
 const allFunds: Fund[] = [
   { id: '1', name: '預設投資策略', allocation: 0, riskLevel: 4 },
@@ -131,11 +142,9 @@ const RebalancePage = () => {
           {sortedFunds.map((fund) => (
             <div key={fund.id} className="bg-white rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2 flex-1">
-                  <span className="text-sm text-gray-900 flex-1">{fund.name}</span>
-                  <div className={`w-6 h-6 rounded ${riskColors[fund.riskLevel]} flex items-center justify-center text-white text-xs`}>
-                    {fund.riskLevel}
-                  </div>
+                <span className="text-sm text-gray-900 flex-1">{fund.name}</span>
+                <div className={`px-2 py-1 rounded text-xs text-white ${riskColors[fund.riskLevel]}`}>
+                  {riskLabels[fund.riskLevel]}
                 </div>
               </div>
               
