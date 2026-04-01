@@ -22,6 +22,7 @@ import FutureRecordDetailPage from './pages/FutureRecordDetailPage';
 import FutureRecordsPage from './pages/FutureRecordsPage';
 import SwitchingRecordDetailPage from './pages/SwitchingRecordDetailPage';
 import FundTransferPage from './pages/FundTransferPage';
+import RebalancePage from './pages/RebalancePage';
 import ConfirmPage from './pages/ConfirmPage';
 import TermsPage from './pages/TermsPage';
 import SuccessPage from './pages/SuccessPage';
@@ -77,6 +78,7 @@ function App() {
           <Route path="/invest/future-record-detail" element={<FutureRecordDetailPage />} />
           <Route path="/invest/switching-record-detail" element={<SwitchingRecordDetailPage />} />
           <Route path="/invest/fund-transfer" element={<FundTransferPage />} />
+          <Route path="/invest/rebalance" element={<RebalancePage />} />
           <Route path="/invest/confirm" element={<ConfirmPage />} />
           <Route path="/invest/terms" element={<TermsPage />} />
           <Route path="/invest/success" element={<SuccessPage />} />

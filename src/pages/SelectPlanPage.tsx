@@ -213,7 +213,11 @@ const SelectPlanPage = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-white p-4 border-t border-gray-200">
         <div className="flex gap-3">
           <button
-            onClick={handleNext}
+            onClick={() => {
+              if (selectedPlan === 'aia') {
+                navigate('/invest/rebalance');
+              }
+            }}
             disabled={selectedPlan !== 'aia'}
             className={`
               flex-1 py-3 rounded-full font-medium transition-all
