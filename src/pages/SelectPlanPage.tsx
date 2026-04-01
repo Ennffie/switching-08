@@ -216,31 +216,31 @@ const SelectPlanPage = () => {
             onClick={handleNext}
             disabled={selectedPlan !== 'aia'}
             className={`
-              flex-1 py-3 rounded-full text-sm font-medium transition-all
+              flex-1 py-3 rounded-full font-medium transition-all
               ${selectedPlan === 'aia' 
                 ? 'bg-[#1e3a5f] text-white' 
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }
             `}
           >
-            重設投資組合
+            <span className="text-base">重設投資組合</span>
             <br />
-            （全部基金轉換）
+            <span className="text-sm">（全部基金轉換）</span>
           </button>
           <button
             onClick={handleNext}
             disabled={selectedPlan !== 'aia'}
             className={`
-              flex-1 py-3 rounded-full text-sm font-medium transition-all
+              flex-1 py-3 rounded-full font-medium transition-all
               ${selectedPlan === 'aia' 
                 ? 'bg-[#1e3a5f] text-white' 
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }
             `}
           >
-            基金轉換
+            <span className="text-base">基金轉換</span>
             <br />
-            （單一計劃內）
+            <span className="text-sm">（單一計劃內）</span>
           </button>
         </div>
       </div>
