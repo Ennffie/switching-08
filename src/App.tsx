@@ -11,6 +11,8 @@ import OverviewPage from './pages/OverviewPage';
 import InvestPage from './pages/InvestPage';
 import InvestInfoPage from './pages/InvestInfoPage';
 import InvestFutureInfoPage from './pages/InvestFutureInfoPage';
+import InvestSelectPage from './pages/InvestSelectPage';
+import ModeSelectionPage from './pages/ModeSelectionPage';
 import SelectPlanPage from './pages/SelectPlanPage';
 import FutureSelectPlanPage from './pages/FutureSelectPlanPage';
 import FutureInvestPage from './pages/FutureInvestPage';
@@ -67,6 +69,8 @@ function App() {
           <Route path="/invest" element={<InvestPage />} />
           <Route path="/invest/info" element={<InvestInfoPage />} />
           <Route path="/invest/future-info" element={<InvestFutureInfoPage />} />
+          <Route path="/invest/options" element={<InvestSelectPage />} />
+          <Route path="/invest/mode-selection" element={<ModeSelectionPage />} />
           <Route path="/invest/select-plan" element={<SelectPlanPage />} />
           <Route path="/invest/future-select-plan" element={<FutureSelectPlanPage />} />
           <Route path="/invest/future-step-2" element={<FutureInvestPage />} />

@@ -15,7 +15,7 @@ const InvestPage = () => {
 
   const handleCardClick = (type: 'existing' | 'future') => {
     if (type === 'existing') {
-      navigate('/invest/select-plan');
+      navigate('/invest/options');
     }
     if (type === 'future') {
       resetFutureInvest();
