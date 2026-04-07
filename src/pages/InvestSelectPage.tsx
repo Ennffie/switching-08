@@ -6,7 +6,6 @@ interface InvestmentOption {
   id: string;
   emoji: string;
   title: string;
-  englishTitle: string;
   description: string;
   tags: string[];
   hasWarning?: boolean;
@@ -28,7 +27,6 @@ const InvestSelectPage = () => {
       id: 'switching',
       emoji: '🔁',
       title: '基金轉換',
-      englishTitle: 'Fund Switching',
       description: '將現有基金轉換至其他基金',
       tags: ['可選「全部供款一齊處理」', '可選「不同供款，個別處理」']
     },
@@ -36,7 +34,6 @@ const InvestSelectPage = () => {
       id: 'rebalancing',
       emoji: '⚖️',
       title: '重新配置',
-      englishTitle: 'Fund Rebalancing',
       description: '賣出所有現有基金，重新分配',
       tags: ['只適用「全部供款一齊處理」'],
       hasWarning: true,
@@ -46,7 +43,6 @@ const InvestSelectPage = () => {
       id: 'future',
       emoji: '💰',
       title: '調整未來供款',
-      englishTitle: 'Future',
       description: '設定新供款的投資分配',
       tags: ['不影響現有持倉']
     },
@@ -54,7 +50,6 @@ const InvestSelectPage = () => {
       id: 'combined',
       emoji: '🔄',
       title: '組合調整',
-      englishTitle: 'Combined',
       description: '同時調整現有資產 + 未來供款',
       tags: ['全面重新規劃投資策略']
     }
@@ -69,14 +64,14 @@ const InvestSelectPage = () => {
     });
   };
 
-  const renderSection = (title: string, englishTitle: string, color: string, options: InvestmentOption[]) => (
+  const renderSection = (title: string, color: string, options: InvestmentOption[]) => (
     <div className="mb-6">
       <div className="mb-3">
         <div 
           className="inline-flex items-center gap-2 px-4 py-2 text-white text-[14px] font-semibold rounded-full"
           style={{ backgroundColor: color }}
         >
-          {title} {englishTitle}
+          {title}
         </div>
       </div>
       
@@ -91,7 +86,7 @@ const InvestSelectPage = () => {
               <div className="text-[28px] flex-shrink-0">{option.emoji}</div>
               <div className="flex-1">
                 <div className="text-[18px] font-bold text-[#1F1F1F] mb-1">
-                  {option.title} <span className="text-[14px] font-normal text-gray-500">{option.englishTitle}</span>
+                  {option.title}
                 </div>
                 <p className="text-[14px] text-gray-600 mb-2">
                   {option.description}
@@ -136,13 +131,13 @@ const InvestSelectPage = () => {
       <div className="px-4 pb-8">
         
         {/* 【現在】Section */}
-        {renderSection('【現在】', 'Existing Balance', '#007AFF', investmentOptions.filter(o => ['switching', 'rebalancing'].includes(o.id)))}
+        {renderSection('【現在】', '#007AFF', investmentOptions.filter(o => ['switching', 'rebalancing'].includes(o.id)))}
 
         {/* 【未來】Section */}
-        {renderSection('【未來】', 'Future Contributions', '#34C759', investmentOptions.filter(o => o.id === 'future'))}
+        {renderSection('【未來】', '#34C759', investmentOptions.filter(o => o.id === 'future'))}
 
         {/* 【現在 + 未來】Section */}
-        {renderSection('【現在 + 未來】', 'Combined', '#AF52DE', investmentOptions.filter(o => o.id === 'combined'))}
+        {renderSection('【現在 + 未來】', '#AF52DE', investmentOptions.filter(o => o.id === 'combined'))}
 
         {/* 提示 */}
         <div className="bg-blue-50 border border-blue-200 rounded-[12px] px-4 py-3">
